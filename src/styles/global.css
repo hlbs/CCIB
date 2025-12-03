@@ -1,0 +1,4145 @@
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap');
+
+:root {
+  --ccib-green: #176b4a;
+  --ccib-green-soft: #1f8a5d;
+  --ccib-gold: #c9a14a;
+  --ccib-gold-soft: #e1bf63;
+  --ccib-bg: #f8f7f2;
+  --ccib-bg-alt: #f2efe6;
+  --ccib-text: #1e1e1e;
+  --ccib-text-muted: #666666;
+  --ccib-border: #e2dfd4;
+  --ccib-radius-lg: 16px;
+  --ccib-radius-md: 10px;
+  --ccib-radius-sm: 8px;
+  --ccib-shadow-soft: 0 12px 30px rgba(0, 0, 0, 0.06);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: var(--ccib-bg);
+  color: var(--ccib-text);
+}
+
+body {
+  min-height: 100vh;
+}
+
+/* Layout base */
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.ccib-main {
+  flex: 1;
+  padding-top: 72px;
+}
+
+/* Containers */
+
+.ccib-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .ccib-container {
+    padding: 2rem;
+  }
+}
+
+/* Links */
+
+a {
+  color: var(--ccib-green-soft);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Header */
+
+.ccib-header {
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  z-index: 20;
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid var(--ccib-border);
+  backdrop-filter: blur(10px);
+}
+
+.ccib-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.85rem 2.75rem;
+}
+
+/* Logo */
+
+.ccib-logo {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  text-decoration: none;
+  color: var(--ccib-green);
+}
+
+.ccib-logo:hover {
+  text-decoration: none;
+  /* impede sublinhado no hover do <a> global */
+}
+
+.ccib-logo-main {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.ccib-logo-sub {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ccib-gold);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 640px) {
+
+  .ccib-logo-main,
+  .ccib-logo-sub {
+    font-size: 0.85rem;
+  }
+}
+
+/* Navegação */
+
+.ccib-nav {
+  display: none;
+}
+
+.ccib-nav-list,
+.ccib-nav-list-mobile {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ccib-nav-link {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--ccib-text);
+  position: relative;
+}
+
+.ccib-nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -0.25rem;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--ccib-green-soft), var(--ccib-gold-soft));
+  transition: width 0.2s ease-out;
+}
+
+.ccib-nav-link:hover::after {
+  width: 100%;
+}
+
+.ccib-nav-link-active {
+  color: var(--ccib-green-soft);
+}
+
+/* Botão hamburguer (mobile) */
+
+.ccib-nav-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid var(--ccib-border);
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+.ccib-nav-toggle-line {
+  width: 18px;
+  height: 2px;
+  background-color: var(--ccib-text);
+  border-radius: 999px;
+  position: relative;
+}
+
+.ccib-nav-toggle-line::before,
+.ccib-nav-toggle-line::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 18px;
+  height: 2px;
+  background-color: var(--ccib-text);
+  border-radius: 999px;
+}
+
+.ccib-nav-toggle-line::before {
+  top: -6px;
+}
+
+.ccib-nav-toggle-line::after {
+  top: 6px;
+}
+
+/* Navegação mobile */
+
+.ccib-nav-mobile {
+  padding-top: 0.5rem;
+}
+
+.ccib-nav-list-mobile li+li {
+  margin-top: 0.5rem;
+}
+
+/* Desktop navigation */
+
+@media (min-width: 900px) {
+  .ccib-nav-toggle {
+    display: none;
+  }
+
+  .ccib-nav {
+    display: block;
+  }
+
+  .ccib-nav-list {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .ccib-nav-list-mobile {
+    display: none;
+  }
+}
+
+/* Footer */
+
+.ccib-footer {
+  border-top: 1px solid #ebe4d6;
+  padding: 1.5rem 0 2rem;
+  margin-top: 3rem;
+  text-align: center;
+  /* centraliza o texto */
+}
+
+.ccib-footer-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  font-size: 0.8rem;
+  color: var(--ccib-text-soft);
+}
+
+/* Botões */
+
+.ccib-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1.4rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.12s ease-out, box-shadow 0.12s ease-out, background-color 0.12s ease-out,
+    border-color 0.12s ease-out, color 0.12s ease-out;
+}
+
+.ccib-btn-primary {
+  background: linear-gradient(135deg, var(--ccib-green-soft), var(--ccib-green));
+  color: #ffffff;
+  box-shadow: var(--ccib-shadow-soft);
+}
+
+.ccib-btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.1);
+}
+
+.ccib-btn-outline {
+  background-color: transparent;
+  color: var(--ccib-green);
+  border-color: rgba(23, 107, 74, 0.3);
+  backdrop-filter: blur(4px);
+}
+
+.ccib-btn-outline:hover {
+  background-color: rgba(23, 107, 74, 0.04);
+}
+
+/* MODAL – tabela mensal de horários */
+
+.ccib-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(12, 22, 16, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9998;
+  padding: 1.5rem;
+}
+
+.ccib-modal {
+  background: #ffffff;
+  border-radius: 24px;
+  max-width: 960px;
+  width: 100%;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 24px 55px rgba(0, 0, 0, 0.35);
+}
+
+.ccib-modal-header {
+  padding: 1.2rem 1.5rem 0.8rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+  border-bottom: 1px solid #f0eee4;
+}
+
+.ccib-modal-title {
+  font-size: 1.1rem;
+  color: var(--ccib-green-deep);
+  margin-bottom: 0.2rem;
+}
+
+.ccib-modal-subtitle {
+  font-size: 0.82rem;
+  color: var(--ccib-text-soft);
+}
+
+.ccib-modal-close {
+  border: none;
+  background: transparent;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--ccib-text-soft);
+}
+
+.ccib-modal-body {
+  padding: 0.9rem 1.5rem 0.8rem;
+  overflow: auto;
+}
+
+.ccib-modal-footer {
+  padding: 0.75rem 1.5rem 1.1rem;
+  border-top: 1px solid #f0eee4;
+}
+
+.ccib-modal-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+}
+
+.ccib-modal-btn {
+  border-radius: 999px;
+  border: 1px solid rgba(23, 107, 74, 0.18);
+  padding: 0.45rem 0.95rem;
+  font-size: 0.82rem;
+  background: #f3f9f6;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.ccib-modal-btn:hover {
+  background: #e7f4ed;
+  transform: translateY(-1px);
+}
+
+.ccib-modal-btn--ghost {
+  background: #ffffff;
+}
+
+/* Toggle Gregoriano / Hijri */
+
+.ccib-prayer-calendar-toggle {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #f3efe4, #ebe3d1);
+  padding: 0.12rem;
+  margin-bottom: 0.85rem;
+  box-shadow: 0 6px 14px rgba(42, 34, 13, 0.12);
+}
+
+.ccib-prayer-calendar-toggle-btn {
+  border: none;
+  background: transparent;
+  padding: 0.32rem 0.85rem;
+  font-size: 0.78rem;
+  border-radius: 999px;
+  cursor: pointer;
+  color: var(--ccib-text-soft);
+  position: relative;
+  transition:
+    background 0.16s ease,
+    color 0.16s ease,
+    box-shadow 0.16s ease,
+    transform 0.12s ease;
+}
+
+.ccib-prayer-calendar-toggle-btn--active {
+  background: #ffffff;
+  color: var(--ccib-green-deep);
+  box-shadow: 0 4px 10px rgba(12, 40, 24, 0.18);
+  transform: translateY(-1px);
+}
+
+.ccib-prayer-calendar-toggle-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* opcional: bolinha indicadora dentro do botão ativo */
+.ccib-prayer-calendar-toggle-btn--active::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--ccib-gold);
+  margin-right: 3px;
+}
+
+/* Data concreta no calendário islâmico */
+
+.ccib-calendar-date-concrete {
+  font-size: 0.8rem;
+  color: var(--ccib-text-soft);
+  margin-bottom: 0.5rem;
+}
+
+
+/* Hero da Home */
+
+
+.ccib-hero {
+  padding: 2.5rem 0 3.5rem;
+  background: radial-gradient(circle at top left, #f8f4ea 0, #f3ecdd 35%, #ede2cf 70%, #e7dbc7 100%);
+}
+
+.ccib-hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 2.5rem;
+  align-items: center;
+}
+
+@media (max-width: 992px) {
+  .ccib-hero-inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ccib-hero-text {
+  max-width: 540px;
+}
+
+.ccib-hero-kicker {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ccib-text-soft);
+  margin-bottom: 0.4rem;
+}
+
+.ccib-hero-title {
+  font-size: 2.2rem;
+  line-height: 1.15;
+  margin-bottom: 0.7rem;
+  color: var(--ccib-green-deep);
+}
+
+.ccib-hero-subtitle {
+  font-size: 0.98rem;
+  color: var(--ccib-text);
+  margin-bottom: 1.2rem;
+}
+
+.ccib-hero-note {
+  font-size: 0.8rem;
+  color: var(--ccib-text-soft);
+  margin-top: 0.7rem;
+}
+
+.ccib-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.ccib-hero-media {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ccib-hero-video-stack {
+  position: relative;
+  width: 100%;
+  max-width: 540px;
+  aspect-ratio: 4 / 3;
+  border-radius: 32px;
+  overflow: hidden;
+  box-shadow: 0 18px 45px rgba(23, 51, 33, 0.35);
+}
+
+.ccib-hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.9s ease-in-out;
+}
+
+.ccib-hero-video--active {
+  opacity: 1;
+}
+
+.ccib-hero-video-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg,
+      rgba(0, 0, 0, 0.26),
+      rgba(0, 0, 0, 0.05)),
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.3), transparent 60%);
+  pointer-events: none;
+}
+
+
+/* Sections genéricas */
+
+.ccib-section {
+  padding: 1.5rem 0 2rem;
+}
+
+@media (min-width: 900px) {
+  .ccib-section {
+    padding: 2rem 0 2.5rem;
+  }
+}
+
+.ccib-section-header {
+  margin-bottom: 1.4rem;
+}
+
+.ccib-section-title {
+  margin: 0;
+  font-size: 1.4rem;
+  color: var(--ccib-green);
+}
+
+.ccib-section-description {
+  margin-top: 0.35rem;
+  margin-bottom: 0;
+  font-size: 0.95rem;
+  color: var(--ccib-text-muted);
+}
+
+/* Cards genéricos */
+
+.ccib-card {
+  background-color: #ffffff;
+  border-radius: var(--ccib-radius-lg);
+  border: 1px solid rgba(226, 223, 212, 0.9);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03);
+  padding: 1.1rem 1.1rem 0.9rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.12s ease-out, box-shadow 0.12s ease-out, border-color 0.12s ease-out;
+}
+
+.ccib-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 26px rgba(0, 0, 0, 0.06);
+  border-color: rgba(23, 107, 74, 0.16);
+}
+
+.ccib-card-body {
+  margin-bottom: 0.8rem;
+}
+
+.ccib-card-title {
+  margin: 0 0 0.4rem;
+  font-size: 1rem;
+  color: var(--ccib-text);
+}
+
+.ccib-card-description {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--ccib-text-muted);
+}
+
+.ccib-card-footer {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.ccib-card-link {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ccib-green-soft);
+}
+
+.ccib-card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 700px) {
+  .ccib-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .ccib-card-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Página interna base */
+
+.ccib-page {
+  padding-top: 1.5rem;
+}
+
+.ccib-page-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.6rem;
+  color: var(--ccib-green);
+}
+
+.ccib-page-intro {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--ccib-text-muted);
+}
+
+/* Hero em VÍDEO para páginas internas */
+
+.ccib-page-video-hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.ccib-page-video-hero-inner {
+  position: relative;
+}
+
+.ccib-page-video-media {
+  position: relative;
+  width: 100%;
+  height: min(55vh, 420px);
+  max-height: 420px;
+  overflow: hidden;
+}
+
+.ccib-page-video-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.55);
+}
+
+.ccib-page-video-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  background: linear-gradient(to top,
+      rgba(0, 0, 0, 0.65),
+      rgba(0, 0, 0, 0.3),
+      transparent 55%);
+}
+
+.ccib-page-video-text {
+  max-width: 780px;
+  padding: 2rem 0 2.3rem;
+}
+
+.ccib-page-video-title {
+  color: #ffffff;
+  font-size: 1.8rem;
+  margin: 0 0 0.45rem;
+}
+
+.ccib-page-video-subtitle {
+  color: #f2f2f2;
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  max-width: 740px;
+}
+
+@media (min-width: 900px) {
+  .ccib-page-video-media {
+    height: min(60vh, 460px);
+    max-height: 460px;
+  }
+
+  .ccib-page-video-text {
+    padding: 2.6rem 0 2.8rem;
+  }
+
+  .ccib-page-video-title {
+    font-size: 2.3rem;
+  }
+}
+
+/* Navegação tipo "chips" para seções da página */
+
+.ccib-page-chip-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.2rem 0 0.4rem;
+}
+
+.ccib-chip-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(23, 107, 74, 0.18);
+  background-color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--ccib-text);
+  text-decoration: none;
+  transition: background-color 0.12s ease-out, transform 0.12s ease-out, box-shadow 0.12s ease-out;
+}
+
+.ccib-chip-link:hover {
+  background-color: rgba(23, 107, 74, 0.04);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Layout 2 colunas */
+
+.ccib-two-column {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+@media (min-width: 900px) {
+  .ccib-two-column {
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  }
+}
+
+/* Seções alternadas esquerda/direita */
+
+.ccib-alt-section .ccib-two-column {
+  align-items: center;
+}
+
+.ccib-alt-inner.ccib-alt-reverse {
+  direction: rtl;
+}
+
+.ccib-alt-inner.ccib-alt-reverse>* {
+  direction: ltr;
+}
+
+.ccib-alt-text {
+  opacity: 0;
+}
+
+.ccib-alt-body p {
+  margin-top: 0.4rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.93rem;
+  color: var(--ccib-text-muted);
+}
+
+.ccib-alt-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Moldura "árabe" para fotos e vídeos */
+
+.ccib-arabic-frame {
+  position: relative;
+  width: 100%;
+  min-height: 360px;
+  border-radius: 25px;
+  background-size: cover;
+  background-position: center;
+  background-color: #f4efe3;
+  overflow: hidden;
+  box-shadow: var(--ccib-shadow-soft);
+  border: 2px solid rgba(201, 161, 74, 0.85);
+}
+
+@media (min-width: 900px) {
+  .ccib-arabic-frame {
+    min-height: 420px;
+  }
+}
+
+.ccib-arabic-frame::before,
+.ccib-arabic-frame::after {
+  content: '';
+  position: absolute;
+  width: 140%;
+  height: 140%;
+  border-radius: 0;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  top: -20%;
+  left: -20%;
+  transform: rotate(3deg);
+  pointer-events: none;
+}
+
+.ccib-arabic-frame::after {
+  border-color: rgba(23, 107, 74, 0.25);
+  transform: rotate(-3deg);
+}
+
+.ccib-arabic-frame-badge {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  padding: 0.3rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* animações suaves */
+
+@keyframes ccibSlideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes ccibSlideRight {
+  from {
+    opacity: 0;
+    transform: translateX(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.ccib-alt-from-left {
+  animation: ccibSlideLeft 0.6s ease-out forwards;
+}
+
+.ccib-alt-from-right {
+  animation: ccibSlideRight 0.6s ease-out forwards;
+}
+
+/* Parallax simples */
+
+.ccib-parallax-slice {
+  position: relative;
+  min-height: 260px;
+  background-image: url('https://images.pexels.com/photos/5973518/pexels-photo-5973518.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  margin: 1rem 0 2rem;
+}
+
+.ccib-parallax-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right,
+      rgba(0, 0, 0, 0.65),
+      rgba(0, 0, 0, 0.35),
+      rgba(0, 0, 0, 0.75));
+  display: flex;
+  align-items: center;
+}
+
+.ccib-parallax-text {
+  color: #ffffff;
+  max-width: 640px;
+}
+
+.ccib-parallax-text h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.5rem;
+}
+
+.ccib-parallax-text p {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* Verso em destaque */
+
+.ccib-verse-callout {
+  margin-top: 1rem;
+  margin-bottom: 1.4rem;
+  padding: 1.1rem 1.2rem;
+  border-radius: var(--ccib-radius-lg);
+  background: #ffffff;
+  border: 1px solid rgba(226, 223, 212, 0.9);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+}
+
+.ccib-verse-ar {
+  margin: 0 0 0.4rem;
+  font-size: 1rem;
+  line-height: 1.8;
+  direction: rtl;
+  text-align: right;
+}
+
+.ccib-verse-tr {
+  margin: 0 0 0.3rem;
+  font-size: 0.9rem;
+  color: var(--ccib-text-muted);
+}
+
+.ccib-verse-ref {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ccib-green-soft);
+}
+
+/* Linha do tempo dos profetas */
+
+.ccib-timeline {
+  position: relative;
+  margin-top: 2.4rem;
+  padding-top: 0.6rem;
+}
+
+.ccib-timeline-track {
+  position: relative;
+  display: flex;
+  gap: 1.1rem;
+  padding: 4.5rem 0 1.2rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.ccib-timeline-track::-webkit-scrollbar {
+  height: 5px;
+}
+
+.ccib-timeline-track::-webkit-scrollbar-thumb {
+  background: rgba(23, 107, 74, 0.35);
+  border-radius: 999px;
+}
+
+.ccib-timeline-item {
+  position: relative;
+  flex: 0 0 230px;
+  scroll-snap-align: start;
+}
+
+.ccib-timeline-card-hit {
+  position: relative;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  outline: none;
+}
+
+/* Círculo com imagem em árabe */
+
+.ccib-timeline-badge {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  width: 110px;
+  height: 110px;
+  border-radius: 999px;
+  border: none;
+  background: radial-gradient(circle at 30% 20%, #ffffff, #eaf4f0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+}
+
+.ccib-timeline-badge-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 999px;
+}
+
+/* Card com flip */
+
+.ccib-timeline-card-inner {
+  position: relative;
+  width: 100%;
+  margin-top: 56px;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: transform 0.6s cubic-bezier(0.21, 0.7, 0.3, 1),
+    box-shadow 0.25s ease-out, border-color 0.25s ease-out;
+}
+
+.ccib-timeline-card-face {
+  position: relative;
+  backface-visibility: hidden;
+  border-radius: var(--ccib-radius-lg);
+  border: 1px solid rgba(226, 223, 212, 0.9);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+  padding: 0.9rem 0.9rem 0.85rem;
+  background-color: #ffffff;
+  min-height: 132px;
+}
+
+.ccib-timeline-card-back {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(180deg);
+  background: radial-gradient(circle at top left, rgba(23, 107, 74, 0.12), #ffffff);
+}
+
+/* Estado ativo: card girado */
+
+.ccib-timeline-item--active .ccib-timeline-card-inner {
+  transform: translateY(-6px) rotateY(180deg);
+}
+
+/* Hover em desktop */
+
+.ccib-timeline-card-hit:hover .ccib-timeline-card-inner {
+  box-shadow: 0 14px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* Conteúdos */
+
+.ccib-timeline-order {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  padding: 0.1rem 0.4rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  background-color: rgba(23, 107, 74, 0.07);
+  color: var(--ccib-green-soft);
+  margin-bottom: 0.45rem;
+}
+
+.ccib-timeline-name-main {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--ccib-green);
+}
+
+.ccib-timeline-name-secondary {
+  margin: 0.2rem 0 0;
+  font-size: 0.85rem;
+  color: var(--ccib-text-muted);
+}
+
+.ccib-timeline-text {
+  margin: 0;
+  font-size: 0.84rem;
+  color: var(--ccib-text-muted);
+}
+
+.ccib-timeline-hint {
+  margin: 0.4rem 0 0;
+  font-size: 0.8rem;
+  color: var(--ccib-text-muted);
+}
+
+/* Botões laterais da linha do tempo */
+
+.ccib-timeline-nav {
+  position: absolute;
+  top: 1.4rem;
+  transform: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1px solid rgba(226, 223, 212, 0.9);
+  background-color: #ffffff;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  color: var(--ccib-green);
+  cursor: pointer;
+  z-index: 2;
+}
+
+.ccib-timeline-nav--left {
+  left: 6px;
+}
+
+.ccib-timeline-nav--right {
+  right: 6px;
+}
+
+.ccib-timeline-nav:hover {
+  background-color: #f5f3eb;
+}
+
+/* Grid de flip-cards para pilares da fé */
+
+.ccib-flip-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 800px) {
+  .ccib-flip-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Layout específico dos 5 pilares */
+
+.ccib-pillar-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.ccib-pillar-row {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (min-width: 800px) {
+  .ccib-pillar-row {
+    flex-direction: row;
+  }
+
+  .ccib-pillar-row--bottom {
+    justify-content: center;
+  }
+}
+
+/* Flip cards (pilares e fé) */
+
+.ccib-flip-card {
+  perspective: 1200px;
+  outline: none;
+}
+
+.ccib-flip-card:focus-visible {
+  box-shadow: 0 0 0 2px rgba(23, 107, 74, 0.4);
+}
+
+.ccib-flip-inner {
+  position: relative;
+  width: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.55s ease;
+}
+
+.ccib-flip-card:hover .ccib-flip-inner,
+.ccib-flip-card:focus-within .ccib-flip-inner {
+  transform: rotateY(180deg);
+}
+
+.ccib-flip-front,
+.ccib-flip-back {
+  position: relative;
+  backface-visibility: hidden;
+  border-radius: var(--ccib-radius-lg);
+  border: 1px solid rgba(226, 223, 212, 0.9);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+  padding: 1rem 1rem 0.9rem;
+  background-color: #ffffff;
+  min-height: 190px;
+}
+
+.ccib-flip-back {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(180deg);
+  background: radial-gradient(circle at top left, rgba(23, 107, 74, 0.1), #ffffff);
+}
+
+.ccib-pillar-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ccib-gold);
+  margin-bottom: 0.3rem;
+}
+
+.ccib-pillar-title {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--ccib-green);
+}
+
+.ccib-pillar-highlight {
+  margin: 0.3rem 0 0.4rem;
+  font-size: 0.86rem;
+  font-weight: 500;
+  color: var(--ccib-text-muted);
+}
+
+.ccib-pillar-text {
+  margin: 0;
+  font-size: 0.86rem;
+  color: var(--ccib-text-muted);
+}
+
+/* Lista de notícias */
+
+.ccib-news-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.9rem;
+}
+
+@media (min-width: 800px) {
+  .ccib-news-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Animação genérica */
+
+@keyframes ccibFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ccib-animate-in {
+  animation: ccibFadeUp 0.6s ease-out both;
+}
+
+/* Item do menu com dropdown (Conheça o Islam) */
+
+.ccib-nav-item--has-dropdown {
+  position: relative;
+}
+
+.ccib-dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* botão do chevron (clicável, definido no Header.jsx) */
+.ccib-dropdown-caret-button {
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+/* Chevron minimalista */
+.ccib-dropdown-caret-icon {
+  width: 8px;
+  height: 8px;
+  border-right: 1.5px solid var(--ccib-text-muted);
+  border-bottom: 1.5px solid var(--ccib-text-muted);
+  transform: rotate(45deg);
+  transition:
+    transform 0.18s ease-out,
+    border-color 0.18s ease-out;
+  margin-top: 2px;
+}
+
+.ccib-dropdown-caret-icon--active {
+  border-color: var(--ccib-green-soft);
+  transform: rotate(-135deg);
+}
+
+/* Caixa do dropdown (controlada por classe .ccib-nav-dropdown--open) */
+
+.ccib-nav-dropdown {
+  position: absolute;
+  top: calc(100% + 0.35rem);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  min-width: 220px;
+  padding: 0.55rem;
+  border-radius: 14px;
+  background-color: #ffffff;
+  border: 1px solid rgba(226, 223, 212, 0.95);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
+
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.18s ease-out,
+    transform 0.18s ease-out;
+  z-index: 30;
+}
+
+.ccib-nav-dropdown--open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.ccib-nav-dropdown-link {
+  display: block;
+  padding: 0.4rem 0.55rem;
+  border-radius: 10px;
+  font-size: 0.86rem;
+  color: var(--ccib-text);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.ccib-nav-dropdown-link+.ccib-nav-dropdown-link {
+  margin-top: 0.1rem;
+}
+
+.ccib-nav-dropdown-link:hover {
+  background-color: rgba(23, 107, 74, 0.06);
+  color: var(--ccib-green-soft);
+}
+
+/* Subitens no menu mobile (filhos de Conheça o Islam) */
+
+.ccib-nav-mobile-sub-list {
+  list-style: none;
+  padding: 0.2rem 0 0.3rem 0.75rem;
+  margin: 0.2rem 0 0.4rem;
+  border-left: 1px solid rgba(23, 107, 74, 0.14);
+}
+
+.ccib-nav-mobile-sub-list li+li {
+  margin-top: 0.15rem;
+}
+
+.ccib-nav-mobile-sub-link {
+  font-size: 0.85rem;
+  color: var(--ccib-text-muted);
+  text-decoration: none;
+}
+
+.ccib-nav-mobile-sub-link:hover {
+  color: var(--ccib-green-soft);
+}
+
+/* ========= LOADER ========= */
+
+.ccib-loader-root {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.9), transparent 55%),
+    radial-gradient(circle at bottom right, rgba(201, 176, 113, 0.25), transparent 60%),
+    #f5f0e4;
+  animation: ccib-loader-bg 18s ease-in-out infinite alternate;
+}
+
+/* véu suave por cima do fundo, para dar foco ao card */
+.ccib-loader-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(0, 0, 0, 0.08), transparent 65%);
+  pointer-events: none;
+}
+
+.ccib-loader-content {
+  position: relative;
+  max-width: 480px;
+  width: 92%;
+  padding: 2.6rem 2.75rem 2.3rem;
+  border-radius: 24px;
+  background: #fdf9ef00;
+  box-shadow: none;
+  text-align: center;
+  border: none;
+  animation: ccib-loader-card-in 700ms cubic-bezier(0.22, 0.8, 0.25, 1) both;
+}
+
+.ccib-loader-logo {
+  margin-bottom: 1.25rem;
+}
+
+.ccib-loader-logo img {
+  width: 220px;
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.16));
+  animation: ccib-loader-breath 3.2s ease-in-out infinite;
+}
+
+.ccib-loader-arabic {
+  font-size: 1.4rem;
+  line-height: 1.6;
+  margin: 0 0 0.4rem;
+  color: #b1891f;
+  letter-spacing: 0.03em;
+}
+
+.ccib-loader-text {
+  margin: 0 0 1.8rem;
+  font-size: 0.98rem;
+  color: #5b5543;
+}
+
+/* barra de progresso */
+
+.ccib-loader-progress {
+  position: relative;
+  width: 100%;
+  max-width: 260px;
+  margin: 0 auto;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+.ccib-loader-progress span {
+  display: block;
+  height: 100%;
+  width: 40%;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    rgba(17, 96, 63, 0.25),
+    #11603f,
+    rgba(17, 96, 63, 0.85)
+  );
+  animation: ccib-loader-bar 1.4s ease-in-out infinite;
+}
+
+/* === ANIMAÇÕES ======================================== */
+
+@keyframes ccib-loader-bg {
+  from {
+    background-position: 0% 0%, 100% 100%, center;
+  }
+  to {
+    background-position: 15% 5%, 85% 95%, center;
+  }
+}
+
+@keyframes ccib-loader-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes ccib-loader-breath {
+  0%,
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.16));
+  }
+  50% {
+    transform: scale(1.03);
+    filter: drop-shadow(0 16px 26px rgba(0, 0, 0, 0.2));
+  }
+}
+
+@keyframes ccib-loader-bar {
+  0% {
+    transform: translateX(-60%);
+  }
+  100% {
+    transform: translateX(160%);
+  }
+}
+
+/* opcional: para quando você quiser fazer um fade-out na remoção */
+.ccib-loader-root.ccib-loader-fade-out {
+  animation: ccib-loader-root-out 420ms ease forwards;
+}
+
+@keyframes ccib-loader-root-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* responsivo */
+
+@media (max-width: 480px) {
+  .ccib-loader-content {
+    padding: 2.2rem 1.8rem 2rem;
+    border-radius: 20px;
+  }
+
+  .ccib-loader-logo img {
+    width: 190px;
+  }
+
+  .ccib-loader-arabic {
+    font-size: 1.25rem;
+  }
+
+  .ccib-loader-text {
+    font-size: 0.92rem;
+  }
+}
+
+
+/* ========= HORÁRIOS DE ORAÇÃO ========= */
+
+.ccib-prayer-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+@media (max-width: 960px) {
+  .ccib-prayer-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ccib-prayer-card-main {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 1.5rem 1.9rem;
+  box-shadow: var(--ccib-shadow-soft);
+}
+
+.ccib-prayer-status {
+  font-size: 0.95rem;
+  color: var(--ccib-text-soft);
+}
+
+.ccib-prayer-status--error {
+  color: #c0392b;
+}
+
+.ccib-prayer-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 1.1rem;
+}
+
+@media (max-width: 600px) {
+  .ccib-prayer-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.ccib-prayer-date-label {
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ccib-text-soft);
+  margin-bottom: 0.2rem;
+}
+
+.ccib-prayer-date-main {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--ccib-green-deep);
+  margin-bottom: 0.15rem;
+}
+
+.ccib-prayer-date-sub {
+  font-size: 0.85rem;
+  color: var(--ccib-text-soft);
+}
+
+.ccib-prayer-toggle {
+  border-radius: 999px;
+  border: 1px solid rgba(23, 107, 74, 0.2);
+  padding: 0.4rem 0.9rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  background: #f3f9f6;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.ccib-prayer-toggle:hover {
+  background: #e8f4ed;
+  transform: translateY(-1px);
+}
+
+.ccib-prayer-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.ccib-prayer-table td {
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #f0eee4;
+}
+
+.ccib-prayer-table tr:last-child td {
+  border-bottom: none;
+}
+
+.ccib-prayer-label {
+  color: var(--ccib-text);
+}
+
+.ccib-prayer-time {
+  text-align: right;
+  font-weight: 600;
+  color: var(--ccib-green-deep);
+}
+
+.ccib-prayer-note {
+  margin-top: 0.9rem;
+  font-size: 0.8rem;
+  color: var(--ccib-text-soft);
+}
+
+/* Calendário / Navegação lateral */
+
+.ccib-prayer-calendar {
+  background: #faf8f1;
+  border-radius: 24px;
+  padding: 1.1rem 1.3rem;
+  box-shadow: var(--ccib-shadow-subtle);
+  font-size: 0.85rem;
+  max-height: 420px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ccib-prayer-calendar-title {
+  font-size: 0.96rem;
+  font-weight: 600;
+  color: var(--ccib-green-deep);
+  margin-bottom: 0.2rem;
+}
+
+.ccib-prayer-calendar-text {
+  font-size: 0.8rem;
+  color: var(--ccib-text-soft);
+  margin-bottom: 0.7rem;
+}
+
+.ccib-prayer-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.32rem;
+  margin-bottom: 0.75rem;
+}
+
+@media (max-width: 768px) {
+  .ccib-prayer-calendar-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+.ccib-prayer-calendar-day {
+  border-radius: 12px;
+  padding: 0.35rem 0.25rem;
+  border: 1px solid #e4dece;
+  background: #ffffff;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.ccib-prayer-calendar-day-number {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ccib-green-deep);
+}
+
+.ccib-prayer-calendar-day-label {
+  font-size: 0.7rem;
+  color: var(--ccib-text-soft);
+}
+
+.ccib-prayer-calendar-day--active {
+  border-color: var(--ccib-green);
+  background: #f4faf6;
+  box-shadow: 0 0 0 1px rgba(9, 102, 65, 0.14);
+}
+
+.ccib-prayer-month-table-wrapper {
+  border-radius: 18px;
+  background: #ffffff;
+  padding: 0.6rem 0.3rem 0.7rem;
+  box-shadow: inset 0 0 0 1px #f0eee4;
+  overflow: auto;
+  margin-top: 0.35rem;
+}
+
+.ccib-prayer-month-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.78rem;
+}
+
+.ccib-prayer-month-table th,
+.ccib-prayer-month-table td {
+  padding: 0.25rem 0.4rem;
+  border-bottom: 1px solid #f2efe5;
+  text-align: center;
+}
+
+.ccib-prayer-month-table th {
+  font-weight: 600;
+  color: var(--ccib-text-soft);
+}
+
+.ccib-prayer-month-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* ========= CALENDÁRIO ISLÂMICO ========= */
+
+
+.ccib-calendar-grid {
+  display: grid;
+  /* 3 colunas fixas em desktop para não sobrar “espaço morto” à direita */
+  grid-template-columns: repeat(3, minmax(260px, 1fr));
+  gap: 1.75rem;
+  margin-top: 1.5rem;
+}
+
+/* Em telas médias, cai para 2 colunas */
+@media (max-width: 1100px) {
+  .ccib-calendar-grid {
+    grid-template-columns: repeat(2, minmax(260px, 1fr));
+  }
+}
+
+/* Em mobile, apenas 1 coluna */
+@media (max-width: 700px) {
+  .ccib-calendar-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ccib-calendar-card {
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 18px 40px rgba(15, 40, 20, 0.06);
+  padding: 1.25rem 1.4rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition:
+    box-shadow 0.25s ease,
+    transform 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.ccib-calendar-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 48px rgba(15, 40, 20, 0.09);
+  background-color: #fdfdfb;
+}
+
+.ccib-calendar-card-header {
+  margin-bottom: 0.7rem;
+}
+
+/* Título do card */
+.ccib-card-title {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: #18452e;
+  margin: 0 0 0.75rem;
+}
+
+/* Bloco de datas */
+.ccib-calendar-date-block {
+  margin-bottom: 0.55rem;
+}
+
+.ccib-calendar-date-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #777;
+  margin-bottom: 0.2rem;
+}
+
+.ccib-calendar-date-main {
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: #145b3a;
+  margin-bottom: 0.05rem;
+}
+
+.ccib-calendar-date-sub {
+  font-size: 0.82rem;
+  color: #666;
+}
+
+/* Tagline curta */
+.ccib-calendar-tagline {
+  font-size: 0.86rem;
+  color: #424242;
+}
+
+/* Botão "ver mais detalhes" */
+.ccib-calendar-toggle {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 999px;
+  border: 1px solid rgba(22, 138, 85, 0.2);
+  padding: 0.25rem 0.8rem;
+  background: #ffffff;
+  font-size: 0.8rem;
+  color: #145b3a;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.ccib-calendar-toggle:hover {
+  background-color: #145b3a;
+  color: #ffffff;
+  border-color: #145b3a;
+  transform: translateY(-1px);
+}
+
+.ccib-calendar-toggle-icon {
+  display: inline-block;
+  font-size: 0.7rem;
+}
+
+/* Card de imagem que ocupa o espaço vazio do grid */
+.ccib-calendar-image-card {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(15, 40, 20, 0.06);
+  min-height: 205px;
+  background-image: url('https://images.pexels.com/photos/12777419/pexels-photo-12777419.jpeg?auto=compress&cs=tinysrgb&w=1200');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  grid-column: 1/-1;
+}
+
+.ccib-calendar-image-overlay {
+  position: relative;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 1.15rem 1.35rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: linear-gradient(145deg,
+      rgba(6, 25, 16, 0.85),
+      rgba(6, 25, 16, 0.35),
+      transparent);
+  color: #fdfdf6;
+}
+
+.ccib-calendar-image-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 0.35rem;
+}
+
+.ccib-calendar-image-text {
+  font-size: 0.86rem;
+  line-height: 1.5;
+  max-width: 18rem;
+}
+
+/* Mensagens e disclaimer */
+.ccib-calendar-loading {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.ccib-calendar-disclaimer {
+  margin-top: 1.75rem;
+  font-size: 0.85rem;
+  color: #777;
+  max-width: 920px;
+}
+
+/* === MODAL / ALERT DE DETALHES ================================ */
+
+.ccib-calendar-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(6, 25, 16, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  animation: ccib-fade-in 0.25s ease-out;
+}
+
+.ccib-calendar-modal {
+  position: relative;
+  max-width: 520px;
+  width: 92%;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 1.5rem 1.7rem 1.4rem;
+  box-shadow: 0 32px 80px rgba(6, 25, 16, 0.4);
+  animation: ccib-modal-pop 0.25s ease-out;
+}
+
+.ccib-calendar-modal-close {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.95rem;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #777;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.ccib-calendar-modal-close:hover {
+  color: #145b3a;
+  transform: scale(1.05);
+}
+
+.ccib-calendar-modal-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #18452e;
+  margin: 0 0 0.6rem;
+}
+
+.ccib-calendar-modal-dates {
+  margin-bottom: 0.5rem;
+}
+
+.ccib-calendar-modal-tagline {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #145b3a;
+  margin-bottom: 0.7rem;
+}
+
+.ccib-calendar-modal-description {
+  font-size: 0.9rem;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Animações */
+@keyframes ccib-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes ccib-modal-pop {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .ccib-calendar-card {
+    padding: 1.1rem 1.15rem 0.9rem;
+  }
+
+  .ccib-calendar-image-card {
+    min-height: 180px;
+  }
+
+  .ccib-calendar-modal {
+    padding: 1.3rem 1.25rem 1.2rem;
+  }
+}
+
+
+/* ========= SOBRE O CCIB – GRID ========= */
+
+.ccib-about-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1.2fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 960px) {
+  .ccib-about-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ccib-about-main .ccib-card-description {
+  margin-bottom: 0.9rem;
+}
+
+.ccib-about-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  font-size: 0.9rem;
+  color: var(--ccib-text);
+}
+
+.ccib-about-list li strong {
+  color: var(--ccib-green-deep);
+}
+
+.ccib-about-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.ccib-about-stat {
+  background: #faf8f1;
+  border-radius: 18px;
+  padding: 0.7rem 0.9rem;
+  box-shadow: var(--ccib-shadow-subtle);
+  font-size: 0.86rem;
+}
+
+.ccib-about-stat strong {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--ccib-green-deep);
+  margin-bottom: 0.1rem;
+}
+
+/* HERO COM VÍDEO DE FUNDO EM TELA CHEIA */
+
+.ccib-hero.ccib-hero--video {
+  position: relative;
+  padding: 3.2rem 0 3.8rem;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+/* container interno do hero */
+.ccib-hero-inner {
+  position: relative;
+  z-index: 1;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+}
+
+/* painel de texto (a “caixa de diálogo”) */
+.ccib-hero-text-panel {
+  max-width: 560px;
+  background: rgba(5, 24, 15, 0.58);
+  border-radius: 24px;
+  padding: 1.9rem 2.1rem 2.2rem;
+  box-shadow: 0 20px 45px rgba(3, 12, 7, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(10px);
+}
+
+/* tipografia do hero */
+
+.ccib-hero-kicker {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: rgba(232, 238, 234, 0.85);
+  margin-bottom: 0.45rem;
+}
+
+.ccib-hero-title {
+  font-size: 2.25rem;
+  line-height: 1.18;
+  margin-bottom: 0.75rem;
+  color: #ffffff;
+}
+
+.ccib-hero-subtitle {
+  font-size: 0.98rem;
+  color: rgba(239, 244, 241, 0.9);
+  margin-bottom: 1.25rem;
+}
+
+.ccib-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.ccib-hero-note {
+  font-size: 0.8rem;
+  color: rgba(232, 238, 234, 0.8);
+  margin-top: 0.8rem;
+}
+
+/* BACKGROUND DE VÍDEO */
+
+.ccib-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.ccib-hero-bg-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.ccib-hero-bg-video--active {
+  opacity: 1;
+}
+
+/* overlay para deixar o texto legível */
+.ccib-hero-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(115deg,
+      rgba(4, 20, 12, 0.93) 0%,
+      rgba(4, 20, 12, 0.78) 34%,
+      rgba(4, 20, 12, 0.54) 58%,
+      rgba(4, 20, 12, 0.35) 100%),
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.16), transparent 55%);
+  pointer-events: none;
+}
+
+/* responsivo */
+
+@media (max-width: 992px) {
+  .ccib-hero.ccib-hero--video {
+    padding-top: 4rem;
+  }
+
+  .ccib-hero-inner {
+    min-height: 70vh;
+    justify-content: center;
+  }
+
+  .ccib-hero-text-panel {
+    max-width: 100%;
+  }
+
+  .ccib-hero-title {
+    font-size: 1.9rem;
+  }
+}
+
+/* =========================================================
+   Ajustes finos – Home (horários + calendário islâmico)
+   ========================================================= */
+
+/* Toggle Gregoriano / Hijri – estilo pill mais elegante */
+.ccib-prayer-calendar-toggle {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 3px;
+  background: linear-gradient(90deg,
+      rgba(190, 153, 79, 0.12),
+      rgba(26, 107, 59, 0.06));
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.03);
+  gap: 4px;
+  margin-bottom: 1.25rem;
+}
+
+.ccib-prayer-calendar-toggle-btn {
+  position: relative;
+  flex: 1;
+  border-radius: 999px;
+  border: none;
+  background: transparent;
+  color: #4b5563;
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 0.45rem 0.9rem;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.1s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.01em;
+}
+
+.ccib-prayer-calendar-toggle-btn:hover {
+  transform: translateY(-0.5px);
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.ccib-prayer-calendar-toggle-btn--active {
+  background: #ffffff;
+  color: #1a6b3b;
+  box-shadow:
+    0 8px 18px rgba(0, 0, 0, 0.08),
+    0 0 0 1px rgba(26, 107, 59, 0.08);
+}
+
+.ccib-prayer-calendar-toggle-label {
+  position: relative;
+  z-index: 1;
+}
+
+/* === DIVISÓRIA ENTRE SEÇÕES ======================================= */
+
+.ccib-section-divider {
+  margin: 3rem auto 2.5rem;
+  max-width: 960px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.75rem;
+}
+
+.ccib-section-divider::before,
+.ccib-section-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(201, 176, 113, 0.6) 40%,
+    rgba(201, 176, 113, 0.6) 60%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+/* Ícone central com a caligrafia CCIB */
+.ccib-section-divider-icon {
+  width: 30px;               /* largura pequena, mas legível */
+  height: 30px;
+  border-radius: 100%;
+  background-color: none; /* leve fundo claro para dar contraste */
+  border: none;
+  box-shadow: none;
+
+  /* imagem PNG no public/images/arabic/CCIB.png */
+  background-image: url("/images/div/div.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;  /* preserva o desenho, sem cortar */
+
+  display: inline-block;
+}
+
+/* Disclaimer do calendário islâmico */
+.ccib-calendar-disclaimer {
+  margin-top: 1.75rem;
+  max-width: 640px;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: #6b7280;
+}
+
+/* AUTH LAYOUT */
+
+.ccib-auth-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 2.5rem;
+  align-items: stretch;
+  padding-block: 2.5rem;
+}
+
+.ccib-auth-card {
+  background: #fff;
+  border-radius: 24px;
+  padding: 2rem 2.25rem;
+  box-shadow: var(--ccib-shadow-soft);
+}
+
+.ccib-auth-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.ccib-auth-subtitle {
+  font-size: 0.95rem;
+  color: #6b6b6b;
+  margin-bottom: 1.5rem;
+}
+
+.ccib-auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.ccib-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.ccib-form-group-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.ccib-form-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #444;
+}
+
+.ccib-form-input,
+.ccib-form-textarea,
+.ccib-form-select {
+  border-radius: 12px;
+  border: 1px solid #ded7c5;
+  padding: 0.6rem 0.75rem;
+  font-size: 0.95rem;
+  outline: none;
+  background: #faf7f0;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.ccib-form-input:focus,
+.ccib-form-textarea:focus,
+.ccib-form-select:focus {
+  border-color: #c9a14a;
+  box-shadow: 0 0 0 1px rgba(201, 161, 74, 0.35);
+  background: #fff;
+}
+
+.ccib-form-textarea {
+  resize: vertical;
+}
+
+.ccib-auth-actions,
+.ccib-news-form-actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.ccib-auth-button,
+.ccib-modal-btn {
+  border-radius: 999px;
+  padding: 0.6rem 1.4rem;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  background: #c9a14a;
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(201, 161, 74, 0.25);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.ccib-auth-button:hover,
+.ccib-modal-btn:hover {
+  background: #b08933;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 28px rgba(201, 161, 74, 0.3);
+}
+
+.ccib-auth-link-button {
+  border: none;
+  background: none;
+  padding: 0;
+  color: #b08933;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.ccib-auth-status {
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+}
+
+.ccib-auth-status--error {
+  color: #c0392b;
+}
+
+.ccib-auth-status--success {
+  color: #1e8449;
+}
+
+.ccib-auth-info {
+  background: radial-gradient(circle at top left, #fff7df 0, #f4efe3 36%, #fdfbf5 100%);
+  border-radius: 24px;
+  padding: 1.75rem 2rem;
+  box-shadow: var(--ccib-shadow-soft);
+}
+
+.ccib-auth-info h2 {
+  font-size: 1.2rem;
+  margin-bottom: 0.75rem;
+}
+
+.ccib-auth-info p {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 0.75rem;
+}
+
+.ccib-auth-link-inline {
+  color: #b08933;
+  text-decoration: underline;
+}
+
+/* NEWS – skeleton estilo YouTube */
+
+.ccib-news-skeleton-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.ccib-skeleton-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  padding: 1.25rem 1.5rem;
+  background: #f5f1e5;
+}
+
+.ccib-skeleton-line {
+  height: 12px;
+  border-radius: 999px;
+  background: #e1d9c7;
+  margin-bottom: 0.6rem;
+}
+
+.ccib-skeleton-line--small {
+  width: 20%;
+}
+
+.ccib-skeleton-line--title {
+  width: 70%;
+  height: 15px;
+}
+
+.ccib-skeleton-line--short {
+  width: 40%;
+}
+
+.ccib-skeleton-shimmer {
+  position: absolute;
+  top: 0;
+  left: -40%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0,
+    rgba(255, 255, 255, 0.7) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: ccib-shimmer 1.2s ease-in-out infinite;
+}
+
+@keyframes ccib-shimmer {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(250%);
+  }
+}
+
+/* Botões de ações em notícias */
+
+.ccib-news-item-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.ccib-news-btn {
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+  font-size: 0.8rem;
+  border: 1px solid #d1c3a8;
+  background: #fdfbf5;
+  cursor: pointer;
+}
+
+.ccib-news-btn--ghost {
+  color: #7b652e;
+}
+
+.ccib-news-btn--danger {
+  color: #a32929;
+  border-color: #e6b5b5;
+}
+
+/* PERFIL: grupos em linha */
+@media (max-width: 900px) {
+  .ccib-auth-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .ccib-form-group-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* NAV USER / AVATAR */
+
+.ccib-nav-auth {
+  display: flex;
+  align-items: center;
+}
+
+.ccib-nav-user {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.ccib-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+}
+
+.ccib-avatar--lg {
+  width: 64px;
+  height: 64px;
+  font-size: 1.2rem;
+}
+
+.ccib-nav-user-logout {
+  border: none;
+  background: transparent;
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: var(--ccib-text-muted);
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.ccib-nav-user-logout:hover {
+  background: rgba(0, 0, 0, 0.04);
+  color: var(--ccib-text);
+}
+
+/* NEWS LIST / META / BOTÕES */
+
+.ccib-news-item-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.ccib-news-item-meta {
+  font-size: 0.8rem;
+  color: var(--ccib-text-muted);
+  margin-bottom: 0.65rem;
+}
+
+.ccib-news-item-summary {
+  font-size: 0.9rem;
+  color: var(--ccib-text);
+  margin-bottom: 0.75rem;
+}
+
+.ccib-news-item-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.ccib-news-item-actions {
+  display: inline-flex;
+  gap: 0.35rem;
+}
+
+.ccib-news-btn {
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+  font-size: 0.8rem;
+  border: 1px solid #d1c3a8;
+  background: #fdfbf5;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+.ccib-news-btn:hover {
+  background: #f3ebdd;
+  transform: translateY(-1px);
+}
+
+.ccib-news-btn--ghost {
+  color: #7b652e;
+}
+
+.ccib-news-btn--danger {
+  color: #a32929;
+  border-color: #e6b5b5;
+}
+
+/* NEWS – skeleton estilo YouTube */
+
+.ccib-news-skeleton-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.ccib-skeleton-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  padding: 1.25rem 1.5rem;
+  background: #f5f1e5;
+}
+
+.ccib-skeleton-line {
+  height: 12px;
+  border-radius: 999px;
+  background: #e1d9c7;
+  margin-bottom: 0.6rem;
+}
+
+.ccib-skeleton-line--small {
+  width: 20%;
+}
+
+.ccib-skeleton-line--title {
+  width: 70%;
+  height: 15px;
+}
+
+.ccib-skeleton-line--short {
+  width: 40%;
+}
+
+.ccib-skeleton-shimmer {
+  position: absolute;
+  top: 0;
+  left: -40%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0,
+    rgba(255, 255, 255, 0.7) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: ccib-shimmer 1.2s ease-in-out infinite;
+}
+
+@keyframes ccib-shimmer {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(250%);
+  }
+}
+
+/* NEWS – layout intro & ações */
+
+.ccib-news-intro {
+  max-width: 720px;
+  font-size: 0.95rem;
+  color: var(--ccib-text-muted);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 1.25rem;
+}
+
+.ccib-news-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.ccib-news-actions-info {
+  max-width: 520px;
+  font-size: 0.85rem;
+  color: var(--ccib-text-muted);
+}
+
+.ccib-pillar-label--soft {
+  background: rgba(201, 161, 74, 0.12);
+}
+
+/* NEWS – mídia nos cards */
+
+.ccib-news-card-media img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 16px 16px 0 0;
+}
+
+.ccib-news-card-video iframe {
+  width: 100%;
+  margin-top: 0.75rem;
+  border-radius: 12px;
+  border: none;
+  min-height: 220px;
+}
+
+/* NEWS – modal Leia mais */
+
+.ccib-news-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  z-index: 999;
+}
+
+.ccib-news-modal {
+  max-width: 720px;
+  width: 100%;
+  background: #fdfbf5;
+  border-radius: 20px;
+  box-shadow: var(--ccib-shadow-soft);
+  padding: 1.75rem 1.9rem;
+  position: relative;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.ccib-news-modal-close {
+  position: absolute;
+  top: 0.85rem;
+  right: 1rem;
+  border: none;
+  background: transparent;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--ccib-text-muted);
+}
+
+.ccib-news-modal-title {
+  font-size: 1.3rem;
+  margin: 0.25rem 0 0.35rem;
+}
+
+.ccib-news-modal-text {
+  font-size: 0.95rem;
+  color: var(--ccib-text);
+  margin-top: 0.75rem;
+}
+
+.ccib-news-modal-media img {
+  width: 100%;
+  border-radius: 14px;
+  margin-top: 0.85rem;
+}
+
+.ccib-news-modal-video iframe {
+  width: 100%;
+  min-height: 260px;
+  border-radius: 14px;
+  border: none;
+  margin-top: 1rem;
+}
+
+@media (max-width: 800px) {
+  .ccib-news-modal {
+    padding: 1.25rem 1.35rem;
+  }
+}
+
+/* =========================================================
+   Biblioteca CCIB – Literatura islâmica (vitrine circular)
+   ========================================================= */
+
+.ccib-library {
+  display: flex;
+  flex-direction: column;
+  gap: 2.75rem;
+}
+
+/* Card principal da vitrine */
+.ccib-library-feature {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 2.2fr) minmax(0, 3fr);
+  gap: 2.25rem;
+  padding: 2.25rem 2rem;
+  border-radius: 24px;
+  background: radial-gradient(circle at top left, #fdf9f0 0%, #f6f5f1 40%, #f3f1eb 100%);
+  box-shadow:
+    0 22px 60px rgba(14, 35, 23, 0.18),
+    0 0 0 1px rgba(201, 176, 113, 0.15);
+  overflow: hidden;
+}
+
+.ccib-library-feature-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ccib-library-orbit-circle {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(190, 153, 79, 0.22), transparent 65%);
+  filter: blur(0.5px);
+  opacity: 0.9;
+}
+
+.ccib-library-feature-cover-wrapper {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ccib-library-feature-cover {
+  width: 230px;
+  max-width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 24px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow:
+    0 20px 40px rgba(15, 23, 20, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.5);
+  transform: translateY(0);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.ccib-library-feature-cover:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 28px 70px rgba(15, 23, 20, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.7);
+}
+
+.ccib-library-feature-cover--placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #e2d2aa, #c9b071);
+  color: #fffdf4;
+  font-weight: 700;
+  font-size: 1.4rem;
+  letter-spacing: 0.12em;
+}
+
+.ccib-library-feature-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.85rem;
+}
+
+.ccib-library-badge {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.22rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: rgba(26, 107, 59, 0.08);
+  color: #145032;
+}
+
+.ccib-library-feature-title {
+  margin: 0;
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: #163226;
+}
+
+.ccib-library-feature-subtitle {
+  margin: 0;
+  font-size: 0.96rem;
+  font-weight: 600;
+  color: #8a6a32;
+}
+
+.ccib-library-feature-description {
+  margin: 0.2rem 0 0.4rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #444;
+}
+
+.ccib-library-feature-actions {
+  margin-top: 0.8rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.ccib-library-feature-meta {
+  margin-top: 0.9rem;
+  font-size: 0.82rem;
+  color: #6b7280;
+}
+
+/* Botões base reaproveitando a estética do site */
+.ccib-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.55rem 1.4rem;
+  border: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.1s ease;
+}
+
+.ccib-btn-primary {
+  background: linear-gradient(135deg, #1a6b3b, #145032);
+  color: #ffffff;
+  box-shadow:
+    0 10px 25px rgba(20, 80, 50, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.6);
+}
+
+.ccib-btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 14px 32px rgba(20, 80, 50, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.7);
+}
+
+.ccib-btn-ghost {
+  background: rgba(255, 255, 255, 0.5);
+  color: #145032;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.03),
+    0 0 0 1px rgba(190, 153, 79, 0.25);
+}
+
+.ccib-btn-ghost:hover {
+  background: #ffffff;
+}
+
+/* Vitrine circular / carrossel */
+.ccib-library-carousel {
+  display: flex;
+  gap: 1rem;
+  padding: 0.5rem 0 0.2rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+
+.ccib-library-carousel::-webkit-scrollbar {
+  height: 6px;
+}
+
+.ccib-library-carousel::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.ccib-library-carousel::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.12);
+  border-radius: 999px;
+}
+
+.ccib-library-item {
+  position: relative;
+  scroll-snap-align: start;
+  min-width: 220px;
+  padding: 0.7rem 0.85rem;
+  border-radius: 999px;
+  background: #f6f3eb;
+  border: 1px solid rgba(190, 153, 79, 0.35);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.1s ease,
+    border-color 0.2s ease;
+}
+
+.ccib-library-item:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px rgba(16, 24, 20, 0.16);
+}
+
+.ccib-library-item--active {
+  background: #ffffff;
+  border-color: #c9b071;
+  box-shadow:
+    0 14px 32px rgba(18, 37, 26, 0.18),
+    0 0 0 1px rgba(255, 255, 255, 0.8);
+}
+
+.ccib-library-item-thumb-wrapper {
+  flex-shrink: 0;
+}
+
+.ccib-library-item-thumb {
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  background: #d4c19c;
+  background-size: cover;
+  background-position: center;
+  box-shadow:
+    0 6px 12px rgba(0, 0, 0, 0.18),
+    0 0 0 2px rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.68rem;
+  color: #fdfaf3;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.ccib-library-item-thumb-label {
+  transform: translateY(1px);
+}
+
+.ccib-library-item-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.ccib-library-item-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1f2933;
+}
+
+.ccib-library-item-subtitle {
+  font-size: 0.78rem;
+  color: #6b5a36;
+}
+
+/* Responsivo */
+@media (max-width: 960px) {
+  .ccib-library-feature {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 1.75rem 1.4rem;
+  }
+
+  .ccib-library-feature-visual {
+    order: -1;
+  }
+
+  .ccib-library-feature-cover {
+    width: 190px;
+  }
+}
+
+@media (max-width: 640px) {
+  .ccib-library-item {
+    min-width: 190px;
+  }
+}
+
+/* Wrapper da vitrine de livros com setas laterais */
+.ccib-library-carousel-wrapper {
+  position: relative;
+  padding: 0.5rem 2.75rem 0.2rem; /* top | right/left | bottom */
+}
+
+/* Centraliza verticalmente as setas em relação aos círculos
+   e as faz usar o “espaço de respiro” lateral, não por cima dos cards */
+.ccib-library-carousel-wrapper .ccib-timeline-nav {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.ccib-library-carousel-wrapper .ccib-timeline-nav--left {
+  left: 0;
+}
+
+.ccib-library-carousel-wrapper .ccib-timeline-nav--right {
+  right: 0;
+}
+
+/* =========================================================
+   Alcorão em áudio – player e grade de capítulos
+   ========================================================= */
+
+.ccib-quran-audio {
+  display: flex;
+  flex-direction: column;
+  gap: 2.75rem;
+}
+
+/* Card do player principal */
+
+.ccib-quran-audio-player {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 3fr);
+  gap: 2.25rem;
+  padding: 2.3rem 2.1rem;
+  border-radius: 24px;
+  background: radial-gradient(circle at top left, #fdf9f0 0%, #f6f5f0 45%, #f1efe7 100%);
+  box-shadow:
+    0 22px 60px rgba(14, 35, 23, 0.18),
+    0 0 0 1px rgba(201, 176, 113, 0.16);
+}
+
+.ccib-quran-audio-player-left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ccib-quran-audio-disc {
+  width: 220px;
+  height: 220px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 30%, #fefaf1, #e3d3af);
+  box-shadow:
+    0 20px 40px rgba(15, 23, 20, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ccib-quran-audio-disc-inner {
+  width: 72%;
+  height: 72%;
+  border-radius: 999px;
+  background: radial-gradient(circle, #e7d3a0, #c4a05b);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fffdf5;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+}
+
+.ccib-quran-audio-disc-number {
+  transform: translateY(1px);
+}
+
+.ccib-quran-audio-player-right {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  justify-content: center;
+}
+
+.ccib-quran-audio-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.24rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: rgba(26, 107, 59, 0.09);
+  color: #145032;
+}
+
+.ccib-quran-audio-title {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #163226;
+}
+
+.ccib-quran-audio-subtitle {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  align-items: baseline;
+}
+
+.ccib-quran-audio-arabic {
+  font-family: 'Amiri', serif;
+  font-size: 1.5rem;
+  color: #176b4a;
+}
+
+.ccib-quran-audio-translit {
+  font-size: 0.95rem;
+  color: #8a6a32;
+}
+
+.ccib-quran-audio-helper {
+  margin: 0.2rem 0 0.5rem;
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+/* Controles de playback */
+
+.ccib-quran-audio-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.35rem;
+}
+
+.ccib-quran-audio-ctrl {
+  border-radius: 999px;
+  border: none;
+  padding: 0.6rem 1.4rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.1s ease;
+}
+
+.ccib-quran-audio-ctrl--primary {
+  background: linear-gradient(135deg, #1a6b3b, #145032);
+  color: #ffffff;
+  box-shadow:
+    0 10px 25px rgba(20, 80, 50, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
+.ccib-quran-audio-ctrl--primary:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 14px 34px rgba(20, 80, 50, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.65);
+}
+
+.ccib-quran-audio-ctrl--secondary {
+  min-width: 2.4rem;
+  padding-inline: 0.8rem;
+  background: rgba(255, 255, 255, 0.7);
+  color: #145032;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.04),
+    0 0 0 1px rgba(190, 153, 79, 0.3);
+}
+
+.ccib-quran-audio-ctrl--secondary:hover {
+  background: #ffffff;
+}
+
+/* Barra de progresso */
+
+.ccib-quran-audio-progress {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.8rem;
+}
+
+.ccib-quran-audio-time {
+  font-size: 0.78rem;
+  color: #6b7280;
+  min-width: 2.8rem;
+  text-align: center;
+}
+
+.ccib-quran-audio-progress-bar {
+  flex: 1;
+  appearance: none;
+  height: 4px;
+  border-radius: 999px;
+  background: #e5dfcf;
+  outline: none;
+}
+
+.ccib-quran-audio-progress-bar::-webkit-slider-thumb {
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: #176b4a;
+  box-shadow: 0 0 0 3px rgba(23, 107, 74, 0.15);
+  cursor: pointer;
+}
+
+.ccib-quran-audio-progress-bar::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: #176b4a;
+  border: none;
+  box-shadow: 0 0 0 3px rgba(23, 107, 74, 0.15);
+  cursor: pointer;
+}
+
+/* Grade de capítulos */
+
+.ccib-quran-audio-grid-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.ccib-quran-audio-grid-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #163226;
+}
+
+.ccib-quran-audio-grid-header p {
+  margin: 0.3rem 0 0;
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+.ccib-quran-audio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.9rem;
+}
+
+.ccib-quran-audio-card {
+  position: relative;
+  border-radius: 18px;
+  padding: 0.85rem 0.85rem 0.95rem;
+  background: #f6f3eb;
+  border: 1px solid rgba(190, 153, 79, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.45rem;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.1s ease,
+    border-color 0.2s ease;
+}
+
+.ccib-quran-audio-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(16, 24, 20, 0.18);
+}
+
+.ccib-quran-audio-card--active {
+  background: #ffffff;
+  border-color: #c9b071;
+  box-shadow:
+    0 18px 40px rgba(18, 37, 26, 0.22),
+    0 0 0 1px rgba(255, 255, 255, 0.85);
+}
+
+.ccib-quran-audio-card-badge {
+  align-self: flex-start;
+  padding: 0.18rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: rgba(26, 107, 59, 0.09);
+  color: #145032;
+}
+
+.ccib-quran-audio-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  align-items: flex-start;
+}
+
+.ccib-quran-audio-card-arabic {
+  font-family: 'Amiri', serif;
+  font-size: 1.2rem;
+  color: #176b4a;
+}
+
+.ccib-quran-audio-card-portuguese {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.ccib-quran-audio-card-translit {
+  font-size: 0.78rem;
+  color: #6b5a36;
+}
+
+/* Responsivo */
+
+@media (max-width: 960px) {
+  .ccib-quran-audio-player {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 1.9rem 1.4rem;
+  }
+
+  .ccib-quran-audio-player-left {
+    order: -1;
+  }
+
+  .ccib-quran-audio-disc {
+    width: 190px;
+    height: 190px;
+  }
+}
+
+@media (max-width: 640px) {
+  .ccib-quran-audio-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+}
+
+/* =========================================================
+   Alcorão (leitura) – QuranEnc
+   ========================================================= */
+
+.ccib-quran-read {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+/* Card do cabeçalho do capítulo */
+
+.ccib-quran-read-header-card {
+  padding: 2.1rem 2rem;
+  border-radius: 24px;
+  background: radial-gradient(circle at top left, #fdf9f0 0%, #f6f5f0 45%, #f1efe7 100%);
+  box-shadow:
+    0 22px 60px rgba(14, 35, 23, 0.18),
+    0 0 0 1px rgba(201, 176, 113, 0.16);
+}
+
+.ccib-quran-read-header-main {
+  max-width: 720px;
+}
+
+.ccib-quran-read-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.22rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: rgba(26, 107, 59, 0.09);
+  color: #145032;
+}
+
+.ccib-quran-read-title {
+  margin: 0.6rem 0 0.2rem;
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: #163226;
+}
+
+.ccib-quran-read-title-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: baseline;
+  margin-bottom: 0.4rem;
+}
+
+.ccib-quran-read-title-arabic {
+  font-family: 'Amiri', serif;
+  font-size: 1.9rem;
+  color: #176b4a;
+}
+
+.ccib-quran-read-title-translit {
+  font-size: 0.94rem;
+  color: #8a6a32;
+}
+
+.ccib-quran-read-helper {
+  margin: 0.2rem 0 0.75rem;
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+/* Controles (anterior/próxima/notas) */
+
+.ccib-quran-read-header-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 0.4rem;
+}
+
+.ccib-quran-read-ctrl {
+  border-radius: 999px;
+  border: none;
+  padding: 0.55rem 1.3rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.1s ease;
+}
+
+.ccib-quran-read-ctrl--secondary {
+  background: rgba(255, 255, 255, 0.8);
+  color: #145032;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.04),
+    0 0 0 1px rgba(190, 153, 79, 0.3);
+}
+
+.ccib-quran-read-ctrl--secondary:hover {
+  background: #ffffff;
+}
+
+.ccib-quran-read-ctrl--primary {
+  background: linear-gradient(135deg, #1a6b3b, #145032);
+  color: #ffffff;
+  box-shadow:
+    0 10px 25px rgba(20, 80, 50, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.6);
+}
+
+.ccib-quran-read-ctrl--primary-on {
+  background: linear-gradient(135deg, #c9b071, #b4924f);
+  box-shadow:
+    0 10px 25px rgba(148, 116, 52, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.6);
+}
+
+/* Faixa de chips com os 114 capítulos */
+
+.ccib-quran-read-surah-strip-wrapper {
+  padding: 0.5rem 0 0.1rem;
+}
+
+.ccib-quran-read-surah-strip {
+  display: flex;
+  gap: 0.6rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 0.4rem;
+}
+
+.ccib-quran-read-surah-strip::-webkit-scrollbar {
+  height: 6px;
+}
+
+.ccib-quran-read-surah-strip::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.ccib-quran-read-surah-strip::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.12);
+  border-radius: 999px;
+}
+
+.ccib-quran-read-chip {
+  scroll-snap-align: start;
+  min-width: 150px;
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(190, 153, 79, 0.4);
+  background: #f6f3eb;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-size: 0.82rem;
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.1s ease,
+    border-color 0.2s ease;
+}
+
+.ccib-quran-read-chip:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(16, 24, 20, 0.16);
+}
+
+.ccib-quran-read-chip--active {
+  background: #ffffff;
+  border-color: #c9b071;
+  box-shadow:
+    0 14px 30px rgba(18, 37, 26, 0.22),
+    0 0 0 1px rgba(255, 255, 255, 0.85);
+}
+
+.ccib-quran-read-chip-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 999px;
+  background: rgba(26, 107, 59, 0.15);
+  color: #145032;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.ccib-quran-read-chip-portuguese {
+  white-space: nowrap;
+}
+
+/* Área dos versículos */
+
+.ccib-quran-read-body {
+  padding-bottom: 0.5rem;
+}
+
+.ccib-quran-read-state {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+.ccib-quran-read-state--error {
+  color: #b91c1c;
+}
+
+/* loader simples em forma de anel */
+
+.ccib-quran-read-loader {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 3px solid rgba(26, 107, 59, 0.18);
+  border-top-color: #1a6b3b;
+  margin: 0 auto 0.6rem;
+  animation: ccib-quran-read-spin 0.9s linear infinite;
+}
+
+@keyframes ccib-quran-read-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Cartões de versículos */
+
+.ccib-quran-read-ayah-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.ccib-quran-read-ayah-card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 1rem;
+  padding: 0.85rem 1rem;
+  border-radius: 18px;
+  background: #f9f6ee;
+  border: 1px solid rgba(190, 153, 79, 0.45);
+}
+
+.ccib-quran-read-ayah-number {
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 999px;
+  background: #fffdf8;
+  border: 1px solid rgba(190, 153, 79, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #8a6a32;
+}
+
+.ccib-quran-read-ayah-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.ccib-quran-read-ayah-translation {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #1f2933;
+}
+
+.ccib-quran-read-ayah-footnote {
+  margin: 0.1rem 0 0;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: #6b5a36;
+}
+
+/* Responsivo */
+
+@media (max-width: 960px) {
+  .ccib-quran-read-header-card {
+    padding: 1.7rem 1.4rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .ccib-quran-read-ayah-card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ccib-quran-read-ayah-number {
+    width: 1.9rem;
+    height: 1.9rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* ===== Modo de visualização (PT / árabe / ambos) ===== */
+
+.ccib-quran-read-mode-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 0.9rem;
+  margin-top: 0.9rem;
+}
+
+.ccib-quran-read-mode-label {
+  font-size: 0.82rem;
+  color: #4b5563;
+}
+
+.ccib-quran-read-mode-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.ccib-quran-read-mode-btn {
+  border-radius: 999px;
+  border: 1px solid rgba(190, 153, 79, 0.45);
+  background: rgba(255, 255, 255, 0.9);
+  padding: 0.35rem 0.9rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  color: #374151;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.08s ease;
+}
+
+.ccib-quran-read-mode-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(15, 23, 20, 0.2);
+}
+
+.ccib-quran-read-mode-btn--active {
+  background: #1a6b3b;
+  border-color: #1a6b3b;
+  color: #ffffff;
+  box-shadow:
+    0 10px 24px rgba(20, 80, 50, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.7);
+}
+
+/* ===== Texto em árabe dentro do versículo ===== */
+
+.ccib-quran-read-ayah-arabic {
+  margin: 0 0 0.25rem;
+  font-family: 'Amiri', serif;
+  font-size: 1.45rem;
+  line-height: 2.1;
+  color: #176b4a;
+  direction: rtl;
+  text-align: right;
+}
+
+/* ===== Layout da página do Alcorão (leitura) ===== */
+
+.ccib-quran-read-layout {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.ccib-quran-read-sidebar {
+  flex-shrink: 0;
+  width: 280px;
+  border-radius: 24px;
+  background: #ffffff;
+  padding: 1.5rem 1.4rem;
+  box-shadow: 0 18px 45px rgba(23, 51, 33, 0.18);
+  position: sticky;
+  top: 5.5rem;
+  max-height: calc(100vh - 6rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.ccib-quran-read-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.ccib-quran-read-sidebar-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.ccib-quran-read-sidebar-title {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ccib-text);
+}
+
+.ccib-quran-read-sidebar-subtitle {
+  font-size: 0.85rem;
+  color: var(--ccib-text-muted);
+}
+
+.ccib-quran-read-sidebar-search input {
+  width: 100%;
+  border-radius: 999px;
+  border: 1px solid var(--ccib-border);
+  padding: 0.45rem 0.9rem;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.ccib-quran-read-sidebar-search input:focus {
+  border-color: var(--ccib-green-soft);
+  box-shadow: 0 0 0 2px rgba(23, 107, 74, 0.12);
+}
+
+.ccib-quran-read-sidebar-list {
+  margin-top: 0.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  overflow-y: auto;
+  padding-right: 0.2rem;
+}
+
+.ccib-quran-read-sidebar-item {
+  width: 100%;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: transparent;
+  padding: 0.4rem 0.55rem;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  cursor: pointer;
+  transition:
+    background 0.16s ease,
+    border-color 0.16s ease,
+    transform 0.12s ease,
+    box-shadow 0.16s ease;
+}
+
+.ccib-quran-read-sidebar-item:hover {
+  background: #f7f5ee;
+}
+
+.ccib-quran-read-sidebar-item--active {
+  background: linear-gradient(135deg, #1a6b3b, #145032);
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 8px 20px rgba(20, 80, 50, 0.4);
+  transform: translateY(-1px);
+}
+
+.ccib-quran-read-sidebar-item--active
+  .ccib-quran-read-sidebar-number {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+.ccib-quran-read-sidebar-item--active
+  .ccib-quran-read-sidebar-name-pt {
+  color: #ffffff;
+}
+
+.ccib-quran-read-sidebar-item--active
+  .ccib-quran-read-sidebar-name-ar {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.ccib-quran-read-sidebar-number {
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #73552a;
+  background: #f1e6cf;
+}
+
+.ccib-quran-read-sidebar-texts {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.1rem;
+}
+
+.ccib-quran-read-sidebar-name-pt {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ccib-text);
+}
+
+.ccib-quran-read-sidebar-name-ar {
+  font-family: 'Amiri', serif;
+  font-size: 1.1rem;
+  line-height: 1.4;
+  color: var(--ccib-green);
+}
+
+/* Bloco com os versículos da surata atual */
+
+.ccib-quran-read-sidebar-ayahs {
+  margin-top: 0.7rem;
+  padding-top: 0.7rem;
+  border-top: 1px dashed rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.ccib-quran-read-sidebar-ayahs-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.ccib-quran-read-sidebar-ayahs-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ccib-text);
+}
+
+.ccib-quran-read-sidebar-ayahs-count {
+  font-size: 0.78rem;
+  color: var(--ccib-text-muted);
+}
+
+.ccib-quran-read-sidebar-ayahs-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  max-height: 110px;
+  overflow-y: auto;
+}
+
+.ccib-quran-read-sidebar-ayah-chip {
+  min-width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 999px;
+  border: 1px solid #e4dfd0;
+  background: #faf7ef;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #7a5b2a;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    background 0.16s ease,
+    border-color 0.16s ease,
+    box-shadow 0.16s ease,
+    transform 0.12s ease;
+}
+
+.ccib-quran-read-sidebar-ayah-chip:hover {
+  background: #f1e6cf;
+}
+
+.ccib-quran-read-sidebar-ayah-chip--active {
+  background: linear-gradient(135deg, #1a6b3b, #145032);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 8px 20px rgba(20, 80, 50, 0.35);
+  transform: translateY(-1px);
+}
+
+/* Destaque visual para o versículo selecionado */
+
+.ccib-quran-read-ayah-card--highlight {
+  box-shadow:
+    0 0 0 1px rgba(23, 107, 74, 0.25),
+    0 18px 40px rgba(23, 107, 74, 0.25);
+  transform: translateY(-1px);
+}
+
+/* Responsivo para telas menores */
+
+@media (max-width: 960px) {
+  .ccib-quran-read-layout {
+    flex-direction: column;
+  }
+
+  .ccib-quran-read-sidebar {
+    position: static;
+    max-height: none;
+    width: 100%;
+  }
+
+  .ccib-quran-read-sidebar-ayahs-list {
+    max-height: none;
+  }
+}

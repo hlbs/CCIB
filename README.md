@@ -31,10 +31,6 @@ O **CCIB** abriga a única mesquita de Salvador e está sempre de portas abertas
 
 ---
 
-## 📜 Licença
-
-Os códigos e documentações neste repositório estão sob a Licença [MIT License].
-
 <p align="center">
-    **"Que a paz e a misericórdia de Deus estejam sobre vós."**
+    "Que a paz e a misericórdia de Allah estejam sobre vós."
 </p>

@@ -57,7 +57,7 @@ const Hero = () => {
             CENTRO CULTURAL ISLÂMICO DA BAHIA
           </div>
           <h1 className="ccib-hero-title">
-            Conhecimento, espiritualidade e convivência em Salvador.
+            Conhecimento, espiritualidade e islamismo em Salvador.
           </h1>
           <p className="ccib-hero-subtitle">
             O CCIB é um espaço aberto para quem deseja aprender sobre o Islam,
@@ -67,15 +67,11 @@ const Hero = () => {
 
           <div className="ccib-hero-actions">
             <Button to="/conheca-o-islam">Conheça o Islam</Button>
-            <Button variant="outline" onClick={() => navigate('/contato')}>
+            <Button to="/contato">
               Fale com o CCIB
             </Button>
           </div>
 
-          <p className="ccib-hero-note">
-            Conteúdo em português, elaborado com cuidado e baseado em fontes
-            confiáveis da tradição islâmica.
-          </p>
         </div>
       </div>
     </section>

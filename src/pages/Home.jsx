@@ -113,7 +113,7 @@ const Home = () => {
     const q = query(
       collection(db, 'ccib_posts'),
       orderBy('createdAt', 'desc'),
-      limit(3)
+      limit(4)
     );
 
     const unsub = onSnapshot(
@@ -160,12 +160,84 @@ const Home = () => {
       {/* HERO COM VÍDEO DE FUNDO EM LOOPING */}
       <Hero />
 
+      {/* NOTÍCIAS & EVENTOS – PLACEHOLDER (será alimentado via admin) */}
+      <Section
+        id="noticias"
+        title="Notícias & Eventos"
+        description="Veja as últimas atualizações do Centro Cultural Islâmico da Bahia. Para a lista completa, acesse a página de notícias."
+      >
+        {newsLoading ? (
+          <p className="ccib-prayer-status">Carregando notícias…</p>
+        ) : latestPosts.length === 0 ? (
+          <p className="ccib-prayer-status">
+            Ainda não há notícias publicadas. Assim que a equipe começar a
+            publicar, as últimas atualizações aparecerão aqui.
+          </p>
+        ) : (
+          <div className="ccib-news-list">
+            {latestPosts.map((post) => (
+              <article key={post.id} className="ccib-card">
+                <div className="ccib-card-body">
+                  <p className="ccib-pillar-label">
+                    {post.tipo === 'evento' ? 'Evento' : 'Notícia'}
+                  </p>
+                  <h3 className="ccib-news-item-title">{post.title}</h3>
+                  {post.resumo && (
+                    <p className="ccib-news-item-summary">{post.resumo}</p>
+                  )}
+                  {post.authorName && (
+                    <p className="ccib-news-item-meta">
+                      Publicado em {formatPostDateTime(post.createdAt)} por{' '}
+                      <strong>{post.authorName}</strong>
+                    </p>
+                  )}
+
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
+
+        <div style={{ marginTop: '1.5rem' }}>
+          <Button to="/noticias-e-eventos" variant="outline">
+            Ver todas as notícias &amp; eventos
+          </Button>
+        </div>
+      </Section>
+
+      {/* Divisor visual */}
+      <div className="ccib-section-divider" aria-hidden="true">
+        <span className="ccib-section-divider-icon" />
+      </div>
+
       {/* HORÁRIOS DE ORAÇÃO */}
       <Section
         id="oracao"
         title="Horários de oração em Salvador (BA)"
         description="Consulte os horários diários das cinco orações obrigatórias e visualize o calendário mensal para a cidade de Salvador."
       >
+
+        {/* Verso do Alcorão */}
+        <div className="ccib-verse-callout">
+          <p className="ccib-verse-ar">
+
+            فَإِذَا قَضَيْتُمُ ٱلصَّلَوٰةَ فَٱذْكُرُوا۟ ٱللَّهَ قِيَـٰمًۭا وَقُعُودًۭا وَعَلَىٰ جُنُوبِكُمْ ۚ فَإِذَا ٱطْمَأْنَنتُمْ فَأَقِيمُوا۟ ٱلصَّلَوٰةَ ۚ إِنَّ ٱلصَّلَوٰةَ كَانَتْ عَلَى ٱلْمُؤْمِنِينَ كِتَـٰبًۭا مَّوْقُوتًۭا ١٠٣
+
+          </p>
+          <p className="ccib-verse-tr">
+            “E, quando houverdes encerrado a oração, lembrai-vos de Allah, estando de pé ou assentados ou deitados.
+            E, quando estiverdes em segurança, cumpri a oração. Por certo, a oração, para os crentes, é prescrição com tempos marcados.”
+          </p>
+          <a
+            href="https://quran.com/4/103"
+            className="ccib-verse-ref"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Alcorão 4:103 &mdash; Surah An-Nisā’
+          </a>
+        </div>
+
         <div className="ccib-prayer-layout">
           {/* Card principal com horários do dia selecionado */}
           <div className="ccib-prayer-card-main">
@@ -328,6 +400,28 @@ const Home = () => {
         title="Conteúdos em destaque"
         description="Explore temas centrais da fé islâmica e da atuação do CCIB, apresentados em linguagem clara e acessível."
       >
+
+        {/* Verso do Alcorão */}
+        <div className="ccib-verse-callout">
+          <p className="ccib-verse-ar">
+
+            فَإِذَا قَضَيْتُمُ ٱلصَّلَوٰةَ فَٱذْكُرُوا۟ ٱللَّهَ قِيَـٰمًۭا وَقُعُودًۭا وَعَلَىٰ جُنُوبِكُمْ ۚ فَإِذَا ٱطْمَأْنَنتُمْ فَأَقِيمُوا۟ ٱلصَّلَوٰةَ ۚ إِنَّ ٱلصَّلَوٰةَ كَانَتْ عَلَى ٱلْمُؤْمِنِينَ كِتَـٰبًۭا مَّوْقُوتًۭا ١٠٣
+
+          </p>
+          <p className="ccib-verse-tr">
+            “E que seja formada de vós uma comunidade, que convoque ao bem, e ordene o conveniente, e coíba o reprovável. 
+            E esses são os bem-aventurados.”
+          </p>
+          <a
+            href="https://quran.com/3/104"
+            className="ccib-verse-ref"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Alcorão 3:104 &mdash; Surah Ali'Imran
+          </a>
+        </div>
+
         <div className="ccib-card-grid">
           <InfoCard
             title="Conheça o Islam"
@@ -357,128 +451,8 @@ const Home = () => {
           <InfoCard
             title="Notícias & Eventos"
             description="Acompanhe atividades, palestras, cursos e ações comunitárias organizadas pelo CCIB."
-            to="/noticias-eventos"
+            to="/noticias-e-eventos"
           />
-        </div>
-      </Section>
-
-      {/* Divisor visual */}
-      <div className="ccib-section-divider" aria-hidden="true">
-        <span className="ccib-section-divider-icon" />
-      </div>
-
-      {/* SOBRE O CCIB */}
-      <Section
-        id="sobre-resumo"
-        title="Sobre o CCIB"
-        description="Um espaço de conhecimento, acolhimento e diálogo em Salvador."
-      >
-        <div className="ccib-about-grid">
-          <div className="ccib-card ccib-about-main">
-            <div className="ccib-card-body">
-              <p className="ccib-card-description">
-                O Centro Cultural Islâmico da Bahia (CCIB) é um ponto de encontro
-                para quem deseja conhecer o Islam com seriedade e para quem já
-                vive a fé no dia a dia. A casa está aberta para visitas,
-                palestras, estudos, momentos de oração e ações sociais realizadas
-                em parceria com a comunidade baiana.
-              </p>
-              <ul className="ccib-about-list">
-                <li>
-                  <strong>Conhecimento:</strong> encontros de introdução ao
-                  Islam, aulas temáticas e rodas de conversa para tirar dúvidas
-                  com respeito e profundidade.
-                </li>
-                <li>
-                  <strong>Espiritualidade:</strong> ambiente propício para as
-                  orações diárias, recitação do Alcorão e convivência fraterna.
-                </li>
-                <li>
-                  <strong>Serviço à sociedade:</strong> iniciativas de apoio
-                  social, campanhas de doação e projetos que valorizam justiça,
-                  solidariedade e cuidado mútuo.
-                </li>
-              </ul>
-            </div>
-            <div className="ccib-card-footer">
-              <Button to="/sobre-o-ccib" variant="outline">
-                Conheça mais sobre o CCIB
-              </Button>
-            </div>
-          </div>
-
-          <div className="ccib-about-stats">
-            <div className="ccib-about-stat">
-              <strong>+20</strong>
-              <span>
-                Anos de presença da comunidade islâmica organizada em Salvador.
-              </span>
-            </div>
-            <div className="ccib-about-stat">
-              <strong>Educação</strong>
-              <span>
-                Atividades voltadas tanto para a comunidade muçulmana quanto
-                para visitantes de outras tradições.
-              </span>
-            </div>
-            <div className="ccib-about-stat">
-              <strong>Diálogo</strong>
-              <span>
-                Participação em eventos inter-religiosos, culturais e acadêmicos
-                na Bahia.
-              </span>
-            </div>
-          </div>
-        </div>
-      </Section>
-
-      {/* Divisor visual */}
-      <div className="ccib-section-divider" aria-hidden="true">
-        <span className="ccib-section-divider-icon" />
-      </div>
-
-      {/* NOTÍCIAS & EVENTOS – PLACEHOLDER (será alimentado via admin) */}
-      <Section
-        id="noticias"
-        title="Notícias & Eventos"
-        description="Veja as últimas atualizações do Centro Cultural Islâmico da Bahia. Para a lista completa, acesse a página de notícias."
-      >
-        {newsLoading ? (
-          <p className="ccib-prayer-status">Carregando notícias…</p>
-        ) : latestPosts.length === 0 ? (
-          <p className="ccib-prayer-status">
-            Ainda não há notícias publicadas. Assim que a equipe começar a
-            publicar, as últimas atualizações aparecerão aqui.
-          </p>
-        ) : (
-          <div className="ccib-news-list">
-            {latestPosts.map((post) => (
-              <article key={post.id} className="ccib-card">
-                <div className="ccib-card-body">
-                  <p className="ccib-pillar-label">
-                    {post.tipo === 'evento' ? 'Evento' : 'Notícia'}
-                  </p>
-                  <h3 className="ccib-news-item-title">{post.title}</h3>
-                  {post.resumo && (
-                    <p className="ccib-news-item-summary">{post.resumo}</p>
-                  )}
-                  {post.authorName && (
-                    <p className="ccib-news-item-meta">
-                      Publicado em {formatPostDateTime(post.createdAt)} por{' '}
-                      <strong>{post.authorName}</strong>
-                    </p>
-                  )}
-
-                </div>
-              </article>
-            ))}
-          </div>
-        )}
-
-        <div style={{ marginTop: '1.5rem' }}>
-          <Button to="/noticias-eventos" variant="outline">
-            Ver todas as notícias &amp; eventos
-          </Button>
         </div>
       </Section>
 
@@ -495,8 +469,8 @@ const Home = () => {
                   Tabela mensal de horários – Salvador (BA)
                 </h2>
                 <p className="ccib-modal-subtitle">
-                  Horários aproximados para o mês atual. Para salvar em PDF,
-                  utilize o botão “Imprimir / Salvar em PDF” abaixo.
+                  Horários aproximados para o mês atual. Para salvar em PDF,<b>
+                    utilize o botão “Imprimir / Salvar em PDF” abaixo.</b>
                 </p>
               </div>
               <button

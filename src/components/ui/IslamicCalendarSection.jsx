@@ -10,7 +10,15 @@ const BASE_ISLAMIC_EVENTS = [
     hijriDay: 1,
     shortTagline: 'Mês do jejum obrigatório.',
     description:
-      'Mês em que o jejum de Ramadã foi prescrito. Os muçulmanos jejuam do amanhecer ao pôr do sol, buscando purificar o coração, fortalecer a consciência de Deus e aumentar atos de caridade e misericórdia.'
+      'Mês em que o jejum de Ramadã foi prescrito. Os muçulmanos jejuam do amanhecer ao pôr do sol, buscando purificar o coração, fortalecer a consciência de Deus e aumentar atos de caridade e misericórdia.',
+    verse: {
+      arabic: 'شَهْرُ رَمَضَانَ ٱلَّذِىٓ أُنزِلَ فِيهِ ٱلْقُرْءَانُ هُدًۭى لِّلنَّاسِ وَبَيِّنَـٰتٍۢ مِّنَ ٱلْهُدَىٰ وَٱلْفُرْقَانِ ۚ فَمَن شَهِدَ مِنكُمُ ٱلشَّهْرَ فَلْيَصُمْهُ ۖ وَمَن كَانَ مَرِيضًا أَوْ عَلَىٰ سَفَرٍۢ فَعِدَّةٌۭ مِّنْ أَيَّامٍ أُخَرَ ۗ يُرِيدُ ٱللَّهُ بِكُمُ ٱلْيُسْرَ وَلَا يُرِيدُ بِكُمُ ٱلْعُسْرَ وَلِتُكْمِلُوا۟ ٱلْعِدَّةَ وَلِتُكَبِّرُوا۟ ٱللَّهَ عَلَىٰ مَا هَدَىٰكُمْ وَلَعَلَّكُمْ تَشْكُرُونَ ١٨٥',
+
+      translation:
+        '“Ramadan é o mês em que foi revelado o Alcorão, como orientação para a humanidade e como evidências da orientação e do critério de julgar. Então, quem de vós presenciar esse mês, que nele jejue; e quem estiver enfermo ou em viagem, que jejue o mesmo número de outros dias. Allah vos deseja a facilidade, e não vos deseja a dificuldade. E fê-lo para que inteireis o número prescrito, e para que magnifiqueis a Allah, porque vos guiou, e para serdes agradecidos.”',
+      reference: 'Alcorão 2:185 — Surata Al-Baqarahʼ',
+      link: 'https://quran.com/2/185'
+    }
   },
   {
     id: 'laylatul-qadr',
@@ -19,7 +27,23 @@ const BASE_ISLAMIC_EVENTS = [
     hijriDay: 27, // aproximação – varia nas noites ímpares dos últimos 10 dias
     shortTagline: 'Noite descrita como “melhor do que mil meses”.',
     description:
-      'Noite em que o Alcorão começou a ser revelado. É uma oportunidade singular de súplica, reflexão e perdão, especialmente nas últimas noites ímpares de Ramadã.'
+      'Noite em que o Alcorão começou a ser revelado. É uma oportunidade singular de súplica, reflexão e perdão, especialmente nas últimas noites ímpares de Ramadã.',
+    verse: {
+      arabic: 'لَيْلَةُ ٱلْقَدْرِ خَيْرٌۭ مِّنْ أَلْفِ شَهْرٍۢ ٣',
+
+      translation:
+        '“A noite de al-Qadr é melhor que mil meses.”',
+      reference: 'Alcorão 97:3 — Surata Al-Qadrʼ',
+      link: 'https://quran.com/97/3'
+    },
+    hadith: {
+      arabic: 'وَحَدَّثَنَا يَحْيَى بْنُ يَحْيَى، قَالَ قَرَأْتُ عَلَى مَالِكٍ عَنْ عَبْدِ اللَّهِ بْنِ دِينَارٍ، عَنِ ابْنِ، عُمَرَ - رضى الله عنهما - عَنِ النَّبِيِّ صلى الله عليه وسلم قَالَ ‏ "‏ تَحَرَّوْا لَيْلَةَ الْقَدْرِ فِي السَّبْعِ الأَوَاخِرِ ‏"‏ ‏.‏',
+
+      translation:
+        '“Ibn Umar (que Allah esteja satisfeito com ele) relatou que o Mensageiro de Allah (ﷺ) disse: Busquem Lailat-ul-Qadr na última semana (do Ramadã).”',
+      reference: 'Sahih Muslim 1165b - Capítulo 40',
+      link: 'https://sunnah.com/muslim:1165b'
+    }
   },
   {
     id: 'eid-al-fitr',
@@ -312,6 +336,49 @@ const IslamicCalendarSection = () => {
             <p className="ccib-calendar-modal-description">
               {selectedEvent.description}
             </p>
+
+            {selectedEvent.verse && (
+              <div className="ccib-verse-callout ccib-verse-callout--calendar">
+                <p className="ccib-verse-ar">{selectedEvent.verse.arabic}</p>
+
+                {selectedEvent.verse.translation && (
+                  <p className="ccib-verse-tr">{selectedEvent.verse.translation}</p>
+                )}
+
+                {selectedEvent.verse.reference && (
+                  <a
+                    href={selectedEvent.verse.link || '#'}
+                    className="ccib-verse-ref"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {selectedEvent.verse.reference}
+                  </a>
+                )}
+              </div>
+            )}
+
+            {selectedEvent.hadith && (
+              <div className="ccib-verse-callout ccib-verse-callout--calendar">
+                <p className="ccib-verse-ar">{selectedEvent.hadith.arabic}</p>
+
+                {selectedEvent.verse.translation && (
+                  <p className="ccib-verse-tr">{selectedEvent.hadith.translation}</p>
+                )}
+
+                {selectedEvent.hadith.reference && (
+                  <a
+                    href={selectedEvent.hadith.link || '#'}
+                    className="ccib-verse-ref"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {selectedEvent.hadith.reference}
+                  </a>
+                )}
+              </div>
+            )}
+
           </div>
         </div>
       )}

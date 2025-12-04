@@ -182,7 +182,7 @@ const prophetsTimeline = [
 ];
 
 const ConhecaIslam = () => {
-  const [activeProphetId, setActiveProphetId] = useState('adam');
+  const [activeProphetId, setActiveProphetId] = useState();
   const timelineTrackRef = useRef(null);
 
   const sectionLinks = [
@@ -373,12 +373,11 @@ const ConhecaIslam = () => {
             {/* Verso do Alcorão */}
             <div className="ccib-verse-callout">
               <p className="ccib-verse-ar">
-                وَرُسُلًا قَدْ قَصَصْنَاهُمْ عَلَيْكَ مِن قَبْلُ وَرُسُلًا لَّمْ نَقْصُصْهُمْ عَلَيْكَ ۚ
-                وَكَلَّمَ ٱللَّهُ مُوسَىٰ تَكْلِيمًا
+                وَرُسُلًۭا قَدْ قَصَصْنَـٰهُمْ عَلَيْكَ مِن قَبْلُ وَرُسُلًۭا لَّمْ نَقْصُصْهُمْ عَلَيْكَ ۚ وَكَلَّمَ ٱللَّهُ مُوسَىٰ تَكْلِيمًۭا ١٦٤
               </p>
               <p className="ccib-verse-tr">
-                “Enviamos mensageiros de que, com efeito, te mencionamos antes, e mensageiros de que
-                não te fizemos menção; e Allah falou a Moisés de modo direto.”
+                “E enviamos Mensageiros, de que, com efeito, te fizemos menção antes e Mensageiros,
+                 de que não te fizemos menção; e Allah falou a Moisés efetivamente.”
               </p>
               <a
                 href="https://quran.com/pt/4/164"

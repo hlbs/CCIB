@@ -42,7 +42,7 @@ export function exportMonthlyPrayerTimesToPDF(monthData) {
 
   doc.setFont('Helvetica', 'normal');
   doc.setFontSize(10);
-  doc.text(cleanText(subtitleLines), 40, 60);
+  doc.text(subtitleLines.map((line) => cleanText(line)), 40, 60);
 
   // Cabeçalho da tabela
   const head = [

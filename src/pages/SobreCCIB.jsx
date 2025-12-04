@@ -92,7 +92,7 @@ const SobreCCIB = () => {
         <AlternatingSection
           id="sobre-ccib"
           title="Quem somos"
-          imageUrl="https://images.pexels.com/photos/7249216/pexels-photo-7249216.jpeg"
+          imageUrl="/images/ccib/comunidade2.jpg"
           badge="Centro Cultural Islâmico da Bahia"
         >
           <p>
@@ -125,7 +125,7 @@ const SobreCCIB = () => {
           id="nossa-comunidade"
           title="Nossa comunidade em Salvador e na Bahia"
           reverse
-          imageUrl="https://images.pexels.com/photos/7249217/pexels-photo-7249217.jpeg"
+          imageUrl="/images/ccib/comunidade.jpg"
           badge="Diversidade & unidade"
         >
           <p>
@@ -157,7 +157,7 @@ const SobreCCIB = () => {
         <AlternatingSection
           id="sheikh"
           title="Sheikh Abdul Hameed Ahmad"
-          imageUrl="/images/equipe/sheikh-abdul-hameed.jpg"
+          imageUrl="/images/ccib/sheikh_ahmad.jpg"
           badge="Orientação religiosa"
         >
           <p>

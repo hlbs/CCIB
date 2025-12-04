@@ -137,6 +137,7 @@ const AlcoraoAudio = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const audioRef = useRef(null);
 
@@ -226,142 +227,177 @@ const AlcoraoAudio = () => {
     }
   }, [currentIndex, isPlaying]);
 
+  const normalizedSearch = searchTerm.trim().toLowerCase();
+  const filteredSuras = normalizedSearch
+    ? SURA_LIST.filter((s) => {
+        const nomePt = s.portuguese.toLowerCase();
+        const translit = s.translit.toLowerCase();
+        const numStr = String(s.number);
+        return (
+          nomePt.includes(normalizedSearch) ||
+          translit.includes(normalizedSearch) ||
+          numStr.includes(normalizedSearch)
+        );
+      })
+    : SURA_LIST;
+
   return (
     <main className="ccib-page">
       <Section
         id="alcorao-audio"
         title="Alcorão em áudio"
-        description="Ouça a recitação completa do Alcorão em árabe, acompanhada da tradução para o português do Brasil. Selecione um capítulo para começar a ouvir."
+        description="Ouça a recitação completa do Alcorão em árabe. Selecione um capítulo no menu lateral para iniciar a reprodução e use os controles do player para avançar ou retroceder."
       >
-        <div className="ccib-quran-audio">
-          {/* PLAYER PRINCIPAL */}
-          <div className="ccib-quran-audio-player">
-            <div className="ccib-quran-audio-player-left">
-              <div className="ccib-quran-audio-disc">
-                <div className="ccib-quran-audio-disc-inner">
-                  <span className="ccib-quran-audio-disc-number">
-                    {currentSurah.number.toString().padStart(3, '0')}
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <div className="ccib-quran-audio-player-right">
-              <span className="ccib-quran-audio-badge">Capítulo atual</span>
-              <h2 className="ccib-quran-audio-title">
-                {currentSurah.portuguese}
-              </h2>
-
-              <div className="ccib-quran-audio-subtitle">
-                <span className="ccib-quran-audio-arabic">
-                  {currentSurah.arabic}
-                </span>
-                <span className="ccib-quran-audio-translit">
-                  {currentSurah.translit}
-                </span>
-              </div>
-
-              <p className="ccib-quran-audio-helper">
-                Use os controles abaixo para reproduzir, pausar ou mudar de
-                capítulo. Você também pode escolher qualquer surata na grade de
-                capítulos.
-              </p>
-
-              <div className="ccib-quran-audio-controls">
-                <button
-                  type="button"
-                  className="ccib-quran-audio-ctrl ccib-quran-audio-ctrl--secondary"
-                  onClick={handlePrev}
-                  aria-label="Capítulo anterior"
-                >
-                  ‹
-                </button>
-                <button
-                  type="button"
-                  className="ccib-quran-audio-ctrl ccib-quran-audio-ctrl--primary"
-                  onClick={handlePlayPause}
-                  aria-label={isPlaying ? 'Pausar' : 'Reproduzir'}
-                >
-                  {isPlaying ? 'Pausar' : 'Reproduzir'}
-                </button>
-                <button
-                  type="button"
-                  className="ccib-quran-audio-ctrl ccib-quran-audio-ctrl--secondary"
-                  onClick={handleNext}
-                  aria-label="Próximo capítulo"
-                >
-                  ›
-                </button>
-              </div>
-
-              <div className="ccib-quran-audio-progress">
-                <span className="ccib-quran-audio-time">
-                  {formatTime(currentTime)}
-                </span>
-                <input
-                  type="range"
-                  min={0}
-                  max={duration || 0}
-                  step={1}
-                  value={currentTime}
-                  onChange={handleSeek}
-                  className="ccib-quran-audio-progress-bar"
-                />
-                <span className="ccib-quran-audio-time">
-                  {formatTime(duration)}
-                </span>
-              </div>
-
-              {/* Elemento de áudio “invisível” */}
-              <audio ref={audioRef}>
-                <source
-                  src={getAudioSrc(currentSurah.number)}
-                  type="audio/mpeg"
-                />
-                Seu navegador não suporta o elemento de áudio.
-              </audio>
-            </div>
-          </div>
-
-          {/* LISTA DE 114 CAPÍTULOS */}
-          <div className="ccib-quran-audio-grid-wrapper">
-            <div className="ccib-quran-audio-grid-header">
-              <h3>Capítulos do Alcorão</h3>
-              <p>
-                Clique em qualquer cartão para ouvir diretamente aquele
-                capítulo. A recitação seguirá a ordem tradicional das 114
-                suratas.
+        <div className="ccib-quran-read-layout ccib-quran-audio-layout">
+          {/* ==== SIDEBAR ESQUERDA – LISTA DE CAPÍTULOS ==== */}
+          <aside
+            className="ccib-quran-read-sidebar"
+            aria-label="Capítulos do Alcorão em áudio"
+          >
+            <div className="ccib-quran-read-sidebar-header">
+              <h3 className="ccib-quran-read-sidebar-title">
+                Capítulos em áudio
+              </h3>
+              <p className="ccib-quran-read-sidebar-subtitle">
+                Clique em uma surata para começar a ouvir.
               </p>
             </div>
-            <div className="ccib-quran-audio-grid">
-              {SURA_LIST.map((sura, index) => {
-                const isActive = index === currentIndex;
+
+            <div className="ccib-quran-read-sidebar-search">
+              <input
+                type="text"
+                placeholder="Buscar por nome ou número…"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </div>
+
+            <div className="ccib-quran-read-sidebar-list">
+              {filteredSuras.map((sura) => {
+                const isActive = sura.number === currentSurah.number;
+                const originalIndex = SURA_LIST.findIndex(
+                  (s) => s.number === sura.number,
+                );
+
                 return (
                   <button
                     key={sura.number}
                     type="button"
-                    className={`ccib-quran-audio-card ${
-                      isActive ? 'ccib-quran-audio-card--active' : ''
+                    className={`ccib-quran-read-sidebar-item ${
+                      isActive ? 'ccib-quran-read-sidebar-item--active' : ''
                     }`}
-                    onClick={() => handleSelectSurah(index)}
+                    onClick={() => handleSelectSurah(originalIndex)}
                   >
-                    <div className="ccib-quran-audio-card-badge">
-                      {sura.number.toString().padStart(3, '0')}
-                    </div>
-                    <div className="ccib-quran-audio-card-body">
-                      <span className="ccib-quran-audio-card-arabic">
-                        {sura.arabic}
-                      </span>
-                      <span className="ccib-quran-audio-card-portuguese">
+                    <span className="ccib-quran-read-sidebar-number">
+                      {sura.number}
+                    </span>
+                    <span className="ccib-quran-read-sidebar-texts">
+                      <span className="ccib-quran-read-sidebar-name-pt">
                         {sura.portuguese}
                       </span>
-                      <span className="ccib-quran-audio-card-translit">
-                        {sura.translit}
+                      <span className="ccib-quran-read-sidebar-name-ar">
+                        {sura.arabic}
                       </span>
-                    </div>
+                    </span>
                   </button>
                 );
               })}
+            </div>
+          </aside>
+
+          {/* ==== ÁREA PRINCIPAL – PLAYER DE ÁUDIO ==== */}
+          <div className="ccib-quran-read-main">
+            <div className="ccib-quran-audio">
+              {/* PLAYER PRINCIPAL */}
+              <div className="ccib-quran-audio-player">
+                <div className="ccib-quran-audio-player-left">
+                  <div className="ccib-quran-audio-disc">
+                    <div className="ccib-quran-audio-disc-inner">
+                      <span className="ccib-quran-audio-disc-number">
+                        {currentSurah.number.toString().padStart(3, '0')}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="ccib-quran-audio-player-right">
+                  <span className="ccib-quran-audio-badge">
+                    Capítulo em reprodução
+                  </span>
+                  <h2 className="ccib-quran-audio-title">
+                    {currentSurah.portuguese}
+                  </h2>
+
+                  <div className="ccib-quran-audio-subtitle">
+                    <span className="ccib-quran-audio-arabic">
+                      {currentSurah.arabic}
+                    </span>
+                    <span className="ccib-quran-audio-translit">
+                      {currentSurah.translit}
+                    </span>
+                  </div>
+
+                  <p className="ccib-quran-audio-helper">
+                    Use os controles para reproduzir, pausar ou mudar de
+                    capítulo. Você pode navegar pela ordem tradicional das 114
+                    suratas usando o menu lateral.
+                  </p>
+
+                  <div className="ccib-quran-audio-controls">
+                    <button
+                      type="button"
+                      className="ccib-quran-audio-ctrl ccib-quran-audio-ctrl--secondary"
+                      onClick={handlePrev}
+                      aria-label="Capítulo anterior"
+                    >
+                      ‹
+                    </button>
+                    <button
+                      type="button"
+                      className="ccib-quran-audio-ctrl ccib-quran-audio-ctrl--primary"
+                      onClick={handlePlayPause}
+                      aria-label={isPlaying ? 'Pausar' : 'Reproduzir'}
+                    >
+                      {isPlaying ? 'Pausar' : 'Reproduzir'}
+                    </button>
+                    <button
+                      type="button"
+                      className="ccib-quran-audio-ctrl ccib-quran-audio-ctrl--secondary"
+                      onClick={handleNext}
+                      aria-label="Próximo capítulo"
+                    >
+                      ›
+                    </button>
+                  </div>
+
+                  <div className="ccib-quran-audio-progress">
+                    <span className="ccib-quran-audio-time">
+                      {formatTime(currentTime)}
+                    </span>
+                    <input
+                      type="range"
+                      min={0}
+                      max={duration || 0}
+                      step={1}
+                      value={currentTime}
+                      onChange={handleSeek}
+                      className="ccib-quran-audio-progress-bar"
+                    />
+                    <span className="ccib-quran-audio-time">
+                      {formatTime(duration)}
+                    </span>
+                  </div>
+
+                  {/* Elemento de áudio “invisível” */}
+                  <audio ref={audioRef}>
+                    <source
+                      src={getAudioSrc(currentSurah.number)}
+                      type="audio/mpeg"
+                    />
+                    Seu navegador não suporta o elemento de áudio.
+                  </audio>
+                </div>
+              </div>
             </div>
           </div>
         </div>

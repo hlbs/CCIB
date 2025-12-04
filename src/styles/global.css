@@ -125,13 +125,47 @@ a:hover {
   text-transform: uppercase;
 }
 
-@media (max-width: 640px) {
+/* Agrupadores de texto do logo */
+.ccib-logo-text-full,
+.ccib-logo-text-compact {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0rem;
+}
 
+/* Por padrão, mostramos o texto completo e escondemos o "CCIB" */
+.ccib-logo-text-compact {
+  display: none;
+}
+
+/* Cores do "CCIB" no mobile */
+.ccib-logo-ccib-cci {
+  color: var(--ccib-green);
+}
+
+.ccib-logo-ccib-b {
+  color: var(--ccib-gold);
+}
+
+@media (max-width: 640px) {
+  .ccib-header-inner {
+    padding: 0.7rem 1.4rem;
+  }
+
+  /* Esconde QUALQUER versão longa do texto do logo */
+  .ccib-logo-text-full,
   .ccib-logo-main,
   .ccib-logo-sub {
-    font-size: 0.85rem;
+    display: none;
+  }
+
+  /* Mostra apenas o "CCIB" compacto */
+  .ccib-logo-text-compact {
+    display: inline-flex;
   }
 }
+
+
 
 /* Navegação */
 
@@ -223,6 +257,50 @@ a:hover {
   margin-top: 0.5rem;
 }
 
+/* Botões "Meu perfil" e "Sair" no menu mobile */
+.ccib-nav-list-mobile li:last-child {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #ece7dd;
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+}
+
+.ccib-nav-list-mobile li:last-child > button.ccib-nav-link {
+  flex: 1 1 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid #d9e7dd;
+  background: #ffffff;
+  font-size: 0.86rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* Remove o sublinhado animado dos botões */
+.ccib-nav-list-mobile li:last-child > button.ccib-nav-link::after {
+  display: none;
+}
+
+/* Botão "Meu perfil" – primário em verde */
+.ccib-nav-list-mobile li:last-child > button.ccib-nav-link:first-of-type {
+  background: linear-gradient(135deg, var(--ccib-green-soft), var(--ccib-green));
+  border-color: transparent;
+  color: #ffffff;
+}
+
+/* Botão "Sair" – estilo de alerta suave */
+.ccib-nav-list-mobile li:last-child > button.ccib-nav-link:last-of-type {
+  border-color: #f2b0b0;
+  color: #b91c1c;
+  background: #fff5f5;
+}
+
+
 /* Desktop navigation */
 
 @media (min-width: 900px) {
@@ -248,12 +326,26 @@ a:hover {
 /* Footer */
 
 .ccib-footer {
-  border-top: 1px solid #ebe4d6;
-  padding: 1.5rem 0 2rem;
   margin-top: 3rem;
+  padding: 1.5rem 0 2rem;
   text-align: center;
-  /* centraliza o texto */
+  background: var(--ccib-green);
+  color: #ffffff;
+  border-top: none;
 }
+
+.ccib-footer .ccib-container {
+  max-width: 1120px;
+  margin: 0 auto;
+  font-size: 0.8rem;
+}
+
+/* Garante que o texto fique branco */
+.ccib-footer p {
+  margin: 0.2rem 0;
+  color: #ffffff;
+}
+
 
 .ccib-footer-inner {
   max-width: 1120px;
@@ -947,10 +1039,12 @@ a:hover {
 
 .ccib-verse-ar {
   margin: 0 0 0.4rem;
-  font-size: 1rem;
-  line-height: 1.8;
+  font-family: 'Amiri', 'Scheherazade New', 'Traditional Arabic', serif;
+  font-size: 1.35rem;
+  line-height: 2;
   direction: rtl;
   text-align: right;
+  -webkit-font-smoothing: antialiased;
 }
 
 .ccib-verse-tr {
@@ -1968,10 +2062,12 @@ a:hover {
   inset: 0;
   background: rgba(6, 25, 16, 0.55);
   display: flex;
-  align-items: center;
+  align-items: flex-start; 
   justify-content: center;
   z-index: 999;
   animation: ccib-fade-in 0.25s ease-out;
+  overflow-y: auto;
+  padding: 2rem 1rem;
 }
 
 .ccib-calendar-modal {
@@ -4142,4 +4238,430 @@ a:hover {
   .ccib-quran-read-sidebar-ayahs-list {
     max-height: none;
   }
+}
+
+/* ===========================
+   PÁGINA DE CONTATO – CCIB
+   =========================== */
+
+.ccib-contact-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.ccib-contact-card {
+  border-radius: 24px;
+  background: #ffffff;
+  padding: 1.75rem 1.75rem 1.9rem;
+  box-shadow: 0 18px 45px rgba(23, 51, 33, 0.16);
+  border: 1px solid rgba(0, 0, 0, 0.02);
+}
+
+.ccib-contact-card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--ccib-text, #1f2933);
+  margin: 0 0 0.35rem;
+}
+
+.ccib-contact-card-subtitle {
+  font-size: 0.9rem;
+  color: var(--ccib-text-muted, #6b7280);
+  margin: 0 0 1.25rem;
+}
+
+/* FORMULÁRIO */
+
+.ccib-contact-form {
+  margin-top: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.ccib-contact-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem 1.1rem;
+}
+
+.ccib-contact-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.ccib-contact-form-group--full {
+  grid-column: 1 / -1;
+}
+
+.ccib-contact-form-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ccib-text, #1f2933);
+}
+
+.ccib-contact-form-group input,
+.ccib-contact-form-group select,
+.ccib-contact-form-group textarea {
+  border-radius: 12px;
+  border: 1px solid var(--ccib-border, #e5e7eb);
+  padding: 0.55rem 0.75rem;
+  font-size: 0.9rem;
+  outline: none;
+  background: #fdfdfc;
+  transition:
+    border-color 0.16s ease,
+    box-shadow 0.16s ease,
+    background 0.16s ease,
+    transform 0.08s ease;
+}
+
+.ccib-contact-form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.ccib-contact-form-group input::placeholder,
+.ccib-contact-form-group textarea::placeholder {
+  color: #9ca3af;
+}
+
+.ccib-contact-form-group input:focus,
+.ccib-contact-form-group select:focus,
+.ccib-contact-form-group textarea:focus {
+  border-color: var(--ccib-green-soft, #176b4a);
+  box-shadow: 0 0 0 2px rgba(23, 107, 74, 0.12);
+  background: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* BOTÃO DE ENVIO */
+
+.ccib-contact-submit-btn {
+  align-self: flex-start;
+  margin-top: 0.25rem;
+  padding: 0.7rem 1.4rem;
+  border-radius: 999px;
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: #ffffff;
+  background: linear-gradient(135deg, #176b4a, #124533);
+  box-shadow: 0 12px 30px rgba(18, 69, 51, 0.45);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.16s ease,
+    opacity 0.12s ease;
+}
+
+.ccib-contact-submit-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 40px rgba(18, 69, 51, 0.55);
+}
+
+.ccib-contact-submit-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 8px 18px rgba(18, 69, 51, 0.4);
+}
+
+.ccib-contact-privacy {
+  margin-top: 0.6rem;
+  font-size: 0.8rem;
+  color: var(--ccib-text-muted, #6b7280);
+}
+
+/* MAPA */
+
+.ccib-contact-map-wrapper {
+  margin-top: 0.75rem;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: #f5f5f0;
+}
+
+.ccib-contact-map-wrapper iframe {
+  width: 100%;
+  height: 260px;
+  display: block;
+}
+
+/* REDES SOCIAIS */
+
+.ccib-contact-social {
+  margin-top: 1.5rem;
+  padding-top: 1.1rem;
+  border-top: 1px dashed rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.ccib-contact-social-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ccib-text, #1f2933);
+  margin: 0 0 0.25rem;
+}
+
+.ccib-contact-social-subtitle {
+  font-size: 0.85rem;
+  color: var(--ccib-text-muted, #6b7280);
+  margin: 0 0 0.8rem;
+}
+
+.ccib-contact-social-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.ccib-contact-social-icon {
+  flex: 1 1 auto;
+  min-width: 140px;
+  border-radius: 999px;
+  padding: 0.5rem 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-decoration: none;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.25);
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.16s ease,
+    opacity 0.12s ease;
+}
+
+.ccib-contact-social-icon i {
+  font-size: 1.5rem;
+}
+
+/* Cores específicas de cada rede */
+
+.ccib-contact-social-icon--youtube {
+  background: #ff0000;
+}
+
+.ccib-contact-social-icon--whatsapp {
+  background: #25d366;
+}
+
+.ccib-contact-social-icon--instagram {
+  background: radial-gradient(
+      circle at 30% 110%,
+      #ffdb8b 0%,
+      #ee653d 25%,
+      #d42e81 50%,
+      #8435cc 75%,
+      #515bd4 100%
+    );
+}
+
+.ccib-contact-social-icon:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 38px rgba(15, 23, 42, 0.32);
+}
+
+.ccib-contact-social-icon:active {
+  transform: translateY(0);
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.25);
+}
+
+/* RESPONSIVO */
+
+@media (max-width: 992px) {
+  .ccib-contact-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ccib-contact-card {
+    padding: 1.5rem 1.35rem 1.7rem;
+  }
+
+  .ccib-contact-form-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ccib-contact-map-wrapper iframe {
+    height: 220px;
+  }
+}
+
+@media (max-width: 640px) {
+  .ccib-contact-social-icons {
+    flex-direction: column;
+  }
+
+  .ccib-contact-social-icon {
+    width: 100%;
+  }
+}
+
+/* ÍCONES SOCIAIS – VERSÃO CIRCULAR */
+
+.ccib-contact-social-icons {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.ccib-contact-social-icon-circle {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.18);
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.16s ease,
+    background 0.16s ease,
+    border-color 0.16s ease,
+    color 0.16s ease;
+  font-size: 1.9rem;
+}
+
+
+
+/* Cores de cada rede */
+
+.ccib-contact-social-icon-circle--youtube {
+  color: #ff0000;
+}
+
+.ccib-contact-social-icon-circle--whatsapp {
+  color: #25d366;
+}
+
+.ccib-contact-social-icon-circle--instagram {
+  color: #d62976;
+}
+
+/* Hover/active */
+
+.ccib-contact-social-icon-circle:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.26);
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+.ccib-contact-social-icon-circle:active {
+  transform: translateY(0);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.22);
+}
+
+/* Mobile: centralizar os ícones */
+
+@media (max-width: 640px) {
+  .ccib-contact-social-icons {
+    justify-content: flex-start; /* ou center, se quiser centralizar */
+  }
+}
+
+/* Versões de texto do logo */
+.ccib-logo-text-full {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35rem;
+}
+
+.ccib-logo-text-compact {
+ /* escondida por padrão (desktop) */
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* Cores do "CCIB" */
+.ccib-logo-ccib-cci {
+  color: var(--ccib-green);
+}
+
+.ccib-logo-ccib-b {
+  color: var(--ccib-gold);
+}
+
+/* Barra de busca de notícias */
+.ccib-news-search {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.ccib-news-search-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #5b6b63;
+}
+
+.ccib-news-search-input {
+  border-radius: 999px;
+  border: 1px solid #d8ddda;
+  padding: 0.65rem 1rem;
+  font-size: 0.95rem;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.ccib-news-search-input:focus {
+  border-color: #2f855a;
+  box-shadow: 0 0 0 3px rgba(47, 133, 90, 0.15);
+}
+
+/* Paginação */
+.ccib-pagination {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.ccib-pagination-btn {
+  border-radius: 999px;
+  border: 1px solid #cbd5d0;
+  background: #ffffff;
+  padding: 0.4rem 0.85rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.ccib-pagination-btn:hover:not(:disabled) {
+  background: #edf7f2;
+  border-color: #2f855a;
+}
+
+.ccib-pagination-btn--active {
+  background: #2f855a;
+  border-color: #2f855a;
+  color: #ffffff;
+  box-shadow: 0 4px 10px rgba(29, 78, 57, 0.25);
+}
+
+.ccib-pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
 }

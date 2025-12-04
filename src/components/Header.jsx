@@ -85,9 +85,19 @@ const Header = () => {
     <header className="ccib-header">
       <div className="ccib-container ccib-header-inner">
         <NavLink to="/" className="ccib-logo" onClick={closeMobile}>
-          <span className="ccib-logo-main">Centro Cultural Islâmico</span>
-          <span className="ccib-logo-sub">da Bahia</span>
+          {/* Versão completa (desktop) */}
+          <span className="ccib-logo-text-full">
+            <span className="ccib-logo-main">Centro Cultural Islâmico</span>
+            <span className="ccib-logo-sub">da Bahia</span>
+          </span>
+
+          {/* Versão compacta (mobile) */}
+          <span className="ccib-logo-text-compact">
+            <span className="ccib-logo-ccib-cci">CCI</span>
+            <span className="ccib-logo-ccib-b">B</span>
+          </span>
         </NavLink>
+
 
         <button
           type="button"
@@ -115,18 +125,16 @@ const Header = () => {
 
             {/* CONHEÇA O ISLAM – dropdown estável, clique não navega */}
             <li
-              className={`ccib-nav-item--has-dropdown ${
-                isIslamDropdownOpen ? 'ccib-nav-item--open' : ''
-              }`}
+              className={`ccib-nav-item--has-dropdown ${isIslamDropdownOpen ? 'ccib-nav-item--open' : ''
+                }`}
               onMouseEnter={() => setIslamDropdownOpen(true)}
               onMouseLeave={() => setIslamDropdownOpen(false)}
             >
               <div className="ccib-dropdown-toggle">
                 <NavLink
                   to="/conheca-o-islam"
-                  className={`ccib-nav-link ${
-                    isIslamSectionActive ? 'ccib-nav-link-active' : ''
-                  }`}
+                  className={`ccib-nav-link ${isIslamSectionActive ? 'ccib-nav-link-active' : ''
+                    }`}
                   onClick={(e) => {
                     // Não navega ao clicar; apenas abre/fecha o menu
                     e.preventDefault();
@@ -146,18 +154,16 @@ const Header = () => {
                   aria-label="Abrir submenu Conheça o Islam"
                 >
                   <span
-                    className={`ccib-dropdown-caret-icon ${
-                      isIslamDropdownOpen ? 'ccib-dropdown-caret-icon--active' : ''
-                    }`}
+                    className={`ccib-dropdown-caret-icon ${isIslamDropdownOpen ? 'ccib-dropdown-caret-icon--active' : ''
+                      }`}
                     aria-hidden="true"
                   />
                 </button>
               </div>
 
               <div
-                className={`ccib-nav-dropdown ${
-                  isIslamDropdownOpen ? 'ccib-nav-dropdown--open' : ''
-                }`}
+                className={`ccib-nav-dropdown ${isIslamDropdownOpen ? 'ccib-nav-dropdown--open' : ''
+                  }`}
                 role="menu"
               >
                 <NavLink
@@ -215,18 +221,16 @@ const Header = () => {
 
             {/* BIBLIOTECA CCIB – novo dropdown */}
             <li
-              className={`ccib-nav-item--has-dropdown ${
-                isLibraryDropdownOpen ? 'ccib-nav-item--open' : ''
-              }`}
+              className={`ccib-nav-item--has-dropdown ${isLibraryDropdownOpen ? 'ccib-nav-item--open' : ''
+                }`}
               onMouseEnter={() => setLibraryDropdownOpen(true)}
               onMouseLeave={() => setLibraryDropdownOpen(false)}
             >
               <div className="ccib-dropdown-toggle">
                 <NavLink
                   to="/literatura-islamica"
-                  className={`ccib-nav-link ${
-                    isLibrarySectionActive ? 'ccib-nav-link-active' : ''
-                  }`}
+                  className={`ccib-nav-link ${isLibrarySectionActive ? 'ccib-nav-link-active' : ''
+                    }`}
                   onClick={(e) => {
                     // Clique abre/fecha o dropdown, não navega direto
                     e.preventDefault();
@@ -246,18 +250,16 @@ const Header = () => {
                   aria-label="Abrir submenu Biblioteca CCIB"
                 >
                   <span
-                    className={`ccib-dropdown-caret-icon ${
-                      isLibraryDropdownOpen ? 'ccib-dropdown-caret-icon--active' : ''
-                    }`}
+                    className={`ccib-dropdown-caret-icon ${isLibraryDropdownOpen ? 'ccib-dropdown-caret-icon--active' : ''
+                      }`}
                     aria-hidden="true"
                   />
                 </button>
               </div>
 
               <div
-                className={`ccib-nav-dropdown ${
-                  isLibraryDropdownOpen ? 'ccib-nav-dropdown--open' : ''
-                }`}
+                className={`ccib-nav-dropdown ${isLibraryDropdownOpen ? 'ccib-nav-dropdown--open' : ''
+                  }`}
                 role="menu"
               >
                 <NavLink
@@ -464,7 +466,7 @@ const Header = () => {
 
             <li>
               <NavLink
-                to="/sobre-o-ccib"
+                to="/sobre-ccib"
                 className="ccib-nav-link"
                 onClick={closeMobile}
               >
@@ -499,7 +501,7 @@ const Header = () => {
                     type="button"
                     className="ccib-nav-link"
                     onClick={() => {
-                      navigate('/perfil');
+                      navigate('/minha-conta');
                       closeMobile();
                     }}
                   >
@@ -518,7 +520,7 @@ const Header = () => {
                 </>
               ) : (
                 <NavLink
-                  to="/login"
+                  to="/acesso-restrito"
                   className="ccib-nav-link"
                   onClick={closeMobile}
                 >

@@ -34,6 +34,11 @@ const NoticiasEventos = () => {
   const [editingPostId, setEditingPostId] = useState(null);
   const [showForm, setShowForm] = useState(false);
 
+  // filtro / paginação
+  const [searchTerm, setSearchTerm] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const POSTS_PER_PAGE = 6;
+
   // modal "Leia mais"
   const [activePost, setActivePost] = useState(null);
 
@@ -42,7 +47,7 @@ const NoticiasEventos = () => {
     const q = query(
       collection(db, 'ccib_posts'),
       orderBy('createdAt', 'desc'),
-      limit(50)
+      limit(200)
     );
 
     const unsub = onSnapshot(
@@ -63,6 +68,31 @@ const NoticiasEventos = () => {
 
     return () => unsub();
   }, []);
+
+  // Lista filtrada e paginação em memória
+  const filteredPosts = posts.filter((post) => {
+    if (!searchTerm.trim()) return true;
+    const title = (post.title || '').toLowerCase();
+    return title.includes(searchTerm.toLowerCase());
+  });
+
+  const totalPages = Math.max(
+    1,
+    Math.ceil(filteredPosts.length / POSTS_PER_PAGE)
+  );
+
+  // Garante que a página atual não ultrapasse o total
+  const safePage = Math.min(currentPage, totalPages);
+  const startIndex = (safePage - 1) * POSTS_PER_PAGE;
+  const paginatedPosts = filteredPosts.slice(
+    startIndex,
+    startIndex + POSTS_PER_PAGE
+  );
+
+  // Quando o termo de busca mudar, volte para a página 1
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm]);
 
   const formatDateTime = (ts) => {
     if (!ts || !ts.toDate) return 'Data pendente';
@@ -111,7 +141,9 @@ const NoticiasEventos = () => {
 
   const handleDeleteClick = async (postId) => {
     if (!user) return;
-    const confirmDelete = window.confirm('Tem certeza que deseja excluir esta postagem?');
+    const confirmDelete = window.confirm(
+      'Tem certeza que deseja excluir esta postagem?'
+    );
     if (!confirmDelete) return;
 
     try {
@@ -157,7 +189,8 @@ const NoticiasEventos = () => {
         await addDoc(collection(db, 'ccib_posts'), {
           ...payload,
           authorId: user.uid,
-          authorName: user.displayName || user.email || 'Usuário do CCIB',
+          authorName:
+            user.displayName || user.email || 'Usuário do CCIB',
           createdAt: serverTimestamp(),
         });
         setFormStatus({
@@ -191,15 +224,17 @@ const NoticiasEventos = () => {
         {/* Introdução engajadora */}
         <div className="ccib-news-intro">
           <p>
-            Esta página reúne anúncios das orações em congregação, cursos e círculos de estudo,
-            visitas guiadas, ações sociais, eventos culturais e demais novidades do CCIB. A
-            intenção é que você possa se organizar, participar e compartilhar estes momentos
-            com outras pessoas.
+            Esta página reúne anúncios das orações em congregação,
+            cursos e círculos de estudo, visitas guiadas, ações sociais,
+            eventos culturais e demais novidades do CCIB. A intenção é
+            que você possa se organizar, participar e compartilhar esses
+            momentos com outras pessoas.
           </p>
           <p>
-            As postagens são feitas pela equipe autorizada do Centro, e cada notícia traz a data,
-            o horário e o nome de quem publicou, reforçando a transparência e a proximidade com
-            a nossa comunidade.
+            As postagens são feitas pela equipe autorizada do Centro, e
+            cada notícia traz a data, o horário e o nome de quem
+            publicou, reforçando a transparência e a proximidade com a
+            nossa comunidade.
           </p>
         </div>
 
@@ -211,8 +246,10 @@ const NoticiasEventos = () => {
                 Área do publicador
               </span>
               <p>
-                Autenticado como <strong>{user.displayName || user.email}</strong>. Utilize o
-                botão ao lado para criar uma nova postagem ou editar notícias existentes.
+                Autenticado como{' '}
+                <strong>{user.displayName || user.email}</strong>.
+                Utilize o botão ao lado para criar uma nova postagem ou
+                editar notícias existentes.
               </p>
             </div>
             <button
@@ -228,6 +265,24 @@ const NoticiasEventos = () => {
         <div className="ccib-page-two-columns">
           {/* Coluna 1 – Lista de posts */}
           <div className="ccib-news-column">
+            {/* Barra de busca */}
+            <div className="ccib-news-search">
+              <label
+                htmlFor="news-search"
+                className="ccib-news-search-label"
+              >
+                Buscar notícias por título
+              </label>
+              <input
+                id="news-search"
+                type="text"
+                className="ccib-news-search-input"
+                placeholder="Digite um termo do título (ex: Ramadã, palestra, visita...)"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </div>
+
             {loadingPosts ? (
               <div className="ccib-news-skeleton-list">
                 {[0, 1, 2].map((i) => (
@@ -242,83 +297,152 @@ const NoticiasEventos = () => {
               </div>
             ) : posts.length === 0 ? (
               <p className="ccib-prayer-status">
-                Ainda não há notícias cadastradas. Assim que a equipe publicar conteúdos, eles
-                aparecerão aqui em ordem cronológica.
+                Ainda não há notícias cadastradas. Assim que a equipe
+                publicar conteúdos, eles aparecerão aqui em ordem
+                cronológica.
+              </p>
+            ) : filteredPosts.length === 0 ? (
+              <p className="ccib-prayer-status">
+                Nenhuma notícia encontrada para o termo pesquisado.
               </p>
             ) : (
-              <div className="ccib-news-list">
-                {posts.map((post) => {
-                  const canManage = !!user; // qualquer logado pode editar/excluir
-                  const preview = buildPreview(post);
-                  const hasMore =
-                    (post.conteudo && post.conteudo.length > 260) ||
-                    (post.resumo && post.resumo.length > 260);
+              <>
+                <div className="ccib-news-list">
+                  {paginatedPosts.map((post) => {
+                    const canManage = !!user; // qualquer logado pode editar/excluir
+                    const preview = buildPreview(post);
+                    const hasMore =
+                      (post.conteudo &&
+                        post.conteudo.length > 260) ||
+                      (post.resumo && post.resumo.length > 260);
 
-                  return (
-                    <article key={post.id} className="ccib-card ccib-animate-in">
-                      {post.imageUrl && (
-                        <div className="ccib-news-card-media">
-                          <img src={post.imageUrl} alt="" />
-                        </div>
-                      )}
-                      <div className="ccib-card-body">
-                        <p className="ccib-pillar-label">
-                          {post.tipo === 'evento' ? 'Evento' : 'Notícia'}
-                        </p>
-                        <h2 className="ccib-news-item-title">{post.title}</h2>
-                        <p className="ccib-news-item-meta">
-                          Publicado em {formatDateTime(post.createdAt)} por{' '}
-                          <strong>{post.authorName}</strong>
-                        </p>
-                        {preview && (
-                          <p className="ccib-news-item-summary">{preview}</p>
+                    return (
+                      <article
+                        key={post.id}
+                        className="ccib-card ccib-animate-in"
+                      >
+                        {post.imageUrl && (
+                          <div className="ccib-news-card-media">
+                            <img src={post.imageUrl} alt="" />
+                          </div>
                         )}
-
-                        <div className="ccib-news-item-footer">
-                          {hasMore && (
-                            <button
-                              type="button"
-                              className="ccib-news-btn"
-                              onClick={() => setActivePost(post)}
-                            >
-                              Leia mais
-                            </button>
+                        <div className="ccib-card-body">
+                          <p className="ccib-pillar-label">
+                            {post.tipo === 'evento' ? 'Evento' : 'Notícia'}
+                          </p>
+                          <h2 className="ccib-news-item-title">
+                            {post.title}
+                          </h2>
+                          <p className="ccib-news-item-meta">
+                            Publicado em{' '}
+                            {formatDateTime(post.createdAt)} por{' '}
+                            <strong>{post.authorName}</strong>
+                          </p>
+                          {preview && (
+                            <p className="ccib-news-item-summary">
+                              {preview}
+                            </p>
                           )}
-                          {canManage && (
-                            <div className="ccib-news-item-actions">
+
+                          <div className="ccib-news-item-footer">
+                            {hasMore && (
                               <button
                                 type="button"
-                                className="ccib-news-btn ccib-news-btn--ghost"
-                                onClick={() => handleEditClick(post)}
+                                className="ccib-news-btn"
+                                onClick={() => setActivePost(post)}
                               >
-                                Editar
+                                Leia mais
                               </button>
-                              <button
-                                type="button"
-                                className="ccib-news-btn ccib-news-btn--danger"
-                                onClick={() => handleDeleteClick(post.id)}
-                              >
-                                Excluir
-                              </button>
+                            )}
+                            {canManage && (
+                              <div className="ccib-news-item-actions">
+                                <button
+                                  type="button"
+                                  className="ccib-news-btn ccib-news-btn--ghost"
+                                  onClick={() =>
+                                    handleEditClick(post)
+                                  }
+                                >
+                                  Editar
+                                </button>
+                                <button
+                                  type="button"
+                                  className="ccib-news-btn ccib-news-btn--danger"
+                                  onClick={() =>
+                                    handleDeleteClick(post.id)
+                                  }
+                                >
+                                  Excluir
+                                </button>
+                              </div>
+                            )}
+                          </div>
+
+                          {post.videoUrl && (
+                            <div className="ccib-news-card-video">
+                              <iframe
+                                src={post.videoUrl}
+                                title={post.title || 'Vídeo'}
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                              />
                             </div>
                           )}
                         </div>
+                      </article>
+                    );
+                  })}
+                </div>
 
-                        {post.videoUrl && (
-                          <div className="ccib-news-card-video">
-                            <iframe
-                              src={post.videoUrl}
-                              title={post.title || 'Vídeo'}
-                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                              allowFullScreen
-                            />
-                          </div>
-                        )}
-                      </div>
-                    </article>
-                  );
-                })}
-              </div>
+                {/* Paginação */}
+                {totalPages > 1 && (
+                  <div className="ccib-pagination">
+                    <button
+                      type="button"
+                      className="ccib-pagination-btn"
+                      disabled={safePage === 1}
+                      onClick={() =>
+                        setCurrentPage((p) => Math.max(1, p - 1))
+                      }
+                    >
+                      Anterior
+                    </button>
+
+                    {Array.from({ length: totalPages }).map(
+                      (_, index) => {
+                        const page = index + 1;
+                        return (
+                          <button
+                            key={page}
+                            type="button"
+                            className={`ccib-pagination-btn ${
+                              page === safePage
+                                ? 'ccib-pagination-btn--active'
+                                : ''
+                            }`}
+                            onClick={() => setCurrentPage(page)}
+                          >
+                            {page}
+                          </button>
+                        );
+                      }
+                    )}
+
+                    <button
+                      type="button"
+                      className="ccib-pagination-btn"
+                      disabled={safePage === totalPages}
+                      onClick={() =>
+                        setCurrentPage((p) =>
+                          Math.min(totalPages, p + 1)
+                        )
+                      }
+                    >
+                      Próxima
+                    </button>
+                  </div>
+                )}
+              </>
             )}
           </div>
 
@@ -328,17 +452,33 @@ const NoticiasEventos = () => {
               <div className="ccib-card">
                 <div className="ccib-card-body">
                   <h2 className="ccib-card-title">
-                    {editingPostId ? 'Editar postagem' : 'Nova publicação'}
+                    {editingPostId
+                      ? 'Editar postagem'
+                      : 'Nova publicação'}
                   </h2>
 
-                  <form className="ccib-news-form" onSubmit={handleCreateOrUpdatePost}>
+                  {formStatus && (
+                    <div
+                      className={`ccib-news-form-status ccib-news-form-status--${formStatus.type}`}
+                    >
+                      {formStatus.message}
+                    </div>
+                  )}
+
+                  <form
+                    className="ccib-news-form"
+                    onSubmit={handleCreateOrUpdatePost}
+                  >
                     <div className="ccib-form-group">
-                      <label className="ccib-form-label" htmlFor="tipo">
+                      <label
+                        className="ccib-form-label"
+                        htmlFor="tipo"
+                      >
                         Tipo de postagem
                       </label>
                       <select
                         id="tipo"
-                        className="ccib-form-input"
+                        className="ccib-form-select"
                         value={formTipo}
                         onChange={(e) => setFormTipo(e.target.value)}
                       >
@@ -348,7 +488,10 @@ const NoticiasEventos = () => {
                     </div>
 
                     <div className="ccib-form-group">
-                      <label className="ccib-form-label" htmlFor="titulo">
+                      <label
+                        className="ccib-form-label"
+                        htmlFor="titulo"
+                      >
                         Título
                       </label>
                       <input
@@ -356,13 +499,18 @@ const NoticiasEventos = () => {
                         type="text"
                         className="ccib-form-input"
                         value={formTitle}
-                        onChange={(e) => setFormTitle(e.target.value)}
+                        onChange={(e) =>
+                          setFormTitle(e.target.value)
+                        }
                         required
                       />
                     </div>
 
                     <div className="ccib-form-group">
-                      <label className="ccib-form-label" htmlFor="resumo">
+                      <label
+                        className="ccib-form-label"
+                        htmlFor="resumo"
+                      >
                         Resumo curto
                       </label>
                       <textarea
@@ -370,26 +518,36 @@ const NoticiasEventos = () => {
                         className="ccib-form-textarea"
                         rows={3}
                         value={formResumo}
-                        onChange={(e) => setFormResumo(e.target.value)}
+                        onChange={(e) =>
+                          setFormResumo(e.target.value)
+                        }
                         required
                       />
                     </div>
 
                     <div className="ccib-form-group">
-                      <label className="ccib-form-label" htmlFor="conteudo">
-                        Conteúdo detalhado (opcional)
+                      <label
+                        className="ccib-form-label"
+                        htmlFor="conteudo"
+                      >
+                        Conteúdo completo (opcional)
                       </label>
                       <textarea
                         id="conteudo"
                         className="ccib-form-textarea"
                         rows={5}
                         value={formConteudo}
-                        onChange={(e) => setFormConteudo(e.target.value)}
+                        onChange={(e) =>
+                          setFormConteudo(e.target.value)
+                        }
                       />
                     </div>
 
                     <div className="ccib-form-group">
-                      <label className="ccib-form-label" htmlFor="imageUrl">
+                      <label
+                        className="ccib-form-label"
+                        htmlFor="imageUrl"
+                      >
                         URL de imagem (opcional)
                       </label>
                       <input
@@ -397,52 +555,44 @@ const NoticiasEventos = () => {
                         type="url"
                         className="ccib-form-input"
                         value={formImageUrl}
-                        onChange={(e) => setFormImageUrl(e.target.value)}
-                        placeholder="https://exemplo.com/imagem.jpg"
+                        onChange={(e) =>
+                          setFormImageUrl(e.target.value)
+                        }
+                        placeholder="https://..."
                       />
                     </div>
 
                     <div className="ccib-form-group">
-                      <label className="ccib-form-label" htmlFor="videoUrl">
-                        URL de vídeo (YouTube, opcional)
+                      <label
+                        className="ccib-form-label"
+                        htmlFor="videoUrl"
+                      >
+                        URL de vídeo (YouTube embed, opcional)
                       </label>
                       <input
                         id="videoUrl"
                         type="url"
                         className="ccib-form-input"
                         value={formVideoUrl}
-                        onChange={(e) => setFormVideoUrl(e.target.value)}
+                        onChange={(e) =>
+                          setFormVideoUrl(e.target.value)
+                        }
                         placeholder="https://www.youtube.com/embed/..."
                       />
                     </div>
 
-                    {formStatus && (
-                      <p
-                        className={`ccib-auth-status ${
-                          formStatus.type === 'error'
-                            ? 'ccib-auth-status--error'
-                            : 'ccib-auth-status--success'
-                        }`}
-                      >
-                        {formStatus.message}
-                      </p>
-                    )}
-
                     <div className="ccib-news-form-actions">
                       <button
                         type="submit"
-                        className="ccib-modal-btn"
+                        className="ccib-news-btn"
                         disabled={saving}
                       >
                         {saving
-                          ? editingPostId
-                            ? 'Atualizando…'
-                            : 'Publicando…'
+                          ? 'Salvando...'
                           : editingPostId
                           ? 'Salvar alterações'
-                          : 'Publicar'}
+                          : 'Publicar notícia'}
                       </button>
-
                       {editingPostId && (
                         <button
                           type="button"
@@ -463,7 +613,10 @@ const NoticiasEventos = () => {
 
       {/* Modal "Leia mais" */}
       {activePost && (
-        <div className="ccib-news-modal-backdrop" onClick={closeModal}>
+        <div
+          className="ccib-news-modal-backdrop"
+          onClick={closeModal}
+        >
           <div
             className="ccib-news-modal"
             onClick={(e) => e.stopPropagation()}
@@ -479,7 +632,9 @@ const NoticiasEventos = () => {
             <p className="ccib-pillar-label">
               {activePost.tipo === 'evento' ? 'Evento' : 'Notícia'}
             </p>
-            <h2 className="ccib-news-modal-title">{activePost.title}</h2>
+            <h2 className="ccib-news-modal-title">
+              {activePost.title}
+            </h2>
             <p className="ccib-news-item-meta">
               Publicado em {formatDateTime(activePost.createdAt)} por{' '}
               <strong>{activePost.authorName}</strong>
@@ -490,10 +645,14 @@ const NoticiasEventos = () => {
               </div>
             )}
             {activePost.resumo && (
-              <p className="ccib-news-modal-text">{activePost.resumo}</p>
+              <p className="ccib-news-modal-text">
+                {activePost.resumo}
+              </p>
             )}
             {activePost.conteudo && (
-              <p className="ccib-news-modal-text">{activePost.conteudo}</p>
+              <p className="ccib-news-modal-text">
+                {activePost.conteudo}
+              </p>
             )}
             {activePost.videoUrl && (
               <div className="ccib-news-modal-video">

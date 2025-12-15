@@ -13,28 +13,12 @@ const JesusNoIslam = () => {
       />
 
       <main className="ccib-page">
-        <div className="ccib-container">
-          <nav aria-label="Seções desta página" className="ccib-page-chip-nav">
-            <a href="#uma-so-mensagem" className="ccib-chip-link">
-              Uma só mensagem
-            </a>
-            <a href="#quem-e-jesus" className="ccib-chip-link">
-              Quem é Jesus no Islam
-            </a>
-            <a href="#fontes" className="ccib-chip-link">
-              Fontes e perspectivas
-            </a>
-            <a href="#dialogo" className="ccib-chip-link">
-              Pontes de diálogo
-            </a>
-          </nav>
-        </div>
 
         {/* 1. UMA SÓ MENSAGEM */}
         <AlternatingSection
           id="uma-so-mensagem"
           title="Uma só mensagem ao longo da história"
-          imageUrl="https://images.pexels.com/photos/2014694/pexels-photo-2014694.jpeg"
+          imageUrl="https://images.pexels.com/photos/8164516/pexels-photo-8164516.jpeg"
           badge="Monoteísmo puro"
         >
           <p>
@@ -64,7 +48,7 @@ const JesusNoIslam = () => {
           id="quem-e-jesus"
           title="Quem é Jesus para os muçulmanos"
           reverse
-          imageUrl="https://images.pexels.com/photos/461940/pexels-photo-461940.jpeg"
+          imageUrl="/images/prophets/isa.png"
           badge="Profeta e Messias"
         >
           <p>
@@ -94,7 +78,7 @@ const JesusNoIslam = () => {
         <AlternatingSection
           id="fontes"
           title="Jesus na Bíblia, no Alcorão e na tradição islâmica"
-          imageUrl="https://images.pexels.com/photos/8448482/pexels-photo-8448482.jpeg"
+          imageUrl="https://images.pexels.com/photos/4242107/pexels-photo-4242107.jpeg"
           badge="Fontes em diálogo"
         >
           <p>
@@ -120,11 +104,12 @@ const JesusNoIslam = () => {
           <div className="ccib-parallax-overlay">
             <div className="ccib-container">
               <div className="ccib-parallax-text">
-                <h2>“Não é um Deus novo — é o mesmo Deus único.”</h2>
+                <h2>“Jesus (عَلَیهِ‌السَّلام), um Profeta de Deus”</h2>
                 <p>
-                  Ao apresentar Jesus como profeta, o Islam não diminui sua importância; ao
-                  contrário, devolve-o ao seu lugar de mestre do monoteísmo e sinal da
-                  misericórdia divina.
+                  ¹⁰ E, entrando ele em Jerusalém, toda a cidade se alvoroçou, dizendo: <b>Quem é este?</b><br/>
+                  ¹¹ E a multidão dizia: Este é <b>Jesus, o profeta de Nazaré da Galileia</b>.<br/>
+
+                  Mateus 21:10,11
                 </p>
               </div>
             </div>

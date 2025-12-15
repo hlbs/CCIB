@@ -64,32 +64,16 @@ const HadithEtica = () => {
       />
 
       <main className="ccib-page">
-        <div className="ccib-container">
-          <nav aria-label="Seções desta página" className="ccib-page-chip-nav">
-            <a href="#introducao" className="ccib-chip-link">
-              Introdução
-            </a>
-            <a href="#alcorao-hadith" className="ccib-chip-link">
-              Alcorão &amp; Hadith
-            </a>
-            <a href="#fundamentos" className="ccib-chip-link">
-              Fundamentos éticos
-            </a>
-            <a href="#temas" className="ccib-chip-link">
-              Temas em destaque
-            </a>
-          </nav>
-        </div>
-
+        
         {/* 1. INTRODUÇÃO */}
         <AlternatingSection
           id="introducao"
           title="Os Quarenta Hadith de An-Nawawi"
-          imageUrl="https://images.pexels.com/photos/159872/book-open-pages-literature-159872.jpeg"
+          imageUrl="https://images.pexels.com/photos/31679262/pexels-photo-31679262.jpeg"
           badge="Síntese da tradição"
         >
           <p>
-            A coletânea conhecida como “Os Quarenta Hadith” reúne ditos do Profeta Muhammad que
+            A coletânea conhecida como “Os Quarenta Hadith” reúne ditos do Profeta Muhammad (ﷺ) que
             sintetizam os pilares da fé, da prática e da espiritualidade islâmica em poucos textos,
             fáceis de memorizar e de aplicar na vida diária.
           </p>
@@ -97,11 +81,6 @@ const HadithEtica = () => {
             Logo no início, aparecem hadiths sobre intenção, sobre o que é Islam e o que é fé, sobre
             excelência espiritual e sobre como distinguir o lícito do ilícito. A partir deles, é
             possível desenhar um mapa ético que vai do coração às ações públicas.
-          </p>
-          <p>
-            Esta página oferece uma porta de entrada para quem deseja compreender como essas
-            palavras moldam caráter, escolhas e prioridades, sem substituir o estudo direto da obra
-            nem o acompanhamento de pessoas de conhecimento.
           </p>
         </AlternatingSection>
 
@@ -115,7 +94,7 @@ const HadithEtica = () => {
           id="alcorao-hadith"
           title="Alcorão e Hadith: texto sagrado e relatos proféticos"
           reverse
-          imageUrl="https://images.pexels.com/photos/159711/books-book-pages-read-literature-159711.jpeg"
+          imageUrl="https://images.pexels.com/photos/8164426/pexels-photo-8164426.jpeg"
           badge="Fontes da fé"
         >
           <p>
@@ -124,7 +103,7 @@ const HadithEtica = () => {
           </p>
           <p>
             O Alcorão é, para os muçulmanos, a palavra de Deus revelada literalmente ao Profeta
-            Muhammad por intermédio do anjo Gabriel. É recitado em árabe na oração, preservado
+            Muhammad (ﷺ) por intermédio do anjo Gabriel (عَلَیهِ‌السَّلام). É recitado em árabe na oração, preservado
             letra por letra, e ocupa o nível mais alto de autoridade religiosa.
           </p>
           <p>
@@ -154,14 +133,14 @@ const HadithEtica = () => {
           <ul className="ccib-list">
             <li>
               <strong>ṣaḥīḥ (autêntico):</strong> cadeia contínua, narradores confiáveis e texto sem
-              problemas;
+              conflitos;
             </li>
             <li>
               <strong>ḥasan (bom):</strong> semelhante ao ṣaḥīḥ, mas com leve fragilidade em algum
               narrador, ainda aceito para orientações práticas e éticas;
             </li>
             <li>
-              <strong>ḍaʿīf (fraco):</strong> com problemas na cadeia ou nos narradores, usado com
+              <strong>ḍaʿīf (fraco):</strong> com problemas e conflitos na cadeia ou nos narradores, usado com
               muita cautela e, em geral, não como base para regras;
             </li>
             <li>
@@ -186,7 +165,7 @@ const HadithEtica = () => {
           id="fundamentos"
           title="Quatro eixos da ética profética"
           reverse
-          imageUrl="https://images.pexels.com/photos/3823487/pexels-photo-3823487.jpeg"
+          imageUrl="https://images.pexels.com/photos/34534730/pexels-photo-34534730.jpeg"
           badge="Do coração à ação"
         >
           <p>

@@ -71,23 +71,7 @@ const SobreCCIB = () => {
       />
 
       <main className="ccib-page">
-        <div className="ccib-container">
-          <nav aria-label="Seções desta página" className="ccib-page-chip-nav">
-            <a href="#sobre-ccib" className="ccib-chip-link">
-              Sobre o CCIB
-            </a>
-            <a href="#nossa-comunidade" className="ccib-chip-link">
-              Nossa comunidade
-            </a>
-            <a href="#sheikh" className="ccib-chip-link">
-              Sheikh Abdul Hameed Ahmad
-            </a>
-            <a href="#diretoria" className="ccib-chip-link">
-              Diretoria do CCIB
-            </a>
-          </nav>
-        </div>
-
+        
         {/* 1. SOBRE O CCIB */}
         <AlternatingSection
           id="sobre-ccib"
@@ -129,7 +113,7 @@ const SobreCCIB = () => {
           badge="Diversidade & unidade"
         >
           <p>
-            A comunidade do CCIB é formada por muçulmanos e muçulmanas de diferentes origens:
+            A comunidade do CCIB é formada por muçulmanos de diferentes origens:
             brasileiros revertidos ao Islã, famílias com raízes em diversos países, estudantes,
             profissionais de múltiplas áreas e pessoas que estão dando os primeiros passos no
             conhecimento da fé islâmica.
@@ -142,7 +126,7 @@ const SobreCCIB = () => {
           </p>
           <p>
             O CCIB também se abre à sociedade baiana em geral: recebemos escolas, universidades,
-            grupos de pesquisa, lideranças de outras tradições religiosas e pessoas interessadas em
+            grupos de pesquisa, e pessoas interessadas em
             conhecer o Islã sem preconceitos, com espaço para perguntas sinceras e diálogo
             construtivo.
           </p>
@@ -168,7 +152,7 @@ const SobreCCIB = () => {
             local.
           </p>
           <p>
-            No CCIB, o Sheikh conduz as pregações da oração de sexta-feira (Jumu‘ah), orienta
+            No CCIB, o Sheikh conduz o sermão da oração de sexta-feira (Jumu‘ah), orienta
             círculos de estudo, acompanha pessoas que desejam conhecer o Islã ou reverter à fé
             islâmica e oferece aconselhamento em temas familiares, espirituais e éticos.
           </p>

@@ -34,7 +34,7 @@ const MulherNoIslam = () => {
         <AlternatingSection
           id="visao-geral"
           title="Antes e depois do Islam"
-          imageUrl="https://images.pexels.com/photos/1251160/pexels-photo-1251160.jpeg"
+          imageUrl="https://images.pexels.com/photos/12452728/pexels-photo-12452728.jpeg"
           badge="Mudança de paradigma"
         >
           <p>
@@ -65,7 +65,7 @@ const MulherNoIslam = () => {
           id="igualdade-espiritual"
           title="Igualdade espiritual e mérito diante de Deus"
           reverse
-          imageUrl="https://images.pexels.com/photos/7249195/pexels-photo-7249195.jpeg"
+          imageUrl="https://images.pexels.com/photos/34407257/pexels-photo-34407257.jpeg"
           badge="Diante do Criador"
         >
           <p>
@@ -94,7 +94,7 @@ const MulherNoIslam = () => {
         <AlternatingSection
           id="direitos-sociais"
           title="Direitos sociais, familiares e econômicos"
-          imageUrl="https://images.pexels.com/photos/1051073/pexels-photo-1051073.jpeg"
+          imageUrl="https://images.pexels.com/photos/8154339/pexels-photo-8154339.jpeg"
           badge="Na vida concreta"
         >
           <p>
@@ -102,11 +102,11 @@ const MulherNoIslam = () => {
             Entre eles, estão:
           </p>
           <ul className="ccib-list">
-            <li>direito à propriedade independente e à administração de seus bens;</li>
-            <li>direito ao dote (mahr), que pertence à mulher e não à família ou ao marido;</li>
-            <li>direito de aceitar ou recusar um casamento;</li>
-            <li>direito à herança, em proporções definidas pela lei islâmica;</li>
-            <li>direito de buscar conhecimento útil e participar da vida comunitária.</li>
+            <li>Direito à propriedade independente e à administração de seus bens;</li>
+            <li>Direito ao dote (mahr), que pertence à mulher e não à família ou ao marido;</li>
+            <li>Direito de aceitar ou recusar um casamento;</li>
+            <li>Direito à herança, em proporções definidas pela lei islâmica;</li>
+            <li>Direito de buscar conhecimento útil e participar da vida comunitária.</li>
           </ul>
           <p>
             Ao mesmo tempo, a responsabilidade financeira principal recai sobre os homens, o que

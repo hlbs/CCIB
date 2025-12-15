@@ -141,42 +141,143 @@ const AlcoraoAudio = () => {
 
   const audioRef = useRef(null);
 
+  // Disco/Visualizer
+  const discRef = useRef(null);
+  const prevIndexRef = useRef(0);
+
+  const audioCtxRef = useRef(null);
+  const analyserRef = useRef(null);
+  const sourceRef = useRef(null);
+  const dataArrayRef = useRef(null);
+  const rafRef = useRef(null);
+  const levelRef = useRef(0);
+
   const currentSurah = SURA_LIST[currentIndex];
 
-  const handlePlayPause = () => {
-    if (!audioRef.current) return;
-    if (isPlaying) {
-      audioRef.current.pause();
-      setIsPlaying(false);
-    } else {
-      audioRef.current
-        .play()
-        .then(() => setIsPlaying(true))
-        .catch((err) => {
-          console.error('Erro ao reproduzir áudio:', err);
-        });
+  const ensureAudioAnalyser = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    // Evita recriar tudo
+    if (audioCtxRef.current && analyserRef.current && sourceRef.current) return;
+
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContextClass) return;
+
+    const ctx = new AudioContextClass();
+    const analyser = ctx.createAnalyser();
+
+    // Ajuste fino: FFT menor = mais leve e “responsivo”
+    analyser.fftSize = 256;
+    analyser.smoothingTimeConstant = 0.85;
+
+    // Importante: só pode haver 1 MediaElementSource por elemento <audio>
+    const source = ctx.createMediaElementSource(audio);
+
+    source.connect(analyser);
+    analyser.connect(ctx.destination);
+
+    audioCtxRef.current = ctx;
+    analyserRef.current = analyser;
+    sourceRef.current = source;
+    dataArrayRef.current = new Uint8Array(analyser.frequencyBinCount);
+  };
+
+  const resumeAudioContext = async () => {
+    const ctx = audioCtxRef.current;
+    if (!ctx) return;
+    if (ctx.state === 'suspended') {
+      try {
+        await ctx.resume();
+      } catch {
+        // se o browser bloquear, só não anima (o áudio segue normal)
+      }
     }
   };
 
-  const handleSelectSurah = (index) => {
+  const stopVisualizer = () => {
+    if (rafRef.current) {
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+    }
+    levelRef.current = 0;
+    if (discRef.current) {
+      discRef.current.style.setProperty('--wave', '0');
+    }
+  };
+
+  const startVisualizer = () => {
+    const analyser = analyserRef.current;
+    const dataArray = dataArrayRef.current;
+    if (!analyser || !dataArray || !discRef.current) return;
+
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+
+    const tick = () => {
+      analyser.getByteFrequencyData(dataArray);
+
+      // Média simples do espectro (0..255)
+      let sum = 0;
+      for (let i = 0; i < dataArray.length; i += 1) sum += dataArray[i];
+      const avg = sum / dataArray.length;
+
+      // Normaliza 0..1
+      const raw = Math.min(1, Math.max(0, avg / 255));
+
+      // Suavização (evita tremedeira)
+      const smoothed = levelRef.current * 0.85 + raw * 0.15;
+      levelRef.current = smoothed;
+
+      // Atualiza CSS var (sem re-render no React)
+      discRef.current.style.setProperty('--wave', smoothed.toFixed(4));
+
+      rafRef.current = requestAnimationFrame(tick);
+    };
+
+    tick();
+  };
+
+  const handlePlayPause = async () => {
+    if (!audioRef.current) return;
+
+    // prepara analisador em gesto do usuário
+    ensureAudioAnalyser();
+    await resumeAudioContext();
+
+    setIsPlaying((prev) => !prev);
+  };
+
+  const handleSelectSurah = async (index) => {
+    ensureAudioAnalyser();
+    await resumeAudioContext();
+
     setCurrentIndex(index);
     setCurrentTime(0);
+    setDuration(0);
     setIsPlaying(true);
   };
 
-  const handlePrev = () => {
+  const handlePrev = async () => {
+    ensureAudioAnalyser();
+    await resumeAudioContext();
+
     const newIndex =
       currentIndex === 0 ? SURA_LIST.length - 1 : currentIndex - 1;
     setCurrentIndex(newIndex);
     setCurrentTime(0);
+    setDuration(0);
     setIsPlaying(true);
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
+    ensureAudioAnalyser();
+    await resumeAudioContext();
+
     const newIndex =
       currentIndex === SURA_LIST.length - 1 ? 0 : currentIndex + 1;
     setCurrentIndex(newIndex);
     setCurrentTime(0);
+    setDuration(0);
     setIsPlaying(true);
   };
 
@@ -210,22 +311,55 @@ const AlcoraoAudio = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentIndex]);
 
+  // ✅ Efeito unificado: só dá load() quando muda a surata; play/pause não reinicia o áudio.
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
 
-    // força o recarregamento do novo arquivo
-    audio.load();
-    if (isPlaying) {
-      audio
-        .play()
-        .then(() => {})
-        .catch((err) => {
-          console.error('Erro ao iniciar reprodução automática:', err);
-          setIsPlaying(false);
-        });
+    const indexChanged = prevIndexRef.current !== currentIndex;
+
+    if (indexChanged) {
+      prevIndexRef.current = currentIndex;
+
+      // força o recarregamento do novo arquivo (OK aqui: troca de faixa)
+      audio.load();
+      setCurrentTime(0);
+      setDuration(0);
     }
+
+    if (isPlaying) {
+      // Visualizer + play (sem load)
+      ensureAudioAnalyser();
+      startVisualizer();
+
+      // tenta reativar o AudioContext se estiver suspenso
+      Promise.resolve(resumeAudioContext()).finally(() => {
+        audio.play().catch((err) => {
+          console.error('Erro ao reproduzir áudio:', err);
+          setIsPlaying(false);
+          stopVisualizer();
+        });
+      });
+    } else {
+      audio.pause();
+      stopVisualizer();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentIndex, isPlaying]);
+
+  useEffect(() => {
+    return () => {
+      stopVisualizer();
+      try {
+        audioCtxRef.current?.close?.();
+      } catch {}
+      audioCtxRef.current = null;
+      analyserRef.current = null;
+      sourceRef.current = null;
+      dataArrayRef.current = null;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const normalizedSearch = searchTerm.trim().toLowerCase();
   const filteredSuras = normalizedSearch
@@ -311,7 +445,7 @@ const AlcoraoAudio = () => {
               {/* PLAYER PRINCIPAL */}
               <div className="ccib-quran-audio-player">
                 <div className="ccib-quran-audio-player-left">
-                  <div className="ccib-quran-audio-disc">
+                  <div className="ccib-quran-audio-disc" ref={discRef}>
                     <div className="ccib-quran-audio-disc-inner">
                       <span className="ccib-quran-audio-disc-number">
                         {currentSurah.number.toString().padStart(3, '0')}

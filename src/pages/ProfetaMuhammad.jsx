@@ -21,15 +21,15 @@ const ProfetaMuhammad = () => {
           badge="Servo e mensageiro"
         >
           <p>
-            Para mais de um bilhão de muçulmanos, Muhammad não é uma figura distante do passado.
+            Para mais de um bilhão de muçulmanos, Muhammad (ﷺ) não é uma figura distante do passado.
             Ele é o mensageiro final de Deus, aquele por meio do qual o Alcorão foi revelado e
             cujo exemplo orienta a fé, a espiritualidade e a ética no dia a dia.
           </p>
           <p>
-            Crer em Muhammad como mensageiro faz parte da própria declaração de fé islâmica, junto
+            Crer em Muhammad (ﷺ) como mensageiro faz parte da própria declaração de fé islâmica, junto
             com a crença em Deus único. Ao ouvir seu nome, os muçulmanos costumam dizer:
             <em> “que a paz e as bênçãos de Deus estejam com ele”</em>, como expressão de amor,
-            respeito e gratidão.
+            respeito e gratidão, em árabe é expresso por (ﷺ).
           </p>
           <p>
             Ao mesmo tempo, o próprio Profeta deixou claro que não deve ser adorado. Ele é
@@ -52,7 +52,7 @@ const ProfetaMuhammad = () => {
           badge="Da Meca à Medina"
         >
           <p>
-            Muhammad nasceu em Meca, no século VII, em um contexto marcado por tribalismo,
+            Muhammad (ﷺ) nasceu em Meca, no século VII, em um contexto marcado por tribalismo,
             desigualdade e práticas religiosas fragmentadas. Ainda jovem, ganhou a reputação de
             ser honesto e confiável, a ponto de ser conhecido como <em>Al-Amín</em>, “o digno de
             confiança”.
@@ -66,7 +66,7 @@ const ProfetaMuhammad = () => {
           <p>
             Depois de anos de hostilidade em Meca, emigrou para Medina, onde estabeleceu uma
             comunidade baseada em fé, justiça, solidariedade e respeito aos pactos. Essa etapa
-            mostra Muhammad não apenas como líder espiritual, mas também como mediador, estadista
+            mostra Muhammad (ﷺ) não apenas como líder espiritual, mas também como mediador, estadista
             e educador social.
           </p>
         </AlternatingSection>
@@ -84,7 +84,7 @@ const ProfetaMuhammad = () => {
           badge="Misericórdia em ação"
         >
           <p>
-            Os relatos autênticos descrevem Muhammad como alguém que unia firmeza de princípios e
+            Os relatos autênticos descrevem Muhammad (ﷺ) como alguém que unia firmeza de princípios e
             profunda compaixão. Ele defendia os órfãos, viúvas e pobres, denunciava injustiças e
             alertava contra qualquer forma de arrogância.
           </p>
@@ -107,7 +107,7 @@ const ProfetaMuhammad = () => {
               <div className="ccib-parallax-text">
                 <h2>“Fui enviado apenas como misericórdia”</h2>
                 <p>
-                  É assim que Muhammad é descrito em diversas tradições: como mensageiro que convida
+                  É assim que Muhammad (ﷺ) é descrito em diversas tradições: como mensageiro que convida
                   à reconciliação com Deus, ao cuidado com o próximo e ao combate à injustiça por
                   meios éticos e responsáveis.
                 </p>
@@ -121,8 +121,8 @@ const ProfetaMuhammad = () => {
           <div className="ccib-container">
             <h2 className="ccib-section-title">Mensagem universal para todas as épocas</h2>
             <p>
-              O Islam ensina que, antes de Muhammad, muitos profetas foram enviados a povos
-              específicos em tempos diferentes. Muhammad, porém, é descrito como mensageiro
+              O Islam ensina que, antes de Muhammad (ﷺ), muitos profetas foram enviados a povos
+              específicos em tempos diferentes. Muhammad (ﷺ), porém, é descrito como mensageiro
               enviado para toda a humanidade, com uma mensagem universal de fé em Deus único,
               justiça, responsabilidade e misericórdia.
             </p>

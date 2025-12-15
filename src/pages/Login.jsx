@@ -115,11 +115,10 @@ const Login = () => {
 
               {status && (
                 <p
-                  className={`ccib-auth-status ${
-                    status.type === 'error'
+                  className={`ccib-auth-status ${status.type === 'error'
                       ? 'ccib-auth-status--error'
                       : 'ccib-auth-status--success'
-                  }`}
+                    }`}
                 >
                   {status.message}
                 </p>
@@ -164,33 +163,51 @@ const Login = () => {
               display: 'flex',
               alignItems: 'flex-end',
               justifyContent: 'flex-start',
+              borderRadius: '24px',
+              overflow: 'hidden',
             }}
           >
-            {/* Overlay suave para não ficar “gritante” */}
             <div
               style={{
                 width: '100%',
                 height: '100%',
                 background:
-                  'linear-gradient(145deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 40%, rgba(0,0,0,0) 100%)',
+                  'linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.40) 35%, rgba(0,0,0,0.00) 70%)',
                 display: 'flex',
                 alignItems: 'flex-end',
                 padding: '1.5rem 1.75rem',
                 boxSizing: 'border-box',
+                borderRadius: 'inherit',
               }}
             >
-              {/* Texto opcional, bem discreto */}
-              <div style={{ maxWidth: '260px', color: '#fdfbf5' }}>
-                <h2 style={{ fontSize: '1.1rem', marginBottom: '0.35rem' }}>
+              <div style={{ maxWidth: '320px' }}>
+                <h2
+                  style={{
+                    fontSize: '1.1rem',
+                    marginBottom: '0.35rem',
+                    color: '#ffffff',
+                    textShadow: '0 3px 14px rgba(0,0,0,0.85)',
+                  }}
+                >
                   “Em nome de Allah, o Clemente, o Misericordioso”
                 </h2>
-                <p style={{ fontSize: '0.85rem', lineHeight: 1.4, opacity: 0.9 }}>
+
+                <p
+                  style={{
+                    fontSize: '0.85rem',
+                    lineHeight: 1.4,
+                    color: 'rgba(255,255,255,0.92)',
+                    textShadow: '0 2px 12px rgba(0,0,0,0.75)',
+                    margin: 0,
+                  }}
+                >
                   O acesso a esta área é reservado à equipe autorizada do CCIB, responsável pela
                   comunicação oficial com a comunidade.
                 </p>
               </div>
             </div>
           </aside>
+
         </div>
       </div>
     </main>

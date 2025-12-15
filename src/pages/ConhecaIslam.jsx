@@ -185,15 +185,6 @@ const ConhecaIslam = () => {
   const [activeProphetId, setActiveProphetId] = useState();
   const timelineTrackRef = useRef(null);
 
-  const sectionLinks = [
-    { id: 'conceito-de-deus', label: 'Conceito de Deus' },
-    { id: 'quem-e-allah', label: 'Quem é Allah?' },
-    { id: 'proposito-da-vida', label: 'Propósito da vida' },
-    { id: 'vida-apos-a-morte', label: 'Vida após a morte' },
-    { id: 'mensagem-dos-profetas', label: 'Mensagem dos profetas' },
-    { id: 'pilares-do-islam', label: 'Pilares do Islam' },
-    { id: 'pilares-da-fe', label: 'Pilares da fé' }
-  ];
 
   const handleTimelineScroll = (direction) => {
     const track = timelineTrackRef.current;
@@ -219,38 +210,30 @@ const ConhecaIslam = () => {
       />
 
       <main className="ccib-page">
-        <div className="ccib-container">
-          {/* Navegação de seções */}
-          <nav aria-label="Seções desta página" className="ccib-page-chip-nav">
-            {sectionLinks.map((link) => (
-              <a key={link.id} href={`#${link.id}`} className="ccib-chip-link">
-                {link.label}
-              </a>
-            ))}
-          </nav>
-        </div>
 
-        {/* CONCEITO DE DEUS */}
+        {/* CONCEITO DE ISLAM */}
         <AlternatingSection
-          id="conceito-de-deus"
-          title="Conceito de Deus no Islam"
+          id="conceito-de-islam"
+          title="O que é o Islam?"
           imageUrl="https://images.pexels.com/photos/2608353/pexels-photo-2608353.jpeg"
-          badge="Unicidade e transcendência"
+          badge="Submissão a vontade de Deus"
         >
           <p>
-            No Islam, Deus é único, absoluto e sem parceiros. Ele não se confunde com a criação, não
-            tem início nem fim, não gera nem é gerado, e nada se compara a Ele. O nome usado em árabe
-            é <strong>Allah</strong>, termo que não possui plural nem gênero, reforçando a ideia de
-            unicidade e transcendência.
+            A palavra “Islam”, de origem árabe, é a forma nominal de “Aslama” e significa <strong>“submissão
+              total e voluntária à vontade de Deus”</strong>. Essa palavra deriva da raiz verbal “Salam” que carrega
+            o sentido de paz. Essa submissão não é vista como um fardo, mas sim como o caminho para alcançar
+            a paz, tanto interior quanto exterior abrangendo aspectos espirituais, éticos, sociais e políticos.
           </p>
           <p>
-            Deus é o Criador e Sustentador de tudo o que existe, ao mesmo tempo justo e
-            misericordioso. A misericórdia divina não é oposta à justiça: quem age com retidão e
-            paciência não é igual, diante de Deus, àquele que oprime e corrompe.
+            O Islam é uma das maiores religiões monoteístas do mundo, ou seja, é uma crença baseada em um único Deus.
+            De acordo com o relatório <i>“How the Global Religious Landscape Changed From 2010 to 2020”</i> <b>o crescimento do
+            islamismo superou o de todos os outros grupos religiosos juntos no período e, atualmente, o número de seguidores
+            totaliza cerca de 2 bilhões de pessoas (o equivalente a 25,6% da população mundial)</b>
           </p>
           <p>
-            Crer nesse Deus único significa reconhecê-Lo acima de qualquer limitação humana e, ao
-            mesmo tempo, próximo, atento às súplicas e conhecedor das intenções mais profundas.
+            O princípio fundamental do Islam é o “Tawhīd”, a crença na Unicidade e Singularidade de Deus. Para os muçulmanos,
+            Deus é incomparável e único, e associar qualquer parceiro a Ele (o shirk, termo em árabe para idolatria)
+            é o maior dos pecados.
           </p>
         </AlternatingSection>
 
@@ -259,28 +242,158 @@ const ConhecaIslam = () => {
           <span className="ccib-section-divider-icon" />
         </div>
 
-        {/* QUEM É ALLAH */}
+        {/* O CONCEITO DE DEUS NO ISLAM */}
         <AlternatingSection
-          id="quem-e-allah"
-          title="Quem é Allah?"
+          id="conceito-de-deus"
+          title="O conceito de Deus no Islam"
           reverse
           imageUrl="https://images.pexels.com/photos/19988546/pexels-photo-19988546.jpeg"
-          badge="Deus Único"
+          badge="Deus Único, absoluto, sem parceiros"
         >
           <p>
-            Há um equívoco comum de que “Allah” seria um deus diferente ou exclusivo dos árabes. Na
-            realidade, <strong>“Allah” é simplesmente a palavra árabe para “Deus”</strong>. Cristãos
-            árabes utilizam essa mesma palavra em suas Bíblias e em suas orações.
+            No Islam, <strong>Deus é único, absoluto e sem parceiros</strong>. No Alcorão, a Surah Al-Ikhlāṣ
+            (capítulo do monoteísmo puro) é capaz de resumir todo esse conceito:
+          </p>
+
+          {/* Verso do Alcorão */}
+          <div className="ccib-verse-callout">
+            <p className="ccib-verse-ar" style={{ fontSize: '1.35rem' }}>
+              قُلْ هُوَ ٱللَّهُ أَحَدٌ ١<br />
+              ٱللَّهُ ٱلصَّمَدُ ٢<br />
+              لَمْ يَلِدْ وَلَمْ يُولَدْ ٣<br />
+              وَلَمْ يَكُن لَّهُۥ كُفُوًا أَحَدٌۢ ٤
+            </p>
+            <p className="ccib-verse-tr">
+              “Dize: &quot;Ele é Allah, Único.&quot;”<br />
+              “Allah é O Solicitado.”<br />
+              “Não gerou e não foi gerado.”<br />
+              “E não há ninguém igual a Ele.”
+            </p>
+            <a
+              href="https://quran.com/pt/112/1-4"
+              className="ccib-verse-ref"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Alcorão 112:1-4 &mdash; Surah Al-Ikhlāṣ
+            </a>
+          </div>
+
+          <p>
+            Há um equívoco comum de que “Allah” seria um deus diferente ou exclusivo dos árabes. Na realidade,
+            “Allah” é simplesmente a palavra árabe para “Deus”, <strong>termo que não possui plural nem gênero, reforçando
+              a ideia de unicidade e transcendência</strong>.
+          </p>
+          <p>Cristãos e judeus árabes utilizam essa mesma palavra. Quando um muçulmano
+            diz “creio em Allah”, está afirmando sua fé no mesmo Deus criador de Abraão, de Moisés, de Jesus e de todos os
+            profetas. Não se trata de uma divindade étnica ou regional, mas do Deus único, Senhor dos céus e da terra.</p>
+
+          <p>
+            O Islam rejeita a ideia de que Allah pertença a um povo específico. <strong>Todos os seres humanos, independentemente de origem,
+              língua ou cultura, podem voltar-se a Ele e invocá-Lo com sinceridade</strong>.
+          </p>
+
+        </AlternatingSection>
+
+        {/* DIVISOR VISUAL */}
+        <div className="ccib-section-divider" aria-hidden="true">
+          <span className="ccib-section-divider-icon" />
+        </div>
+
+        {/* QUEM SÃO OS MUÇULMANOS? */}
+        <AlternatingSection
+          id="quem-sao-os-muculmanos?"
+          title="Quem são os muçulmanos?"
+          reverse
+          imageUrl="https://images.pexels.com/photos/7129744/pexels-photo-7129744.jpeg"
+          badge="Submissos a vontade de Deus"
+        >
+          <p>
+            A pessoa que pratica o Islam é um muçulmano (muslim é o termo em árabe), ou seja, <strong>"aquele
+              que se submete à vontade de Deus."</strong>. Crer nesse Deus único significa reconhecê-Lo acima de qualquer
+            limitação humana e, ao mesmo tempo, próximo, atento às súplicas e conhecedor das intenções mais profundas.
           </p>
           <p>
-            Quando um muçulmano diz “creio em Allah”, está afirmando sua fé no mesmo Deus criador de
-            Abraão, de Moisés, de Jesus e de todos os profetas. Não se trata de uma divindade étnica
-            ou regional, mas do Deus único, Senhor dos céus e da terra.
+            Um equívoco comum para as pessoas que não conhecem o Islam é acreditar que os muçulmanos adoram
+            o Profeta Muhammad (ﷺ - Que a paz e as bençãos de Deus estejam sobre ele). Adorar o Profeta Muhammad (ﷺ) ou qualquer
+            outro profeta e mensageiro de Allah, ou mesmo qualquer outro aspecto da criação seja natural ou criado pelo ser
+            humano é estritamente proibido no Islam pois entra em conflito com a crença em um Deus único.
           </p>
           <p>
-            O Islam rejeita a ideia de que Deus pertença a um povo específico. Todos os seres
-            humanos, independentemente de origem, língua ou cultura, podem voltar-se a Ele e
-            invocá-Lo com sinceridade.
+            <strong>Ser muçulmano independe da sua etnia ou idioma</strong>, portanto, a pessoa não precisa ser árabe para ser um muçulmano.
+            Os países com as maiores populações muçulmanas são, na verdade, nações não árabes localizadas na Ásia e África.
+          </p>
+        </AlternatingSection>
+
+        {/* DIVISOR VISUAL */}
+        <div className="ccib-section-divider" aria-hidden="true">
+          <span className="ccib-section-divider-icon" />
+        </div>
+
+        {/* O QUE É O ALCORÃO? */}
+        <AlternatingSection
+          id="o-alcorao"
+          title="O que é o Alcorão?"
+          imageUrl="https://images.pexels.com/photos/3360048/pexels-photo-3360048.jpeg"
+          badge="Sentido e responsabilidade"
+        >
+          <p>
+            <strong>Os muçulmanos acreditam que o Alcorão é a palavra literal e imutável de Allah</strong>, essa mensagem é um guia
+            para a humanidade e veio para confirmar a verdade dos livros que já haviam sido revelados pelos profetas
+            anteriores, como Jesus (O Evangelho), Davi (Os Salmos) e Moises (A Torah) (عَلَيْهِم السَّلَام – Que a paz de Deus esteja sobre eles),
+            e expor as falsidades acrescentadas pelo ser humano ao longo das eras.
+          </p>
+          <p>
+            O Alcorão foi revelado ao Profeta Muhammad (ﷺ) através do Anjo Jibril–Gabriel (عَلَیهِ‌السَّلام – Que a paz de Deus esteja com ele)
+            que trazia a mensagem do Deus único.
+          </p>
+          <p>A primeira revelação veio na noite do decreto (Lailat Al-Qadr), o Profeta Muhammad (ﷺ)
+            tinha o costume de ir a caverna de Hira para meditar e orar, quando nesta noite recebeu a visita do
+            Anjo Gabriel (عَلَیهِ‌السَّلام) que lhe comandou “Iqra! – Recite!” e este o respondeu que era analfabeto. Após repetir
+            o comando e o Profeta hesitar três vezes, o Anjo recitou os primeiros versos da Surah Al-Alaq (O Coágulo):</p>
+
+          {/* Verso do Alcorão */}
+          <div className="ccib-verse-callout">
+            <p className="ccib-verse-ar" style={{ fontSize: '1.35rem' }}>
+              ٱقْرَأْ بِٱسْمِ رَبِّكَ ٱلَّذِى خَلَقَ ١<br />
+              خَلَقَ ٱلْإِنسَـٰنَ مِنْ عَلَقٍ ٢<br />
+              ٱقْرَأْ وَرَبُّكَ ٱلْأَكْرَمُ ٣<br />
+              ٱلَّذِى عَلَّمَ بِٱلْقَلَمِ ٤<br />
+              عَلَّمَ ٱلْإِنسَـٰنَ مَا لَمْ يَعْلَمْ ٥
+            </p>
+            <p className="ccib-verse-tr">
+              “Lê, em nome de teu Senhor, que criou,”<br />
+              “Que criou o ser humano de uma aderência.”<br />
+              “Lê, e teu Senhor é O mais Generoso,”<br />
+              “Que ensinou a escrever com o cálamo,”<br />
+              “Ensinou ao ser humano o que ele não sabia.”
+            </p>
+            <a
+              href="https://quran.com/pt/96/1-5"
+              className="ccib-verse-ref"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Alcorão 96:1-5 &mdash; Surah Al-ʻAlaq
+            </a>
+          </div>
+
+          <p>
+            Após essa primeira experiência, a revelação do Alcorão continuou em etapas, versículo por versículo ou bloco
+            de versículos (Suras), por um período de aproximadamente 23 anos. Dada a natureza oral da cultura árabe da época,
+            os versos eram memorizados assim que revelados por centenas de muçulmanos, sob a orientação do Profeta (ﷺ)
+            que também o memorizava e recitava.
+          </p>
+          <p>Além disso, o Profeta de Deus (ﷺ) tinha escribas que registravam os
+            versos em materiais disponíveis, como pedras planas, omoplatas de camelos, couro e folhas de palmeira.</p>
+          <p>
+            A forma compilada do Alcorão como um único livro foi realizada logo após a morte do Profeta (ﷺ),
+            sob a supervisão dos primeiros califas (رَضِيَ اللَّهُ عَنْهُمْ – Que Deus esteja satisfeito com eles), garantindo a fidelidade
+            e a unidade da mensagem que havia sido memorizada e escrita durante os 23 anos de revelação.
+          </p>
+          <p>
+            Portanto, <strong>para preservar a autenticidade desta mensagem, os muçulmanos a recitam no idioma original da revelação,
+              o árabe, preservando-a da forma que foi relevada até os dias atuais</strong>.
           </p>
         </AlternatingSection>
 
@@ -293,7 +406,7 @@ const ConhecaIslam = () => {
         <AlternatingSection
           id="proposito-da-vida"
           title="O propósito da vida"
-          imageUrl="https://images.pexels.com/photos/7129744/pexels-photo-7129744.jpeg"
+          imageUrl="https://images.pexels.com/photos/1025469/pexels-photo-1025469.jpeg"
           badge="Sentido e responsabilidade"
         >
           <p>
@@ -318,39 +431,15 @@ const ConhecaIslam = () => {
           <span className="ccib-section-divider-icon" />
         </div>
 
-        {/* VIDA APÓS A MORTE */}
-        <AlternatingSection
-          id="vida-apos-a-morte"
-          title="Vida após a morte"
-          reverse
-          imageUrl="https://images.pexels.com/photos/1025469/pexels-photo-1025469.jpeg"
-          badge="Perspectiva eterna"
-        >
-          <p>
-            A crença na vida após a morte é central no Islam. Este mundo é entendido como um período
-            de prova e preparação para uma existência definitiva. A vida terrena é limitada; a vida
-            futura, eterna.
-          </p>
-          <p>
-            Essa crença aprofunda a noção de justiça: nem todo bem é plenamente recompensado aqui, e
-            nem todo mal recebe, neste mundo, a resposta que merece. A justiça de Deus se manifesta
-            de maneira completa na outra vida.
-          </p>
-          <p>
-            Para quem crê, isso traz equilíbrio entre responsabilidade e esperança: ninguém está
-            isento de prestar contas, mas nenhuma boa ação é esquecida por Deus.
-          </p>
-        </AlternatingSection>
-
         {/* PARALLAX TRANSIÇÃO */}
         <section className="ccib-parallax-slice">
           <div className="ccib-parallax-overlay">
             <div className="ccib-container">
               <div className="ccib-parallax-text">
-                <h2>“Islam” significa entrega consciente a Deus.</h2>
+                <h2>Islam não é só uma religião, é um modelo de vida</h2>
                 <p>
-                  Essa entrega não é passiva. É um compromisso ativo com a verdade, a justiça e a
-                  misericórdia, guiado pela revelação e exercido no cotidiano: na família, na vida
+                  É um compromisso ativo com a verdade, a justiça e a
+                  misericórdia, guiado pela revelação do Alcorão e exercido no cotidiano: na família, na vida
                   profissional e na relação com a sociedade.
                 </p>
               </div>
@@ -366,7 +455,8 @@ const ConhecaIslam = () => {
               <p className="ccib-section-description">
                 O Alcorão ensina que Deus enviou mensageiros a diferentes povos e épocas, todos
                 convidando à mesma essência: crer em um Deus único e viver com justiça e
-                misericórdia.
+                misericórdia. Esta é a mensagem primordial e universal de Deus entregue à humanidade desde o princípio dos tempos,
+                a doutrina do Monoteísmo Absoluto (Tawhīd).
               </p>
             </header>
 
@@ -377,7 +467,7 @@ const ConhecaIslam = () => {
               </p>
               <p className="ccib-verse-tr">
                 “E enviamos Mensageiros, de que, com efeito, te fizemos menção antes e Mensageiros,
-                 de que não te fizemos menção; e Allah falou a Moisés efetivamente.”
+                de que não te fizemos menção; e Allah falou a Moisés efetivamente.”
               </p>
               <a
                 href="https://quran.com/pt/4/164"
@@ -419,9 +509,8 @@ const ConhecaIslam = () => {
                   return (
                     <div
                       key={profeta.id}
-                      className={`ccib-timeline-item ${
-                        isActive ? 'ccib-timeline-item--active' : ''
-                      }`}
+                      className={`ccib-timeline-item ${isActive ? 'ccib-timeline-item--active' : ''
+                        }`}
                     >
                       <button
                         type="button"

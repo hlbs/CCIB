@@ -99,8 +99,8 @@ a:hover {
 
 .ccib-logo {
   display: inline-flex;
-  align-items: baseline;
-  gap: 0.35rem;
+  align-items: center;
+  gap: 0.55rem;
   text-decoration: none;
   color: var(--ccib-green);
 }
@@ -145,6 +145,22 @@ a:hover {
 
 .ccib-logo-ccib-b {
   color: var(--ccib-gold);
+}
+
+.ccib-logo-mark {
+  width: 30px;
+  height: 30px;
+  flex: 0 0 auto;
+  display: block;
+  /* micro-ajuste visual para alinhar melhor com a tipografia */
+  transform: translateY(1px);
+}
+
+@media (max-width: 640px) {
+  .ccib-logo-mark {
+    width: 46px;
+    height: 46px;
+  }
 }
 
 @media (max-width: 640px) {
@@ -267,7 +283,7 @@ a:hover {
   flex-direction: column;
 }
 
-.ccib-nav-list-mobile li:last-child > button.ccib-nav-link {
+.ccib-nav-list-mobile li:last-child>button.ccib-nav-link {
   flex: 1 1 0;
   display: inline-flex;
   align-items: center;
@@ -282,19 +298,19 @@ a:hover {
 }
 
 /* Remove o sublinhado animado dos botões */
-.ccib-nav-list-mobile li:last-child > button.ccib-nav-link::after {
+.ccib-nav-list-mobile li:last-child>button.ccib-nav-link::after {
   display: none;
 }
 
 /* Botão "Meu perfil" – primário em verde */
-.ccib-nav-list-mobile li:last-child > button.ccib-nav-link:first-of-type {
+.ccib-nav-list-mobile li:last-child>button.ccib-nav-link:first-of-type {
   background: linear-gradient(135deg, var(--ccib-green-soft), var(--ccib-green));
   border-color: transparent;
   color: #ffffff;
 }
 
 /* Botão "Sair" – estilo de alerta suave */
-.ccib-nav-list-mobile li:last-child > button.ccib-nav-link:last-of-type {
+.ccib-nav-list-mobile li:last-child>button.ccib-nav-link:last-of-type {
   border-color: #f2b0b0;
   color: #b91c1c;
   background: #fff5f5;
@@ -1579,12 +1595,10 @@ a:hover {
   height: 100%;
   width: 40%;
   border-radius: inherit;
-  background: linear-gradient(
-    90deg,
-    rgba(17, 96, 63, 0.25),
-    #11603f,
-    rgba(17, 96, 63, 0.85)
-  );
+  background: linear-gradient(90deg,
+      rgba(17, 96, 63, 0.25),
+      #11603f,
+      rgba(17, 96, 63, 0.85));
   animation: ccib-loader-bar 1.4s ease-in-out infinite;
 }
 
@@ -1594,6 +1608,7 @@ a:hover {
   from {
     background-position: 0% 0%, 100% 100%, center;
   }
+
   to {
     background-position: 15% 5%, 85% 95%, center;
   }
@@ -1604,6 +1619,7 @@ a:hover {
     opacity: 0;
     transform: translateY(18px) scale(0.97);
   }
+
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -1611,11 +1627,13 @@ a:hover {
 }
 
 @keyframes ccib-loader-breath {
+
   0%,
   100% {
     transform: scale(1);
     filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.16));
   }
+
   50% {
     transform: scale(1.03);
     filter: drop-shadow(0 16px 26px rgba(0, 0, 0, 0.2));
@@ -1626,6 +1644,7 @@ a:hover {
   0% {
     transform: translateX(-60%);
   }
+
   100% {
     transform: translateX(160%);
   }
@@ -2062,7 +2081,7 @@ a:hover {
   inset: 0;
   background: rgba(6, 25, 16, 0.55);
   display: flex;
-  align-items: flex-start; 
+  align-items: flex-start;
   justify-content: center;
   z-index: 999;
   animation: ccib-fade-in 0.25s ease-out;
@@ -2411,21 +2430,21 @@ a:hover {
   content: "";
   flex: 1;
   height: 1px;
-  background: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(201, 176, 113, 0.6) 40%,
-    rgba(201, 176, 113, 0.6) 60%,
-    rgba(0, 0, 0, 0) 100%
-  );
+  background: linear-gradient(90deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(201, 176, 113, 0.6) 40%,
+      rgba(201, 176, 113, 0.6) 60%,
+      rgba(0, 0, 0, 0) 100%);
 }
 
 /* Ícone central com a caligrafia CCIB */
 .ccib-section-divider-icon {
-  width: 30px;               /* largura pequena, mas legível */
+  width: 30px;
+  /* largura pequena, mas legível */
   height: 30px;
   border-radius: 100%;
-  background-color: none; /* leve fundo claro para dar contraste */
+  background-color: none;
+  /* leve fundo claro para dar contraste */
   border: none;
   box-shadow: none;
 
@@ -2433,7 +2452,8 @@ a:hover {
   background-image: url("/images/div/div.png");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: contain;  /* preserva o desenho, sem cortar */
+  background-size: contain;
+  /* preserva o desenho, sem cortar */
 
   display: inline-block;
 }
@@ -2641,12 +2661,10 @@ a:hover {
   left: -40%;
   width: 40%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0,
-    rgba(255, 255, 255, 0.7) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
+  background: linear-gradient(90deg,
+      rgba(255, 255, 255, 0) 0,
+      rgba(255, 255, 255, 0.7) 50%,
+      rgba(255, 255, 255, 0) 100%);
   animation: ccib-shimmer 1.2s ease-in-out infinite;
 }
 
@@ -2654,6 +2672,7 @@ a:hover {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(250%);
   }
@@ -2690,6 +2709,7 @@ a:hover {
   .ccib-auth-layout {
     grid-template-columns: minmax(0, 1fr);
   }
+
   .ccib-form-group-row {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -2844,12 +2864,10 @@ a:hover {
   left: -40%;
   width: 40%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0,
-    rgba(255, 255, 255, 0.7) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
+  background: linear-gradient(90deg,
+      rgba(255, 255, 255, 0) 0,
+      rgba(255, 255, 255, 0.7) 50%,
+      rgba(255, 255, 255, 0) 100%);
   animation: ccib-shimmer 1.2s ease-in-out infinite;
 }
 
@@ -2857,6 +2875,7 @@ a:hover {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(250%);
   }
@@ -3187,7 +3206,7 @@ a:hover {
 .ccib-library-item {
   position: relative;
   scroll-snap-align: start;
-  min-width: 220px;
+  min-width: 300px;
   padding: 0.7rem 0.85rem;
   border-radius: 999px;
   background: #f6f3eb;
@@ -3279,14 +3298,15 @@ a:hover {
 
 @media (max-width: 640px) {
   .ccib-library-item {
-    min-width: 190px;
+    min-width: 290px;
   }
 }
 
 /* Wrapper da vitrine de livros com setas laterais */
 .ccib-library-carousel-wrapper {
   position: relative;
-  padding: 0.5rem 2.75rem 0.2rem; /* top | right/left | bottom */
+  padding: 0.5rem 2.75rem 0.2rem;
+  /* top | right/left | bottom */
 }
 
 /* Centraliza verticalmente as setas em relação aos círculos
@@ -4086,7 +4106,7 @@ a:hover {
 }
 
 .ccib-quran-read-sidebar-item:hover {
-  background: #f7f5ee;
+  background: linear-gradient(135deg, #1a6b3b, #145032);
 }
 
 .ccib-quran-read-sidebar-item--active {
@@ -4096,19 +4116,29 @@ a:hover {
   transform: translateY(-1px);
 }
 
-.ccib-quran-read-sidebar-item--active
-  .ccib-quran-read-sidebar-number {
+.ccib-quran-read-sidebar-item--active .ccib-quran-read-sidebar-number {
   background: rgba(255, 255, 255, 0.15);
   color: #ffffff;
 }
 
-.ccib-quran-read-sidebar-item--active
-  .ccib-quran-read-sidebar-name-pt {
+.ccib-quran-read-sidebar-item:hover .ccib-quran-read-sidebar-number {
+  background: rgba(255, 255, 255, 0.15);
   color: #ffffff;
 }
 
-.ccib-quran-read-sidebar-item--active
-  .ccib-quran-read-sidebar-name-ar {
+.ccib-quran-read-sidebar-item--active .ccib-quran-read-sidebar-name-pt {
+  color: #ffffff;
+}
+
+.ccib-quran-read-sidebar-item--active .ccib-quran-read-sidebar-name-ar {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.ccib-quran-read-sidebar-item:hover .ccib-quran-read-sidebar-name-pt {
+  color: #ffffff;
+}
+
+.ccib-quran-read-sidebar-item:hover .ccib-quran-read-sidebar-name-ar {
   color: rgba(255, 255, 255, 0.9);
 }
 
@@ -4144,6 +4174,8 @@ a:hover {
   line-height: 1.4;
   color: var(--ccib-green);
 }
+
+
 
 /* Bloco com os versículos da surata atual */
 
@@ -4456,14 +4488,12 @@ a:hover {
 }
 
 .ccib-contact-social-icon--instagram {
-  background: radial-gradient(
-      circle at 30% 110%,
+  background: radial-gradient(circle at 30% 110%,
       #ffdb8b 0%,
       #ee653d 25%,
       #d42e81 50%,
       #8435cc 75%,
-      #515bd4 100%
-    );
+      #515bd4 100%);
 }
 
 .ccib-contact-social-icon:hover {
@@ -4568,7 +4598,8 @@ a:hover {
 
 @media (max-width: 640px) {
   .ccib-contact-social-icons {
-    justify-content: flex-start; /* ou center, se quiser centralizar */
+    justify-content: flex-start;
+    /* ou center, se quiser centralizar */
   }
 }
 
@@ -4580,7 +4611,7 @@ a:hover {
 }
 
 .ccib-logo-text-compact {
- /* escondida por padrão (desktop) */
+  /* escondida por padrão (desktop) */
   font-size: 1.1rem;
   font-weight: 700;
   letter-spacing: 0.16em;
@@ -4664,4 +4695,247 @@ a:hover {
 .ccib-pagination-btn:disabled {
   opacity: 0.5;
   cursor: default;
+}
+
+/* ==============================
+   Notícias & Eventos – Rich Editor
+   ============================== */
+
+.ccib-rich-editor {
+  border: 1px solid #ded7c5;
+  border-radius: 12px;
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.02);
+}
+
+.ccib-rich-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: center;
+  padding: 0.55rem 0.6rem;
+  background: linear-gradient(180deg, #ffffff, #fbf8f1);
+  border-bottom: 1px solid rgba(222, 215, 197, 0.9);
+}
+
+.ccib-rich-btn {
+  appearance: none;
+  border: 1px solid rgba(222, 215, 197, 1);
+  background: #fff;
+  border-radius: 10px;
+  padding: 0.35rem 0.55rem;
+  font-size: 0.9rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 0.06s ease, box-shadow 0.2s ease, border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.ccib-rich-btn:hover {
+  border-color: #c9a14a;
+  box-shadow: 0 0 0 3px rgba(201, 161, 74, 0.14);
+}
+
+.ccib-rich-btn:active {
+  transform: translateY(1px);
+}
+
+.ccib-rich-btn.is-active {
+  background: rgba(201, 161, 74, 0.12);
+  border-color: #c9a14a;
+}
+
+.ccib-rich-label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: #555;
+  margin-left: 0.2rem;
+}
+
+.ccib-rich-select {
+  border: 1px solid #ded7c5;
+  border-radius: 10px;
+  padding: 0.35rem 0.5rem;
+  background: #fff;
+  font-size: 0.85rem;
+}
+
+.ccib-rich-color {
+  width: 36px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid #ded7c5;
+  border-radius: 10px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.ccib-rich-sep {
+  width: 1px;
+  height: 26px;
+  background: rgba(222, 215, 197, 0.9);
+  margin: 0 0.15rem;
+}
+
+.ccib-rich-surface {
+  padding: 0.65rem 0.75rem;
+}
+
+.ccib-rich-editor-content {
+  min-height: 140px;
+  outline: none;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #1a1a1a;
+}
+
+.ccib-rich-editor-content p {
+  margin: 0 0 0.65rem 0;
+}
+
+.ccib-rich-editor-content p:last-child {
+  margin-bottom: 0;
+}
+
+.ccib-form-hint {
+  margin-top: 0.45rem;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+/* Modal – renderização do HTML do editor */
+.ccib-news-modal-content {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: #222;
+}
+
+.ccib-news-modal-content p {
+  margin: 0 0 0.85rem 0;
+}
+
+.ccib-news-modal-content ul,
+.ccib-news-modal-content ol {
+  padding-left: 1.15rem;
+  margin: 0.6rem 0 1rem;
+}
+
+.ccib-news-modal-content a {
+  color: #0b57d0;
+  text-decoration: underline;
+}
+
+/* ================================
+   Waveform / Equalizer (barras “capsule”)
+   Reage ao --wave (0..1) atualizado via JS
+================================== */
+
+.ccib-quran-audio-disc {
+  --wave: 0;
+}
+
+/* garante sobreposição correta */
+.ccib-quran-audio-disc-inner {
+  position: relative;
+  overflow: hidden;
+}
+
+/* mantém o número acima do equalizer */
+.ccib-quran-audio-disc-number {
+  position: relative;
+  z-index: 2;
+}
+
+/* barras (waveform) */
+.ccib-quran-audio-disc-inner::before {
+  content: "";
+  position: absolute;
+  inset: 10%;
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: 1;
+
+  /* cada layer = uma “barra” arredondada (elipse vertical) */
+  background:
+    radial-gradient(closest-side, rgba(255, 255, 255, 0.55) 98%, transparent 100%) 4% 50% / 4% 18% no-repeat,
+    radial-gradient(closest-side, rgba(255, 255, 255, 0.55) 98%, transparent 100%) 8.5% 50% / 4% 26% no-repeat,
+    radial-gradient(closest-side, rgba(255, 255, 255, 0.55) 98%, transparent 100%) 13% 50% / 4% 40% no-repeat,
+    radial-gradient(closest-side, rgba(255, 255, 255, 0.55) 98%, transparent 100%) 17.5% 50% / 4% 28% no-repeat,
+    radial-gradient(closest-side, rgba(255, 255, 255, 0.55) 98%, transparent 100%) 22% 50% / 4% 52% no-repeat,
+    radial-gradient(closest-side, rgba(255, 255, 255, 0.55) 98%, transparent 100%) 26.5% 50% / 4% 58% no-repeat,
+    radial-gradient(closest-side, rgba(255, 255, 255, 0.55) 98%, transparent 100%) 31% 50% / 4% 42% no-repeat,
+    radial-gradient(closest-side, rgba(255, 255, 255, 0.55) 98%, transparent 100%) 35.5% 50% / 4% 66% no-repeat,
+    radial-gradient(closest-side, rgba(255, 255, 255, 0.55) 98%, transparent 100%) 40% 50% / 4% 80% no-repeat,
+    radial-gradient(closest-side, rgba(255, 255, 255, 0.55) 98%, transparent 100%) 44.5% 50% / 4% 60% no-repeat,
+    radial-gradient(closest-side, rgba(255, 255, 255, 0.55) 98%, transparent 100%) 49% 50% / 4% 92% no-repeat,
+
+    radial-gradient(closest-side, rgba(255, 255, 255, 0.55) 98%, transparent 100%) 53.5% 50% / 4% 60% no-repeat,
+    radial-gradient(closest-side, rgba(255, 255, 255, 0.55) 98%, transparent 100%) 58% 50% / 4% 80% no-repeat,
+    radial-gradient(closest-side, rgba(255, 255, 255, 0.55) 98%, transparent 100%) 62.5% 50% / 4% 66% no-repeat,
+    radial-gradient(closest-side, rgba(255, 255, 255, 0.55) 98%, transparent 100%) 67% 50% / 4% 42% no-repeat,
+    radial-gradient(closest-side, rgba(255, 255, 255, 0.55) 98%, transparent 100%) 71.5% 50% / 4% 58% no-repeat,
+    radial-gradient(closest-side, rgba(255, 255, 255, 0.55) 98%, transparent 100%) 76% 50% / 4% 52% no-repeat,
+    radial-gradient(closest-side, rgba(255, 255, 255, 0.55) 98%, transparent 100%) 80.5% 50% / 4% 28% no-repeat,
+    radial-gradient(closest-side, rgba(255, 255, 255, 0.55) 98%, transparent 100%) 85% 50% / 4% 40% no-repeat,
+    radial-gradient(closest-side, rgba(255, 255, 255, 0.55) 98%, transparent 100%) 89.5% 50% / 4% 26% no-repeat,
+    radial-gradient(closest-side, rgba(255, 255, 255, 0.55) 98%, transparent 100%) 94% 50% / 4% 18% no-repeat;
+
+  /* “pulsar” com base no áudio */
+  transform-origin: 50% 50%;
+  transform: scaleY(calc(0.12 + (var(--wave) * 1.10)));
+  opacity: calc(0.08 + (var(--wave) * 0.62));
+  filter: blur(0.12px);
+  will-change: transform, opacity;
+  transition: transform 120ms linear, opacity 120ms linear;
+  animation: none;
+}
+
+@keyframes ccibWaveformDrift {
+  0% {
+    transform: translateY(1%) scaleY(calc(0.55 + (var(--wave) * 0.75)));
+  }
+
+  50% {
+    transform: translateY(-1%) scaleY(calc(0.60 + (var(--wave) * 0.80)));
+  }
+
+  100% {
+    transform: translateY(1%) scaleY(calc(0.55 + (var(--wave) * 0.75)));
+  }
+}
+
+/* Mobile: mostrar o conteúdo (player/leitura) primeiro e o menu depois */
+@media (max-width: 960px) {
+  .ccib-quran-read-layout {
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  /* Conteúdo primeiro */
+  .ccib-quran-read-main {
+    order: 1;
+  }
+
+  /* Menu depois (vira um “card” abaixo) */
+  .ccib-quran-read-sidebar {
+    order: 2;
+    width: 100%;
+    position: relative; /* remove o sticky do desktop */
+    top: auto;
+  }
+
+  /* Deixa a lista de capítulos confortável no mobile */
+  .ccib-quran-read-sidebar-list {
+    max-height: min(52vh, 520px);
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Chips de versículos: mais espaço no mobile */
+  .ccib-quran-read-sidebar-ayahs-list {
+    max-height: 180px;
+  }
 }

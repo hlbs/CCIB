@@ -16,7 +16,10 @@ const boardMembers = [
     nome: 'Wilton José de Carvalho',
     imageUrl: '/images/diretoria/presidente.jpg',
     descricao:
-      'Responsável por representar o CCIB institucionalmente, coordenar a direção geral e zelar pelo cumprimento da missão e dos valores da instituição.'
+      'Responsável por representar o CCIB institucionalmente, coordenar a direção geral e zelar pelo cumprimento da missão e dos valores da instituição.',
+    telefone: '+55 71 99977-3166',
+    email: 'presidente@ccib.online'
+
   },
   {
     id: 'vice-presidente',
@@ -24,7 +27,9 @@ const boardMembers = [
     nome: 'José Gracindo França Peixinho',
     imageUrl: '/images/diretoria/vice-presidente.jpg',
     descricao:
-      'Apoia a presidência nas decisões estratégicas, substitui o presidente quando necessário e acompanha projetos prioritários da comunidade.'
+      'Apoia a presidência nas decisões estratégicas, substitui o presidente quando necessário e acompanha projetos prioritários da comunidade.',
+    telefone: '+55 71 99118-0000',
+    email: 'vice.presidente@ccib.online'
   },
   {
     id: 'tesoureiro',
@@ -32,31 +37,39 @@ const boardMembers = [
     nome: 'Alins Rabello Souza',
     imageUrl: '/images/diretoria/tesoureiro.jpg',
     descricao:
-      'Responsável pela gestão financeira, prestação de contas, organização de relatórios e suporte à sustentabilidade econômica das atividades do CCIB.'
+      'Responsável pela gestão financeira, prestação de contas, organização de relatórios e suporte à sustentabilidade econômica das atividades do CCIB.',
+    telefone: '+55 71 98142-6680',
+    email: 'diretoria.financeira@ccib.online'
   },
   {
-    id: 'secretario',
+    id: 'diretor-social',
     cargo: 'Diretora Social',
     nome: 'Patrícia Santana de Almeida Rabello',
     imageUrl: '/images/diretoria/secretario.jpg',
     descricao:
-      'Articula campanhas de solidariedade, apoio a famílias vulneráveis e iniciativas de aproximação com a sociedade baiana em geral.'
+      'Articula campanhas de solidariedade, apoio a famílias vulneráveis e iniciativas de aproximação com a sociedade baiana em geral.',
+    telefone: '+55 71 98165-4207',
+    email: 'diretoria.social@ccib.online'
   },
   {
-    id: 'coordenacao-educacao',
-    cargo: 'Diretor de Patrimonio',
+    id: 'diretor-de-patrimonio',
+    cargo: 'Diretor de Patrimônio',
     nome: 'Antônio Alfa Candé',
     imageUrl: '/images/diretoria/educacao.jpg',
     descricao:
-      'Coordena cursos, círculos de estudo, atividades de ensino do Islã e ações formativas voltadas para a comunidade e para o público em geral.'
+      'Responsável por supervisionar a gestão e a preservação dos ativos físicos do CCIB.',
+    telefone: '+55 71 98824-6645',
+    email: 'diretoria.patrimonio@ccib.online'
   },
   {
-    id: 'coordenacao-social',
+    id: 'secretaria',
     cargo: 'Secretária',
     nome: 'Maria da Silva Andrade',
     imageUrl: '/images/diretoria/social.jpg',
     descricao:
-      'Organiza registros, atas, comunicações oficiais e documentações administrativas, garantindo transparência e memória institucional.'
+      'Organiza registros, atas, comunicações oficiais e documentações administrativas, garantindo transparência e memória institucional.',
+    telefone: '+55 71 98800-3559',
+    email: 'ascom@ccib.online'
   }
 ];
 
@@ -67,11 +80,11 @@ const SobreCCIB = () => {
         title="Sobre o Centro Cultural Islâmico da Bahia"
         subtitle="Um espaço de fé, conhecimento e convivência em Salvador, dedicado a compartilhar a mensagem do Islã e fortalecer laços com a sociedade baiana."
         badge="Institucional"
-        videoUrl="public/videos/hero/video-hero10.mp4"
+        videoUrl="videos/hero/video-hero10.mp4"
       />
 
       <main className="ccib-page">
-        
+
         {/* 1. SOBRE O CCIB */}
         <AlternatingSection
           id="sobre-ccib"
@@ -145,9 +158,9 @@ const SobreCCIB = () => {
           badge="Orientação religiosa"
         >
           <p>
-            Sheikh Abdul Hameed Ahmad é o responsável pela liderança religiosa do Centro Cultural
-            Islâmico da Bahia. Com formação em ciências islâmicas e experiência em ensino,
-            acompanhamento comunitário e diálogo inter-religioso, ele dedica seu trabalho a
+            Natural da Nigéria, o Sheikh Abdul Hameed Ahmad é o responsável pela liderança religiosa do Centro Cultural
+            Islâmico da Bahia desde 1992. Com formação em ciências islâmicas em Medina (Árabia Saudita), possui experiência em ensino,
+            acompanhamento comunitário, diálogo inter-religioso e lei islâmica (shariah). Ele dedica seu trabalho a
             transmitir o Islã de forma acessível, fiel às fontes clássicas e atenta à realidade
             local.
           </p>
@@ -208,6 +221,8 @@ const SobreCCIB = () => {
                     <p className="ccib-board-role">{membro.cargo}</p>
                     <h3 className="ccib-board-name">{membro.nome}</h3>
                     <p className="ccib-feature-text">{membro.descricao}</p>
+                    <p className="ccib-feature-text">{membro.telefone}</p>
+                    <p className="ccib-feature-text">{membro.email}</p>
                   </div>
                 </article>
               ))}

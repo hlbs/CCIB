@@ -9,7 +9,7 @@ const JesusNoIslam = () => {
         title="Jesus (ʿĪsā) no Islam"
         subtitle="Como o Islam vê Jesus: profeta, Messias, servo de Deus e elo em uma única mensagem de monoteísmo."
         badge="Respeito e clareza"
-        videoUrl="public/videos/hero/video-hero06.mp4"
+        videoUrl="videos/hero/video-hero06.mp4"
       />
 
       <main className="ccib-page">

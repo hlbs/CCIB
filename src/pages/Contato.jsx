@@ -20,7 +20,7 @@ const Contato = () => {
 
             <form
               className="ccib-contact-form"
-              action="https://formsubmit.co/hermesbarros.eng@gmail.com"
+              action="https://formsubmit.co/contato@ccib.online"
               method="POST"
             >
               {/* Configurações extras do FormSubmit */}
@@ -116,12 +116,12 @@ const Contato = () => {
             <p className="ccib-contact-card-subtitle">
               Centro Cultural Islâmico da Bahia – CCIB
               <br />
-              {/* Substitua pelo endereço real */}
-              Rua Exemplo, 123 – Bairro Tal – Salvador/BA
+              {/* Endereço */}
+              R. Dom Bôsco, 190 - Nazaré, Salvador - BA, 40050-530
             </p>
 
             <div className="ccib-contact-map-wrapper">
-              {/* Substitua o src abaixo pelo código de embed do Google Maps do CCIB */}
+              {/* Embed do Google Maps do CCIB */}
               <iframe
                 title="Mapa de localização do Centro Cultural Islâmico da Bahia"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3250.103947145734!2d-38.500871599999996!3d-12.973462600000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x71604dc98414415%3A0xd7560e8d0d25fa8a!2zQ2VudHJvIEN1bHR1cmFsIElzbMOibWljbyBkYSBCYWhpYSDZhdiz2KzYrw!5e1!3m2!1spt-BR!2sbr!4v1764859014307!5m2!1spt-BR!2sbr"
@@ -166,7 +166,7 @@ const Contato = () => {
 
                 {/* Instagram */}
                 <a
-                  href="https://www.instagram.com/"
+                  href="https://www.instagram.com/centroislamicodabahia/"
                   target="_blank"
                   rel="noreferrer"
                   className="ccib-contact-social-icon-circle ccib-contact-social-icon-circle--instagram"

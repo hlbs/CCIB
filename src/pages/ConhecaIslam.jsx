@@ -206,7 +206,7 @@ const ConhecaIslam = () => {
         title="Conheça o Islam"
         subtitle="Uma introdução organizada aos fundamentos da fé islâmica, baseada em fontes clássicas e acessível a quem está começando."
         /* Vídeo de fundo da página Conheça o Islam (Pexels) */
-        videoUrl="public/videos/hero/video-hero03.mp4"
+        videoUrl="videos/hero/video-hero03.mp4"
       />
 
       <main className="ccib-page">

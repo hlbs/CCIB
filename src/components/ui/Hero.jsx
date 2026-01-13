@@ -4,15 +4,15 @@ import Button from './Button.jsx';
 
 const HERO_VIDEOS = [
   {
-    src: 'public/videos/hero/video-hero02.mp4',
+    src: 'videos/hero/video-hero02.mp4',
     alt: 'Páginas do Alcorão sendo folheadas',
   },
   {
-    src: 'public/videos/hero/video-hero01.mp4',
+    src: 'videos/hero/video-hero01.mp4',
     alt: 'Tecidos e detalhes no interior de uma mesquita',
   },
   {
-    src: 'public/videos/hero/video-hero07.mp4',
+    src: 'videos/hero/video-hero07.mp4',
     alt: 'Paisagem tranquila com horizonte ao fundo',
   },
 ];

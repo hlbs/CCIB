@@ -4939,3 +4939,72 @@ a:hover {
     max-height: 180px;
   }
 }
+
+/* =========================================================
+   Diretoria do CCIB – foto com moldura circular profissional
+   (usa: .ccib-board-avatar-wrapper + .ccib-board-avatar)
+   ========================================================= */
+
+.ccib-board-avatar-wrapper {
+  /* tamanho responsivo sem mexer no JSX */
+  --avatar-size: clamp(92px, 9vw, 128px);
+  --ring: 4px;
+
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+  border-radius: 999px;
+  padding: var(--ring);
+
+  /* anel sofisticado (dourado + verde CCIB) */
+  background: radial-gradient(
+    circle at 30% 20%,
+    rgba(201, 176, 113, 0.92),
+    rgba(17, 96, 63, 0.72) 45%,
+    rgba(201, 176, 113, 0.55) 82%
+  );
+
+  /* aparência “pro” */
+  box-shadow:
+    0 18px 40px rgba(14, 35, 23, 0.16),
+    0 0 0 1px rgba(201, 176, 113, 0.22);
+
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
+  flex: 0 0 auto;
+}
+
+/* brilho/linha interna para dar acabamento */
+.ccib-board-avatar-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: var(--ring);
+  border-radius: 999px;
+  pointer-events: none;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.82);
+}
+
+.ccib-board-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 999px;
+  object-fit: cover;
+  display: block;
+
+  /* evita “bordas feias” em imagens com fundo claro */
+  background: #f3f1eb;
+
+  /* dá profundidade sem pesar */
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.14);
+  transform: translateZ(0);
+}
+
+/* micro-interação elegante (opcional, mas fica ótimo) */
+.ccib-board-card:hover .ccib-board-avatar-wrapper {
+  transform: translateY(-1px);
+  box-shadow:
+    0 22px 52px rgba(14, 35, 23, 0.18),
+    0 0 0 1px rgba(201, 176, 113, 0.28);
+}

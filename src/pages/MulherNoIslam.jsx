@@ -9,7 +9,7 @@ const MulherNoIslam = () => {
         title="A Mulher no Islam"
         subtitle="Dignidade, direitos e espiritualidade: como o Islam elevou a condição da mulher em todos os níveis da vida."
         badge="Dignidade e direitos"
-        videoUrl="public/videos/hero/video-hero05.mp4"
+        videoUrl="videos/hero/video-hero05.mp4"
       />
 
       <main className="ccib-page">

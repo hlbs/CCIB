@@ -60,7 +60,7 @@ const HadithEtica = () => {
         title="Hadith & Ética"
         subtitle="Como os ensinamentos proféticos moldam uma ética viva: intenções, responsabilidade, compaixão e justiça."
         badge="Os Quarenta Hadith"
-        videoUrl="public/videos/hero/video-hero09.mp4"
+        videoUrl="videos/hero/video-hero09.mp4"
       />
 
       <main className="ccib-page">

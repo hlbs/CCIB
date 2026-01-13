@@ -9,7 +9,7 @@ const ProfetaMuhammad = () => {
         title="O Profeta Muhammad (ﷺ)"
         subtitle="Último mensageiro, o selo dos profetas, exemplo de misericórdia, justiça e equilíbrio espiritual."
         badge="Biografia e exemplo"
-        videoUrl="public/videos/hero/video-hero04.mp4"
+        videoUrl="videos/hero/video-hero04.mp4"
       />
 
       <main className="ccib-page">

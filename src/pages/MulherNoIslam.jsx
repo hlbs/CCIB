@@ -13,22 +13,6 @@ const MulherNoIslam = () => {
       />
 
       <main className="ccib-page">
-        <div className="ccib-container">
-          <nav aria-label="Seções desta página" className="ccib-page-chip-nav">
-            <a href="#visao-geral" className="ccib-chip-link">
-              Visão geral
-            </a>
-            <a href="#igualdade-espiritual" className="ccib-chip-link">
-              Igualdade espiritual
-            </a>
-            <a href="#direitos-sociais" className="ccib-chip-link">
-              Direitos sociais e econômicos
-            </a>
-            <a href="#mitos-realidade" className="ccib-chip-link">
-              Mitos x realidade
-            </a>
-          </nav>
-        </div>
 
         {/* 1. VISÃO GERAL */}
         <AlternatingSection
@@ -157,10 +141,12 @@ const MulherNoIslam = () => {
               <article className="ccib-feature-card">
                 <h3 className="ccib-feature-title">“Hijab é opressão”?</h3>
                 <p className="ccib-feature-text">
-                  O recato — para homens e mulheres — é apresentado como proteção do coração e das
-                  relações. O véu, quando vivido por convicção, é expressão de identidade e
-                  devoção, não de inferioridade. A opressão está em impor ou proibir, não em uma
-                  mulher escolher se vestir por fé.
+                  O recato, para homens e mulheres, é uma forma de proteger o coração, a dignidade
+                  e as relações. O hijab, quando usado por convicção, é expressão de identidade e 
+                  devoção, não de inferioridade. Mas o recato não se resume a um tecido: ele também
+                  aparece nas atitudes, na fala respeitosa, no olhar, no comportamento e na postura 
+                  ética no dia a dia. A opressão está em impor ou proibir, não em uma mulher escolher
+                  se vestir por fé.
                 </p>
               </article>
 

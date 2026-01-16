@@ -1,6 +1,6 @@
 {
   "name": "ccib-website",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "private": true,
   "description": "Website institucional do Centro Cultural Islâmico da Bahia (CCIB), desenvolvido em React + Vite, com Firebase e mini-CMS interno.",
   "scripts": {
